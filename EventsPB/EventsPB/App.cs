@@ -2,32 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using EventsPB.View;
 using Xamarin.Forms;
 
 namespace EventsPB
 {
     public class App : Application
     {
+
+        public static MasterDetail MasterDetail;
+
         public App()
         {
-            // The root page of your application
-            var content = new ContentPage
-            {
-                Title = "EventsPB",
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
-
-            MainPage = new NavigationPage(content);
+            MasterDetail = new MasterDetail();
+            MainPage = MasterDetail;
         }
 
         protected override void OnStart()
