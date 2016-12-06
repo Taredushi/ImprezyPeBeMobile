@@ -8,10 +8,11 @@
   
   <ContentPage.Content>
     <StackLayout VerticalOptions="FillAndExpand">
+      <Label Text="Aplikacja Wydarzenia"></Label>
       <ListView x:Name="MenuListView" VerticalOptions="FillAndExpand" SeparatorVisibility="None">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <ImageCell Text="{Binding Title}" ImageSource="{Binding IconSource}" />
+            <ImageCell Text="{Binding Title}" TextColor="Black" ImageSource="{Binding IconSource}" />
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>

@@ -24,44 +24,44 @@ namespace EventsPbMobile.Pages
                 new Models.MenuItem()
                 {
                     Title = "Strona Główna",
-                    IconSource = "main.png",
+                    IconSource = "home.png",
                     TargetType = typeof(MainPage)
                 },
                 new Models.MenuItem()
                 {
                     Title = "Mapa",
                     IconSource = "map.png",
-                    //TargetType = typeof(ReminderPage)
+                    TargetType = typeof(Map)
                 },
                 new Models.MenuItem()
                 {
                     Title = "Przydatne Linki",
-                    IconSource = "map.png",
-                    //TargetType = typeof(ReminderPage)
+                    IconSource = "links.png",
+                    TargetType = typeof(UsefulLinks)
                 },
                 new Models.MenuItem()
                 {
                     Title = "Kontakt",
-                    IconSource = "contacts.png",
+                    IconSource = "contact.png",
                     TargetType = typeof(ContactsPage)
                 },
                 new Models.MenuItem()
                 {
                     Title = "Pomoc",
                     IconSource = "help.png",
-                    //TargetType = typeof(ReminderPage)
+                    TargetType = typeof(Help)
                 },
                 new Models.MenuItem()
                 {
                     Title = "Ustawienia",
                     IconSource = "settings.png",
-                    //TargetType = typeof(ReminderPage)
+                    TargetType = typeof(Settings)
                 },
                 new Models.MenuItem()
                 {
                     Title = "O Aplikacji",
-                    IconSource = "info.png",
-                    //TargetType = typeof(ReminderPage)
+                    IconSource = "about.png",
+                    TargetType = typeof(About)
                 }
             };
 

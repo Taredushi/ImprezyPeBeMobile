@@ -8,12 +8,11 @@ using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class ContactsPage : ContentPage
+    public partial class Help : ContentPage
     {
-        public ContactsPage()
+        public Help()
         {
             InitializeComponent();
         }
-        
     }
 }
