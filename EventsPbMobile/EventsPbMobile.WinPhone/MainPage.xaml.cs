@@ -31,6 +31,7 @@ namespace EventsPbMobile.WinPhone
             LoadApplication(new EventsPbMobile.App());
         }
 
+
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>

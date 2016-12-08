@@ -2,10 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.MainPage"
-             Title="Wydarzenia na Politechnice"
-             Padding="0,0,20,0">
-  
-  <StackLayout>
-    <Label Text="main page" VerticalOptions="Center" HorizontalOptions="Center" />
-  </StackLayout>
+             Title="Wydarzenia na Politechnice">
+
+  <Grid x:Name="Grid" Margin="5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="20*"/>
+      <RowDefinition Height="1"/>
+      <RowDefinition Height="3"/>
+      <RowDefinition Height="1"/>
+      <RowDefinition Height="50*"/>
+      <RowDefinition Height="1"/>
+      <RowDefinition Height="3"/>
+      <RowDefinition Height="1"/>
+      <RowDefinition Height="20*"/>
+    </Grid.RowDefinitions>
+
+    <Grid x:Name="TopGrid" Grid.Row="0">
+      <Label x:Name="TopTitle" Text="Poprzednie wydarzenie" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+    </Grid>
+
+    <BoxView Grid.Row="1" HeightRequest="1" Color="Silver" />
+    <BoxView Grid.Row="3" HeightRequest="1" Color="Silver" />
+    
+    <StackLayout x:Name="MiddleGrid" Grid.Row="4" Margin="0,10,0,0" >
+      <Image x:Name="MiddleImage" Aspect="AspectFit" Source="cover.jpg"></Image>
+      <Label x:Name="TimerLabel" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
+
+    </StackLayout>
+
+    <BoxView Grid.Row="5" HeightRequest="1" Color="Silver" />
+    <BoxView Grid.Row="7" HeightRequest="1" Color="Silver" />
+
+    <Grid x:Name="BottomGrid" Grid.Row="8">
+      <Label x:Name="BottomTitle" Text="Następne wydarzenie" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+    </Grid>
+  </Grid>
+
 </ContentPage>
