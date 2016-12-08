@@ -8,32 +8,54 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="20*"/>
       <RowDefinition Height="1"/>
-      <RowDefinition Height="3"/>
       <RowDefinition Height="1"/>
       <RowDefinition Height="50*"/>
       <RowDefinition Height="1"/>
-      <RowDefinition Height="3"/>
       <RowDefinition Height="1"/>
       <RowDefinition Height="20*"/>
     </Grid.RowDefinitions>
 
     <Grid x:Name="TopGrid" Grid.Row="0">
-      <Label x:Name="TopTitle" Text="Poprzednie wydarzenie" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+      <Image Source="old.jpg" Aspect="AspectFit"></Image>
     </Grid>
 
     <BoxView Grid.Row="1" HeightRequest="1" Color="Silver" />
-    <BoxView Grid.Row="3" HeightRequest="1" Color="Silver" />
-    
-    <StackLayout x:Name="MiddleGrid" Grid.Row="4" Margin="0,10,0,0" >
+    <BoxView Grid.Row="2" HeightRequest="1" Color="Silver" />
+
+    <StackLayout x:Name="MiddleGrid" Grid.Row="3" Margin="0,10,0,0" >
       <Image x:Name="MiddleImage" Aspect="AspectFit" Source="cover.jpg"></Image>
-      <Label x:Name="TimerLabel" Margin="0,20,0,0" HorizontalTextAlignment="Center"/>
+
+      <Grid x:Name="TimerGrid" HorizontalOptions="Center">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="25*"/>
+          <ColumnDefinition Width="25*"/>
+          <ColumnDefinition Width="25*"/>
+          <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="10*"></RowDefinition>
+          <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Text="Dni" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center"/>
+        <Label Text="Godzin" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center"/>
+        <Label Text="Minut" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center"/>
+        <Label Text="Sekund" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center"/>
+        
+        <Label x:Name="DaysLabel" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center"/>
+        <Label x:Name="HoursLabel" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center"/>
+        <Label x:Name="MinutesLabel" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center"/>
+        <Label x:Name="SecondsLabel" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="Center"/>
+
+      </Grid>
+
 
     </StackLayout>
 
+    <BoxView Grid.Row="4" HeightRequest="1" Color="Silver" />
     <BoxView Grid.Row="5" HeightRequest="1" Color="Silver" />
-    <BoxView Grid.Row="7" HeightRequest="1" Color="Silver" />
 
-    <Grid x:Name="BottomGrid" Grid.Row="8">
+    <Grid x:Name="BottomGrid" Grid.Row="6">
       <Label x:Name="BottomTitle" Text="Następne wydarzenie" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
     </Grid>
   </Grid>

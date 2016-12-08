@@ -20,10 +20,17 @@ namespace EventsPbMobile.Pages
 
         private async void CountDownTime()
         {
+            DateTime eventTime = DateTime.Now.AddMonths(1);
+            TimeSpan remainingTime = eventTime - DateTime.Now;
 
-            while (true)
+            while (remainingTime.Seconds > 0)
             {
-                TimerLabel.Text = DateTime.Now.ToString("T");
+                remainingTime = eventTime - DateTime.Now;
+                DaysLabel.Text = remainingTime.Days.ToString();
+                HoursLabel.Text = remainingTime.Hours.ToString();
+                MinutesLabel.Text = remainingTime.Minutes.ToString();
+                SecondsLabel.Text = remainingTime.Seconds.ToString();
+
                 await Task.Delay(250);
             }
         }
