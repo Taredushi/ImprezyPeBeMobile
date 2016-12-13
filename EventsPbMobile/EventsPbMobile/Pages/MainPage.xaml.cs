@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
 using Xamarin.Forms;
 
@@ -35,5 +36,12 @@ namespace EventsPbMobile.Pages
             }
         }
 
+        private void BottomTitle_OnClicked(object sender, EventArgs e)
+        {
+            EventsDataAccess da = new EventsDataAccess();
+            da.AddEvents();
+            da.SaveDataToDb();
+            var test = da.GetActiveEvents();
+        }
     }
 }
