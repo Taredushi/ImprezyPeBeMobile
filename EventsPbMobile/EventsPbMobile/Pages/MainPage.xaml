@@ -56,7 +56,7 @@
     <BoxView Grid.Row="5" HeightRequest="1" Color="Silver" />
 
     <Grid x:Name="BottomGrid" Grid.Row="6">
-      <Label x:Name="BottomTitle" Text="Następne wydarzenie" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="16"/>
+      <Button x:Name="BottomTitle" Text="Następne wydarzenie" FontSize="16" Clicked="BottomTitle_OnClicked"/>
     </Grid>
   </Grid>
 
