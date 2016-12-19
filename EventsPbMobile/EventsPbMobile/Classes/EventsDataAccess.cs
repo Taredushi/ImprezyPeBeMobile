@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,10 @@ namespace EventsPbMobile.Classes
                 Events.Add(new Event()
                 {
                     Title = "Event " + i,
-                    Active = random.Next(10)%2 == 0,
-                    Text = RandomString(random.Next(20))
+                    Viewable = random.NextDouble() >= 0.5,
+                    Date = DateTime.Now.AddDays(random.Next(3, 20)),
+                    Text = RandomString(random.Next(20)),
+                    Active = random.NextDouble() >= 0.5
                 });
             }
         }
@@ -49,11 +52,18 @@ namespace EventsPbMobile.Classes
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        public List<Event> GetActiveEvents()
+        public IEnumerable<Event> GetEvents()
         {
             lock (collisionLock)
             {
-                var result = database.Table<Event>().Where(x=>x.Active).ToList();
+                var result = database.Table<Event>().ToList();
+                var test = result;
+                foreach (var a in result)
+                {
+                    DateTime now = DateTime.Now;
+                    var timeSpan = now.Subtract(a.Date);
+                    Debug.WriteLine(a.Title + " " + timeSpan);
+                }
                 return result;
             }
         }
@@ -66,6 +76,14 @@ namespace EventsPbMobile.Classes
                 {
                     database.Insert(ev);
                 }
+            }
+        }
+
+        public void RemoveEvents()
+        {
+            lock (collisionLock)
+            {
+                database.DeleteAll<Event>();
             }
         }
     }

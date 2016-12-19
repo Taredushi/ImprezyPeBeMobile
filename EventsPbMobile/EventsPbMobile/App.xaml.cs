@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EventsPbMobile.Classes;
 using EventsPbMobile.Pages;
 using Xamarin.Forms;
 
@@ -12,12 +13,12 @@ namespace EventsPbMobile
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainMenu();
         }
 
         protected override void OnStart()
         {
+
             // Handle when your app starts
         }
 

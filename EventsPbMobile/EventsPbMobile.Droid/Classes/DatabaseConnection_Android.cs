@@ -14,10 +14,10 @@ using SQLite;
 using System.IO;
 using EventsPbMobile.Droid.Classes;
 
-[assembly: Xamarin.Forms.Dependency(typeof(DatabaseConnection_Android))]
+[assembly: Xamarin.Forms.Dependency(typeof(DatabaseConnectionAndroid))]
 namespace EventsPbMobile.Droid.Classes
 {
-    class DatabaseConnection_Android : IDatabaseConnection
+    class DatabaseConnectionAndroid : IDatabaseConnection
     {
         public SQLiteConnection DbConnection()
         {

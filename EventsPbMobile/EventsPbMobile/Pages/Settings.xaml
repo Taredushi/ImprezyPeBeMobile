@@ -16,11 +16,9 @@
         </Grid.ColumnDefinitions>
 
         <Label FontSize="20" Text="Powiadomienia" Grid.Row="0" Grid.Column="0"></Label>
-        <Switch IsToggled="{Binding IsOn}" Grid.Row="0" Grid.Column="1" WidthRequest="20">
-          <Switch.PropertyChanged>PushNotifierChanged</Switch.PropertyChanged>
+        <Switch Toggled="PushNotificationsProperty" Grid.Row="0" Grid.Column="1" WidthRequest="20">
         </Switch>
 
-        <Label FontSize="20" Text="Powiadomienia" Grid.Row="1" Grid.Column="0"></Label>
         
 
       </Grid>

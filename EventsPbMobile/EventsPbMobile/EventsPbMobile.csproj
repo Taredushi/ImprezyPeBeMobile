@@ -42,6 +42,7 @@
     <Compile Include="Interface\IDatabaseConnection.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Classes\EventTemplateSelector.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\Place.cs" />
@@ -50,6 +51,9 @@
     </Compile>
     <Compile Include="Pages\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventDetails.xaml.cs">
+      <DependentUpon>EventDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
@@ -184,6 +188,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\About.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\EventDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -13,17 +13,16 @@ namespace EventsPbMobile.Pages
 {
     public partial class Settings : ContentPage
     {
-        public bool IsOn { get; set; }
+        private bool IsToggled { get; set; }
 
         public Settings()
         {
             InitializeComponent();
         }
 
-        private void PushNotifierChanged(object sender, PropertyChangedEventArgs e)
+        private void PushNotificationsProperty(object sender, ToggledEventArgs e)
         {
-            IsOn = !IsOn;
-            Debug.WriteLine(IsOn);
+            IsToggled = e.Value;
         }
     }
 }

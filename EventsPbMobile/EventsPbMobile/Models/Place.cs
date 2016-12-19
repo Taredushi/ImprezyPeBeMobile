@@ -2,10 +2,10 @@
 
 namespace EventsPbMobile.Models
 {
-    class Place
+    public class Place
     {
         [PrimaryKey, AutoIncrement]
-        public int PlaceID { get; set; }
+        public int PlaceId { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
         public string Name { get; set; }

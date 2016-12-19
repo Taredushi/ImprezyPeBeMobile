@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SQLite;
-
 
 namespace EventsPbMobile.Models
 {
-    class Event
+    public class Event
     {
         [PrimaryKey, AutoIncrement]
-        public int EventID { get; set; }
+        public int EventId { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
+        public DateTime Date { get; set; }
         public bool Active { get; set; }
         public bool Viewable { get; set; }
         public bool Gameable { get; set; }
