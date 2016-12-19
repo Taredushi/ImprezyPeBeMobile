@@ -65,7 +65,7 @@ namespace EventsPbMobile.Pages
 
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
-            var eventdetails = new EventDetails {BindingContext = _event};
+            var eventdetails = new EventDetails(_event) {BindingContext = _event};
             await Navigation.PushAsync(eventdetails);
         }
 
