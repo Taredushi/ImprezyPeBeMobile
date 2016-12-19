@@ -17,14 +17,31 @@ namespace EventsPbMobile.Classes
         private SQLiteConnection database;
         private static object collisionLock = new object();
 
-        public ObservableCollection<Event> Events { get; set; }
+        public ObservableCollection<EventViewModel> Events { get; set; }
 
         public EventsDataAccess()
         {
             database = DependencyService.Get<IDatabaseConnection>().DbConnection();
             database.CreateTable<Event>();
             this.Events =
-              new ObservableCollection<Event>(database.Table<Event>());
+              new ObservableCollection<EventViewModel>();
+            PopulateEventsCollectionFromDb();
+        }
+
+        private void PopulateEventsCollectionFromDb()
+        {
+            foreach (var data in database.Table<Event>().ToList())
+            {
+                Events.Add(EventToViewModel(data));
+            }
+        }
+        private EventViewModel EventToViewModel(Event data)
+        {
+            var evm = new EventViewModel();
+            evm.TimeLeft = data.Date.Subtract(DateTime.Now);
+            evm.Event = data;
+
+            return evm;
         }
 
         //W celach testowych
@@ -33,13 +50,16 @@ namespace EventsPbMobile.Classes
             Random random = new Random();
             for (int i = 1; i <= 5; i++)
             {
-                Events.Add(new Event()
+                Events.Add(new EventViewModel()
                 {
-                    Title = "Event " + i,
-                    Viewable = random.NextDouble() >= 0.5,
-                    Date = DateTime.Now.AddDays(random.Next(3, 20)),
-                    Text = RandomString(random.Next(20)),
-                    Active = random.NextDouble() >= 0.5
+                    Event = new Event()
+                    {
+                        Title = "Event " + i,
+                        Viewable = random.NextDouble() >= 0.5,
+                        Date = DateTime.Now.AddDays(random.Next(3, 20)),
+                        Text = RandomString(random.Next(20)),
+                        Active = random.NextDouble() >= 0.5
+                    }
                 });
             }
         }
@@ -67,7 +87,7 @@ namespace EventsPbMobile.Classes
             {
                 foreach (var ev in Events)
                 {
-                    database.Insert(ev);
+                    database.Insert(ev.Event);
                 }
             }
         }
