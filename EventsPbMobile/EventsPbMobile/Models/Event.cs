@@ -14,7 +14,6 @@ namespace EventsPbMobile.Models
         public bool Active { get; set; }
         public bool Viewable { get; set; }
         public bool Gameable { get; set; }
-
         public IList<Activity> Activities { get; }
         public IList<Photo> Photos { get; }
     }

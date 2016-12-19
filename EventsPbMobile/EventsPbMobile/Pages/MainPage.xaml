@@ -5,7 +5,7 @@
              xmlns:classes="clr-namespace:EventsPbMobile.Classes;assembly=EventsPbMobile"
              x:Class="EventsPbMobile.Pages.MainPage"
              Title="Wydarzenia na Politechnice">
-  <!--  <Grid x:Name="Grid" Margin="5">
+    <!--  <Grid x:Name="Grid" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*" />
                 <RowDefinition Height="1" />
@@ -64,39 +64,34 @@
         </Grid>-->
 
 
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <DataTemplate x:Key="ActiveEventTemplate">
-        <ViewCell>
-          <StackLayout Margin="0,10,0,0">
-            <Image Aspect="AspectFit" Source="cover.jpg"  HorizontalOptions="Center"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="ActiveEventTemplate">
+                <ViewCell x:Key="viewCell">
+                    <StackLayout Margin="0,50,0,0" x:Key="stack" x:Name="myStack">
+                      <Label x:Key="Counter" Text="{Binding Countdown}" TextColor="Black" HorizontalTextAlignment="Center" />
+                        <Image Aspect="AspectFit" Source="cover.jpg" HorizontalOptions="Center" />
+                        
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="UnactiveEventTemplate">
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Padding="5">
+                        <Label Text="{Binding EventId}" IsVisible="False" x:Name="aaaaaaaaaaa" />
+                        <Label Text="{Binding Title}" />
+                        <Label Text="{Binding Date}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+            <classes:EventTemplateSelector x:Key="EventTemplateSelector"
+                                           ActiveEvent="{StaticResource ActiveEventTemplate}"
+                                           UnactiveEvent="{StaticResource UnactiveEventTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
 
-            
-            
-            <Label x:Key="CountdownLabel" TextColor="Silver"  HorizontalTextAlignment="Center"></Label>
-            
-            
-
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-      <DataTemplate x:Key="UnactiveEventTemplate">
-        <ViewCell>
-          <StackLayout Orientation="Horizontal" Padding="5">
-            <Label Text="{Binding EventId}" IsVisible="False" x:Name="aaaaaaaaaaa" />
-            <Label Text="{Binding Title}" />
-            <Label Text="{Binding Date}" />
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-      <classes:EventTemplateSelector x:Key="EventTemplateSelector"
-                                     ActiveEvent="{StaticResource ActiveEventTemplate}"
-                                     UnactiveEvent="{StaticResource UnactiveEventTemplate}" />
-    </ResourceDictionary>
-  </ContentPage.Resources>
-  <ContentPage.Content>
-
-    <ListView x:Name="EventsList" ItemSelected="OnEventSelected" RowHeight="150"
-              ItemTemplate="{StaticResource EventTemplateSelector}" />
-  </ContentPage.Content>
+        <ListView x:Name="EventsList" ItemSelected="OnEventSelected" RowHeight="150"
+                  ItemTemplate="{StaticResource EventTemplateSelector}" />
+    </ContentPage.Content>
 </ContentPage>

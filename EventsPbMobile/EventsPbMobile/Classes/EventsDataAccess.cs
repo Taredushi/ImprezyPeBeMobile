@@ -57,13 +57,6 @@ namespace EventsPbMobile.Classes
             lock (collisionLock)
             {
                 var result = database.Table<Event>().ToList();
-                var test = result;
-                foreach (var a in result)
-                {
-                    DateTime now = DateTime.Now;
-                    var timeSpan = now.Subtract(a.Date);
-                    Debug.WriteLine(a.Title + " " + timeSpan);
-                }
                 return result;
             }
         }

@@ -9,10 +9,12 @@ namespace EventsPbMobile.Pages
 {
     public partial class MainPage : ContentPage
     {
+        private readonly EventsDataAccess ev;
+
         public MainPage()
         {
             InitializeComponent();
-            var ev = new EventsDataAccess();
+            ev = new EventsDataAccess();
             EventsList.Header = "poprzednie wydarzenie";
             EventsList.ItemsSource = ev.GetEvents();
             CountDownTime();
@@ -35,7 +37,7 @@ namespace EventsPbMobile.Pages
 
                 try
                 {
-                    var currentResource = Application.Current.Resources["CountdownLabel"];
+                    var x = Resources["ActiveEventTemplate"] as DataTemplate;
                 }
                 catch (Exception e)
                 {
@@ -56,16 +58,15 @@ namespace EventsPbMobile.Pages
         {
             //checking if null because this event is triggered
             //when item is selected, but also when item is diselected (then its null)
-            if (e.SelectedItem != null)
-            {
-                //cast object to event
-                var _event = e.SelectedItem as Event;
-                Debug.WriteLine(sender.ToString());
+            if (e.SelectedItem == null) return;
+            //cast object to event
+            var _event = e.SelectedItem as Event;
+            Debug.WriteLine(sender.ToString());
 
-                //deselect item just in case
-                ((ListView)sender).SelectedItem = null;
-                await Navigation.PushAsync(new EventDetails());
-            }
+            //deselect item just in case
+            ((ListView) sender).SelectedItem = null;
+            var eventdetails = new EventDetails {BindingContext = _event};
+            await Navigation.PushAsync(eventdetails);
         }
 
         private void XButton_OnClicked(object sender, EventArgs e)
