@@ -1,38 +1,41 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="EventsPbMobile.Pages.EventDetails">
-<ScrollView>
-  <StackLayout VerticalOptions="FillAndExpand">
-    <Image Aspect="AspectFit" Source="cover.jpg" />
+    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+            <Image Aspect="AspectFit" Source="cover.jpg" />
 
-    <Grid x:Name="TimerGrid" HorizontalOptions="Center">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="25*" />
-        <ColumnDefinition Width="25*" />
-        <ColumnDefinition Width="25*" />
-        <ColumnDefinition Width="25*" />
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="10*" />
-        <RowDefinition Height="20*" />
-      </Grid.RowDefinitions>
+            <Grid x:Name="TimerGrid" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="25*" />
+                    <ColumnDefinition Width="25*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
 
-      <Label Text="Dni" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" />
-      <Label Text="Godzin" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" />
-      <Label Text="Minut" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" />
-      <Label Text="Sekund" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" />
+                <Label Text="Dni" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" />
+                <Label Text="Godzin" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" />
+                <Label Text="Minut" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" />
+                <Label Text="Sekund" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" />
 
-      <Label x:Name="DaysLabel" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
-      <Label x:Name="HoursLabel" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
-      <Label x:Name="MinutesLabel" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center" />
-      <Label x:Name="SecondsLabel" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="Center" />
+                <Label x:Name="DaysLabel" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
+                <Label x:Name="HoursLabel" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
+                <Label x:Name="MinutesLabel" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center" />
+                <Label x:Name="SecondsLabel" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="Center" />
 
-    </Grid>
+            </Grid>
 
-  </StackLayout>
-</ScrollView>
-    
+          <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked"></Button>
 
+        </StackLayout>
+      
+    </ScrollView>
 
 </ContentPage>
