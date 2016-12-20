@@ -48,26 +48,19 @@ namespace EventsPbMobile.Pages
             }
         }
 
-        private void BottomTitle_OnClicked(object sender, EventArgs e)
-        {
-            var da = new EventsDataAccess();
-            da.AddEvents();
-            da.SaveDataToDb();
-            var test = da.GetEvents();
-        }
-
         private async void OnEventSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //checking if null because this event is triggered
             //when item is selected, but also when item is diselected (then its null)
             if (e.SelectedItem == null) return;
             //cast object to event
-            var _event = e.SelectedItem as Event;
+            var _event = e.SelectedItem as EventViewModel;
             Debug.WriteLine(sender.ToString());
 
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
-            var eventdetails = new EventDetails(_event) {BindingContext = _event};
+            if (_event == null) return;
+            var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
             await Navigation.PushAsync(eventdetails);
         }
 
