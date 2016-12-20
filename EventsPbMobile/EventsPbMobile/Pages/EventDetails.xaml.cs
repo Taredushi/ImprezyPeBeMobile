@@ -19,7 +19,7 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = e.Title;
             Counter();
-            
+            TitleLabel.Text = e.Title;
         }
 
         private async void Counter()
@@ -36,9 +36,9 @@ namespace EventsPbMobile.Pages
             }
         }
 
-        private void MapButton_OnClicked(object sender, EventArgs e)
+        private async void MapButton_OnClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new EventMap());
+            await Navigation.PushAsync(new EventMap());
         }
     }
 }
