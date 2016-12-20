@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -7,16 +10,17 @@ using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage
     {
-        private readonly EventsDataAccess ev;
+        private readonly EventsDataAccess _dataAccess;
 
         public MainPage()
         {
             InitializeComponent();
-            ev = new EventsDataAccess();
+            _dataAccess = new EventsDataAccess();
+            AddTestData();
             EventsList.Header = "poprzednie wydarzenie";
-            EventsList.ItemsSource = ev.GetEvents();
+            EventsList.ItemsSource = _dataAccess.Events;
             CountDownTime();
         }
 
@@ -27,31 +31,21 @@ namespace EventsPbMobile.Pages
 
             while (remainingTime.Seconds > 0)
             {
-                remainingTime = eventTime - DateTime.Now;
+                var events = new List<EventViewModel>();
+                events.AddRange(EventsList.ItemsSource.OfType<EventViewModel>());
+
+                foreach (var ev in events)
+                {
+                    ev.TimeLeft = ev.Event.Date.Subtract(DateTime.Now);
+                }
+
                 /* DaysLabel.Text = remainingTime.Days.ToString();
                  HoursLabel.Text = remainingTime.Hours.ToString();
                  MinutesLabel.Text = remainingTime.Minutes.ToString();
                  SecondsLabel.Text = remainingTime.Seconds.ToString();*/
                 //countdown.Text = remainingTime.Seconds.ToString();
                 await Task.Delay(1000);
-
-                try
-                {
-                    var x = Resources["ActiveEventTemplate"] as DataTemplate;
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
             }
-        }
-
-        private void BottomTitle_OnClicked(object sender, EventArgs e)
-        {
-            var da = new EventsDataAccess();
-            da.AddEvents();
-            da.SaveDataToDb();
-            var test = da.GetEvents();
         }
 
         private async void OnEventSelected(object sender, SelectedItemChangedEventArgs e)
@@ -60,20 +54,22 @@ namespace EventsPbMobile.Pages
             //when item is selected, but also when item is diselected (then its null)
             if (e.SelectedItem == null) return;
             //cast object to event
-            var _event = e.SelectedItem as Event;
+            var _event = e.SelectedItem as EventViewModel;
             Debug.WriteLine(sender.ToString());
 
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
-            var eventdetails = new EventDetails(_event) {BindingContext = _event};
+            if (_event == null) return;
+            var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
             await Navigation.PushAsync(eventdetails);
         }
 
-        private void XButton_OnClicked(object sender, EventArgs e)
+        private void AddTestData()
         {
             var da = new EventsDataAccess();
             da.AddEvents();
             da.SaveDataToDb();
+
         }
     }
 }

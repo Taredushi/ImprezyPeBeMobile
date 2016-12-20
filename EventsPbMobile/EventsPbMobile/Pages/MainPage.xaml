@@ -69,7 +69,7 @@
             <DataTemplate x:Key="ActiveEventTemplate">
                 <ViewCell x:Key="viewCell">
                     <StackLayout Margin="0,50,0,0" x:Key="stack" x:Name="myStack">
-                      <Label x:Key="Counter" Text="{Binding Countdown}" TextColor="Black" HorizontalTextAlignment="Center" />
+                      <Label x:Key="Counter" Text="{Binding Countdown}" TextColor="Black" HorizontalTextAlignment="Center"/>
                         <Image Aspect="AspectFit" Source="cover.jpg" HorizontalOptions="Center" />
                         
                     </StackLayout>
@@ -78,9 +78,9 @@
             <DataTemplate x:Key="UnactiveEventTemplate">
                 <ViewCell>
                     <StackLayout Orientation="Horizontal" Padding="5">
-                        <Label Text="{Binding EventId}" IsVisible="False" x:Name="aaaaaaaaaaa" />
-                        <Label Text="{Binding Title}" />
-                        <Label Text="{Binding Date}" />
+                        <Label Text="{Binding Event.EventId}" IsVisible="False" x:Name="aaaaaaaaaaa" />
+                        <Label Text="{Binding Event.Title}" />
+                        <Label Text="{Binding Event.Date}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
