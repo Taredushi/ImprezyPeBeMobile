@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class MainPage
+    public partial class MainPage : ContentPage
     {
         private readonly EventsDataAccess _dataAccess;
 
@@ -18,9 +18,8 @@ namespace EventsPbMobile.Pages
         {
             InitializeComponent();
             _dataAccess = new EventsDataAccess();
-            AddTestData();
-            EventsList.Header = "poprzednie wydarzenie";
             EventsList.ItemsSource = _dataAccess.Events;
+            LastEventTitle.Text = "Tytuł ostatniego wydarzenia";
             CountDownTime();
         }
 
@@ -55,11 +54,11 @@ namespace EventsPbMobile.Pages
             if (e.SelectedItem == null) return;
             //cast object to event
             var _event = e.SelectedItem as EventViewModel;
-            Debug.WriteLine(sender.ToString());
-
+            if (_event == null || _event.Event.Viewable == false) return;
+           
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
-            if (_event == null) return;
+            
             var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
             await Navigation.PushAsync(eventdetails);
         }

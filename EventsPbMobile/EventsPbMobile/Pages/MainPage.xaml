@@ -5,83 +5,47 @@
              xmlns:classes="clr-namespace:EventsPbMobile.Classes;assembly=EventsPbMobile"
              x:Class="EventsPbMobile.Pages.MainPage"
              Title="Wydarzenia na Politechnice">
-    <!--  <Grid x:Name="Grid" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20*" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="50*" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="1" />
-                <RowDefinition Height="20*" />
-            </Grid.RowDefinitions>
-
-            <Grid x:Name="TopGrid" Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Image Source="old.jpg" Aspect="AspectFill"  Grid.Row="0" />
-            </Grid>
-
-            <BoxView Grid.Row="1" HeightRequest="1" Color="Silver" />
-            <BoxView Grid.Row="2" HeightRequest="1" Color="Silver" />
-
-            <StackLayout x:Name="MiddleGrid" Grid.Row="3" Margin="0,10,0,0">
-                <Image x:Name="MiddleImage" Aspect="AspectFit" Source="cover.jpg" />
-
-                <Grid x:Name="TimerGrid" HorizontalOptions="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="25*" />
-                        <ColumnDefinition Width="25*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10*" />
-                        <RowDefinition Height="20*" />
-                    </Grid.RowDefinitions>
-
-                    <Label Text="Dni" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" />
-                    <Label Text="Godzin" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <Label Text="Minut" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" />
-                    <Label Text="Sekund" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" />
-
-                    <Label x:Name="DaysLabel" Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Center" />
-                    <Label x:Name="HoursLabel" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" />
-                    <Label x:Name="MinutesLabel" Grid.Row="1" Grid.Column="2" HorizontalTextAlignment="Center" />
-                    <Label x:Name="SecondsLabel" Grid.Row="1" Grid.Column="3" HorizontalTextAlignment="Center" />
-
-                </Grid>
-
-            </StackLayout>
-
-            <BoxView Grid.Row="4" HeightRequest="1" Color="Silver" />
-            <BoxView Grid.Row="5" HeightRequest="1" Color="Silver" />
-
-            <Grid x:Name="BottomGrid" Grid.Row="6">
-                <Button x:Name="BottomTitle" Text="Następne wydarzenie" FontSize="16" Clicked="BottomTitle_OnClicked" />
-            </Grid>
-        </Grid>-->
-
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="ActiveEventTemplate">
                 <ViewCell x:Key="viewCell">
-                    <StackLayout Margin="0,50,0,0" x:Key="stack" x:Name="myStack">
-                      <Label x:Key="Counter" Text="{Binding Countdown}" TextColor="Black" HorizontalTextAlignment="Center"/>
-                        <Image Aspect="AspectFit" Source="cover.jpg" HorizontalOptions="Center" />
+                      <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                      </Grid.ColumnDefinitions>
+                        <Image Aspect="AspectFit" Source="cover.jpg" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" />
                         
-                    </StackLayout>
+                        <Label x:Key="Counter" Text="{Binding Countdown}" TextColor="Green" FontSize="Medium"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="End" Grid.Row="0" Grid.Column="0"/>
+                      </Grid>
+                     
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="UnactiveEventTemplate">
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal" Padding="5">
-                        <Label Text="{Binding Event.EventId}" IsVisible="False" x:Name="aaaaaaaaaaa" />
-                        <Label Text="{Binding Event.Title}" />
-                        <Label Text="{Binding Event.Date}" />
-                    </StackLayout>
+                        <Grid VerticalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Aspect="AspectFit" Source="old.jpg" HorizontalOptions="Center" Grid.Row="0"
+                                   Grid.Column="0" />
+
+                            <Label Text="{Binding Event.Title}" FontSize="Large" TextColor="Red"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0"
+                                   Grid.Column="0" />
+
+                            <Label Text="Szczegóły wkrótce" FontSize="Large" TextColor="Red"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="End" Grid.Row="0"
+                                   Grid.Column="0" />
+
+                        </Grid>
                 </ViewCell>
             </DataTemplate>
             <classes:EventTemplateSelector x:Key="EventTemplateSelector"
@@ -92,6 +56,14 @@
     <ContentPage.Content>
 
         <ListView x:Name="EventsList" ItemSelected="OnEventSelected" RowHeight="150"
-                  ItemTemplate="{StaticResource EventTemplateSelector}" />
+                  ItemTemplate="{StaticResource EventTemplateSelector}">
+            <ListView.Header>
+                <StackLayout BackgroundColor="White">
+                    <Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
+                    <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />
+                </StackLayout>
+            </ListView.Header>
+
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
