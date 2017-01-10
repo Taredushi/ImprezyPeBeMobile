@@ -48,7 +48,6 @@ namespace EventsPbMobile.Classes
 
         public async void SaveEventsToDb()
         {
-            Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
 
             db.Write(() =>
