@@ -55,9 +55,10 @@ namespace EventsPbMobile.Classes
                 foreach (var item in items)
                 {
                     var ev = new Event(item);
-                    db.Add(ev, update: true);
+                    db.Add(ev, true);
                 }
             });
+
             PopulateEventsCollectionFromDb();
 
         }
