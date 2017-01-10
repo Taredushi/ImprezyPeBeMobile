@@ -63,12 +63,5 @@ namespace EventsPbMobile.Pages
             await Navigation.PushAsync(eventdetails);
         }
 
-        private void AddTestData()
-        {
-            var da = new EventsDataAccess();
-            da.AddEvents();
-            da.SaveDataToDb();
-
-        }
     }
 }
