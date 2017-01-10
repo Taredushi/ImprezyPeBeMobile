@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
 using Realms;
+using Xamarin.Forms;
 
 namespace EventsPbMobile.Classes
 {
@@ -18,7 +19,6 @@ namespace EventsPbMobile.Classes
         {
             Configuration();
             this.Events = new ObservableCollection<EventViewModel>();
-            SaveEventsToDb();
         }
 
         private void Configuration()
@@ -46,7 +46,7 @@ namespace EventsPbMobile.Classes
             return evm;
         }
 
-        public async void SaveEventsToDb()
+        public async Task<bool> SaveEventsToDb()
         {
             var items = await api.GetEventsAllAsync();
 
@@ -60,7 +60,8 @@ namespace EventsPbMobile.Classes
             });
 
             PopulateEventsCollectionFromDb();
-
+            return true;
         }
+
     }
 }

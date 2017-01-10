@@ -55,15 +55,22 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
+      <AbsoluteLayout>
         <ListView x:Name="EventsList" ItemSelected="OnEventSelected" RowHeight="150"
-                  ItemTemplate="{StaticResource EventTemplateSelector}">
+                            ItemTemplate="{StaticResource EventTemplateSelector}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ListView.Header>
-                <StackLayout BackgroundColor="White">
-                    <Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
-                    <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />
-                </StackLayout>
+              <StackLayout BackgroundColor="White">
+                <Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
+                <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />
+              </StackLayout>
             </ListView.Header>
 
-        </ListView>
+          </ListView>
+        <ContentView x:Name="actIndBackground" BackgroundColor="#222222" Opacity="0.5" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" IsVisible="{Binding IsLoading}">
+        </ContentView>
+        <ActivityIndicator x:Name="actInd" AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"></ActivityIndicator>
+      </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
