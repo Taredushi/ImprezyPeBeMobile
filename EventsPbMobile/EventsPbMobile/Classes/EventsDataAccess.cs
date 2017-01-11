@@ -3,40 +3,38 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
 using Realms;
-using Xamarin.Forms;
 
 namespace EventsPbMobile.Classes
 {
-    class EventsDataAccess
+    internal class EventsDataAccess
     {
-        private ApiConnection api = new ApiConnection();
-        private Realm db;
+        private readonly ApiConnection api = new ApiConnection();
         private RealmConfiguration config;
-
-        public ObservableCollection<EventViewModel> Events { get; set; }
+        private Realm db;
 
         public EventsDataAccess()
         {
             Configuration();
-            this.Events = new ObservableCollection<EventViewModel>();
+            Events = new ObservableCollection<EventViewModel>();
         }
+
+        public ObservableCollection<EventViewModel> Events { get; set; }
 
         private void Configuration()
         {
             config = RealmConfiguration.DefaultConfiguration;
-            config.SchemaVersion = 1;
+            config.SchemaVersion = 2;
             db = Realm.GetInstance();
-
         }
 
-        public  void PopulateEventsCollectionFromDb()
+        public void PopulateEventsCollectionFromDb()
         {
             var list = db.All<Event>();
+            Events.Clear();
             foreach (var data in list)
-            {
                 Events.Add(EventToViewModel(data));
-            }
         }
+
         private EventViewModel EventToViewModel(Event data)
         {
             var evm = new EventViewModel();
@@ -48,12 +46,14 @@ namespace EventsPbMobile.Classes
 
         public async Task<bool> SaveEventsToDb()
         {
+            Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
 
             db.Write(() =>
             {
                 foreach (var item in items)
                 {
+                    
                     var ev = new Event(item);
                     db.Add(ev, true);
                 }
@@ -62,6 +62,5 @@ namespace EventsPbMobile.Classes
             PopulateEventsCollectionFromDb();
             return true;
         }
-
     }
 }

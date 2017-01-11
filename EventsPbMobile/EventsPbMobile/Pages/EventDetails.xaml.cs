@@ -38,7 +38,8 @@ namespace EventsPbMobile.Pages
 
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EventMap());
+            var activities = _event.Activities;
+            await Navigation.PushAsync(new EventMap(activities));
         }
     }
 }
