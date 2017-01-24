@@ -51,9 +51,9 @@ namespace EventsPbMobile.Classes
 
             db.Write(() =>
             {
+                if (items == null) return;
                 foreach (var item in items)
                 {
-                    
                     var ev = new Event(item);
                     db.Add(ev, true);
                 }

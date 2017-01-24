@@ -194,7 +194,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidNotification.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="NotificationService.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

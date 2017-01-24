@@ -10,10 +10,16 @@ namespace EventsPbMobile
 {
     public partial class App : Application
     {
+        public static INotification Notification { get; private set; }
         public App()
         {
             InitializeComponent();
             MainPage = new MainMenu();
+        }
+
+        public static void Init(INotification notification)
+        {
+            App.Notification = notification;
         }
 
         protected override void OnStart()
@@ -31,5 +37,6 @@ namespace EventsPbMobile
         {
             // Handle when your app resumes
         }
+        
     }
 }

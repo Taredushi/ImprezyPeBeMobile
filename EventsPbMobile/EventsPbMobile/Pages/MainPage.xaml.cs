@@ -40,6 +40,8 @@ namespace EventsPbMobile.Pages
         public MainPage()
         {
             InitializeComponent();
+            App.Notification.ShowNotification("Chuj", "Dupa dupa dupa");
+            App.Notification.StartService();
             IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
