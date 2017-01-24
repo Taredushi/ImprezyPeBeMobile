@@ -37,6 +37,8 @@ namespace EventsPbMobile
         {
             // Handle when your app resumes
         }
+
+        
         
     }
 }

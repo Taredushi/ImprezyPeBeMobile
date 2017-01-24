@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Xamarin;
@@ -24,6 +25,20 @@ namespace EventsPbMobile.Droid
             App.Init(new AndroidNotification());
             var service = new NotificationService();
             LoadApplication(new App());
+        }
+
+        protected override void OnDestroy()
+        {
+            try
+            {
+                base.OnDestroy();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                
+            }
+            
         }
     }
 }
