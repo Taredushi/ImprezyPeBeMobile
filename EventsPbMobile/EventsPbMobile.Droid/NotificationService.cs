@@ -39,9 +39,9 @@ namespace EventsPbMobile.Droid
         private void HandleTimerCallback(object state)
         {
             var runTime = DateTime.UtcNow.Subtract(startTime);
-            Log.Debug(TAG, $"This service has been running for {runTime:c} (since ${state}).");
-            Device.BeginInvokeOnMainThread(
-                () => { Toast.MakeText(Forms.Context, "Service dziala", ToastLength.Long).Show(); });
+            //Log.Debug(TAG, $"This service has been running for {runTime:c} (since ${state}).");
+           // Device.BeginInvokeOnMainThread(
+           //     () => { Toast.MakeText(Forms.Context, "Service dziala", ToastLength.Long).Show(); });
         }
 
         public override void OnDestroy()

@@ -82,7 +82,7 @@ namespace EventsPbMobile.Pages
             if (e.SelectedItem == null) return;
             //cast object to event
             var _event = e.SelectedItem as EventViewModel;
-            if (_event == null || _event.Event.Viewable == false) return;
+            if (_event == null || _event.Event.Active == false) return;
 
             //deselect item just in case
             ((ListView)sender).SelectedItem = null;

@@ -39,6 +39,10 @@ namespace EventsPbMobile.Pages
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
             var activities = _event.Activities;
+            foreach (var activity in activities)
+            {
+                Debug.WriteLine(activity.Place.Latitude);
+            }
             await Navigation.PushAsync(new EventMap(activities));
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
 using Realms;
@@ -55,6 +56,7 @@ namespace EventsPbMobile.Classes
                 foreach (var item in items)
                 {
                     var ev = new Event(item);
+                    Debug.WriteLine(ev.Active + " check viewable"); 
                     db.Add(ev, true);
                 }
             });

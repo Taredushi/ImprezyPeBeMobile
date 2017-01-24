@@ -15,14 +15,12 @@ namespace EventsPbMobile.Pages
                 MapSpan.FromCenterAndRadius(
                     new Position(53.118293, 23.149717), Distance.FromMeters(300)));
 
-
+            if (activities == null) return;
             foreach (var activity in activities)
             {
-                var pin = new Pin
-                {
-                    Position = new Position(activity.Place.Latitude, activity.Place.Longitude),
-                    Label = activity.Place.Name
-                };
+                var pin = new Pin();
+                pin.Position = new Position(activity.Place.Latitude, activity.Place.Longitude);
+                pin.Label = activity.Place.Name;
 
                 pin.Clicked += async (sender, args) =>
                 {
