@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
 using Realms;
@@ -12,14 +15,15 @@ namespace EventsPbMobile.Classes
         private readonly ApiConnection api = new ApiConnection();
         private RealmConfiguration config;
         private Realm db;
-
+        public ObservableCollection<EventViewModel> Events { get; set; }
         public EventsDataAccess()
         {
             Configuration();
             Events = new ObservableCollection<EventViewModel>();
+            PopulateEventsCollectionFromDb();
         }
 
-        public ObservableCollection<EventViewModel> Events { get; set; }
+        
 
         private void Configuration()
         {
@@ -31,6 +35,8 @@ namespace EventsPbMobile.Classes
         public void PopulateEventsCollectionFromDb()
         {
             var list = db.All<Event>();
+            Debug.WriteLine(list.Count() + " COUNT KURWA");
+            list = list.Where(x => x.Date > DateTimeOffset.Now);
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));
@@ -45,9 +51,17 @@ namespace EventsPbMobile.Classes
             return evm;
         }
 
+        public Event GetLastEvent()
+        {
+            var pbevents = db.All<Event>().ToList();
+            var pbevent = pbevents.Where(x => x.Date < DateTimeOffset.Now).OrderByDescending(x => x.Date).First();
+            Debug.WriteLine(pbevent.Title + " " + pbevent.Date);
+            return pbevent;
+        }
+
         public async Task<bool> SaveEventsToDb()
         {
-            Realm.DeleteRealm(config);
+           // Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
 
             db.Write(() =>
@@ -56,7 +70,6 @@ namespace EventsPbMobile.Classes
                 foreach (var item in items)
                 {
                     var ev = new Event(item);
-                    Debug.WriteLine(ev.Active + " check viewable"); 
                     db.Add(ev, true);
                 }
             });

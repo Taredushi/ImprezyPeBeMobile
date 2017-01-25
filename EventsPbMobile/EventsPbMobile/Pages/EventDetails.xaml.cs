@@ -41,7 +41,14 @@ namespace EventsPbMobile.Pages
             var activities = _event.Activities;
             foreach (var activity in activities)
             {
-                Debug.WriteLine(activity.Place.Latitude);
+                if (activity.Place == null)
+                {
+                    Debug.WriteLine("NULL");
+                }
+                else
+                {
+                    Debug.WriteLine("NIE NULL");
+                }
             }
             await Navigation.PushAsync(new EventMap(activities));
         }

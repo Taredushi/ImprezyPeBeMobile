@@ -8,6 +8,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+          
             <DataTemplate x:Key="ActiveEventTemplate">
                 <ViewCell x:Key="viewCell">
                       <Grid VerticalOptions="FillAndExpand">
@@ -37,20 +38,20 @@
                             <Image Aspect="AspectFit" Source="old.jpg" HorizontalOptions="Center" Grid.Row="0"
                                    Grid.Column="0" />
 
-                            <Label Text="{Binding Event.Title}" FontSize="Large" TextColor="Red"
+<!--                            <Label Text="{Binding Event.Title}" FontSize="Large" TextColor="Red"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0"
                                    Grid.Column="0" />
 
                             <Label Text="Szczegóły wkrótce" FontSize="Large" TextColor="Red"
                                    HorizontalTextAlignment="Center" VerticalTextAlignment="End" Grid.Row="0"
-                                   Grid.Column="0" />
+                                   Grid.Column="0" />-->
 
                         </Grid>
                 </ViewCell>
             </DataTemplate>
             <classes:EventTemplateSelector x:Key="EventTemplateSelector"
                                            ActiveEvent="{StaticResource ActiveEventTemplate}"
-                                           UnactiveEvent="{StaticResource UnactiveEventTemplate}" />
+                                           UnactiveEvent="{StaticResource UnactiveEventTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -60,8 +61,9 @@
                             ItemTemplate="{StaticResource EventTemplateSelector}" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ListView.Header>
               <StackLayout BackgroundColor="White">
-                <Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
-                <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />
+                <Image Aspect="AspectFit" Source="latest.jpg" HorizontalOptions="Center" />
+                <!--<Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
+                <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />-->
               </StackLayout>
             </ListView.Header>
 
