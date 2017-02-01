@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
+using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
@@ -15,7 +16,7 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = e.Title;
             Counter();
-            
+            InitFavButton();
         }
 
         private async void Counter()
@@ -33,10 +34,7 @@ namespace EventsPbMobile.Pages
         {
             var activities = _event.Activities;
             foreach (var activity in activities)
-                if (activity.Place == null)
-                    Debug.WriteLine("NULL");
-                else
-                    Debug.WriteLine("NIE NULL");
+                Debug.WriteLine(activity.Place == null ? "NULL" : "NIE NULL");
             await Navigation.PushAsync(new EventMap(activities));
         }
 
@@ -44,6 +42,14 @@ namespace EventsPbMobile.Pages
         {
             if (Settings.IsToggled)
                 App.Notification.ShowNotification("Nadchodzące wydarzenie", _event.Title);
+        }
+
+        private void InitFavButton()
+        {
+            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () =>
+            {
+                
+            }));
         }
     }
 }

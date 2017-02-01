@@ -88,7 +88,7 @@ namespace EventsPbMobile.Pages
         {
             ToolbarItems.Add(new ToolbarItem("Search", "search.png", () =>
             {
-                
+                Navigation.PushAsync(new Search());
             }));
         }
     }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventsPbMobile.Pages.Search">
+
+    <StackLayout Padding="6" HeightRequest="48" HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="Green">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image x:Name="logo" Source="search.png" Grid.Column="0" />
+            <SearchBar x:Name="SearchFor"
+                       Placeholder="Wyszukaj wydarzenie"
+                       Text="{Binding Path=SearchText}"
+                       TextChanged="OnTextChanged"
+                       Grid.Column="1"
+                       SearchButtonPressed="OnSearch" />
+        </Grid>
+
+    </StackLayout>
+    <!--    <SearchBar x:Name="SearchFor"
+               Placeholder="search for"
+               Text="{Binding Path=SearchText}"
+               TextChanged="OnTextChanged"
+               SearchButtonPressed="OnSearch" />-->
+</ContentPage>
