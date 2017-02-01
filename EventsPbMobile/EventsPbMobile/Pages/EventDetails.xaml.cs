@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class EventDetails : ContentPage
+    public partial class EventDetails
     {
         private readonly Event _event;
+
         public EventDetails(Event e)
         {
-            this._event = e;
+            _event = e;
             InitializeComponent();
             Title = e.Title;
             Counter();
-            TitleLabel.Text = e.Title;
+            
         }
 
         private async void Counter()
@@ -28,10 +24,7 @@ namespace EventsPbMobile.Pages
             while (rt.TotalSeconds > 0)
             {
                 rt = _event.Date.Subtract(DateTime.Now);
-                DaysLabel.Text = rt.Days.ToString();
-                HoursLabel.Text = rt.Hours.ToString();
-                MinutesLabel.Text = rt.Minutes.ToString();
-                SecondsLabel.Text = rt.Seconds.ToString();
+                TitleLabel.Text = "Start za: " + rt.Days + " dni, " + rt.Hours + ":" + rt.Minutes + ":" + rt.Seconds;
                 await Task.Delay(250);
             }
         }
@@ -40,17 +33,17 @@ namespace EventsPbMobile.Pages
         {
             var activities = _event.Activities;
             foreach (var activity in activities)
-            {
                 if (activity.Place == null)
-                {
                     Debug.WriteLine("NULL");
-                }
                 else
-                {
                     Debug.WriteLine("NIE NULL");
-                }
-            }
             await Navigation.PushAsync(new EventMap(activities));
+        }
+
+        private void Notification_Clicked(object sender, EventArgs e)
+        {
+            if (Settings.IsToggled)
+                App.Notification.ShowNotification("Nadchodzące wydarzenie", _event.Title);
         }
     }
 }

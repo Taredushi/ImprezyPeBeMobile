@@ -15,11 +15,15 @@ namespace EventsPbMobile
         {
             InitializeComponent();
             MainPage = new MainMenu();
-        }
+        }     
 
         public static void Init(INotification notification)
         {
             App.Notification = notification;
+        }
+        public static Page GetMainPage()
+        {
+            return new NavigationPage(new MainMenu());
         }
 
         protected override void OnStart()

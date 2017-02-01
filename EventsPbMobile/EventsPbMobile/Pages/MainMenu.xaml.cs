@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
+using MenuItem = EventsPbMobile.Models.MenuItem;
 
 namespace EventsPbMobile.Pages
 {
@@ -16,13 +12,13 @@ namespace EventsPbMobile.Pages
             MenuDetail.ListView.ItemSelected += OnItemSelected;
         }
 
-        void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as EventsPbMobile.Models.MenuItem;
+            var item = e.SelectedItem as MenuItem;
 
             if (item != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
                 MenuDetail.ListView.SelectedItem = null;
                 IsPresented = false;
             }

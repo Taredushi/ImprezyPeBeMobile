@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
@@ -17,12 +14,25 @@ namespace EventsPbMobile.Pages
         private readonly EventsDataAccess _dataAccess;
         private bool isLoading;
 
+        public MainPage()
+        {
+            InitializeComponent();
+            App.Notification.StartService();
+            IsLoading = false;
+            BindingContext = this;
+            _dataAccess = new EventsDataAccess();
+            EventsList.ItemsSource = _dataAccess.Events;
+            //LastEventTitle.Text = "Tytuł ostatniego wydarzenia";
+            InitializeSeachButton();
+            CountDownTime();
+        }
+
         public bool IsLoading
         {
-            get { return this.isLoading; }
+            get { return isLoading; }
             set
             {
-                this.isLoading = value;
+                isLoading = value;
                 RaisePropertyChanged("IsLoading");
             }
         }
@@ -32,22 +42,7 @@ namespace EventsPbMobile.Pages
         public void RaisePropertyChanged(string name)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
-        public MainPage()
-        {
-            InitializeComponent();
-            App.Notification.ShowNotification("Chuj", "Dupa dupa dupa");
-            App.Notification.StartService();
-            IsLoading = false;
-            BindingContext = this;
-            _dataAccess = new EventsDataAccess();
-            EventsList.ItemsSource = _dataAccess.Events;
-            //LastEventTitle.Text = "Tytuł ostatniego wydarzenia";
-            CountDownTime();
         }
 
         private async void CountDownTime()
@@ -60,17 +55,8 @@ namespace EventsPbMobile.Pages
             {
                 var events = new List<EventViewModel>();
                 events.AddRange(EventsList.ItemsSource.OfType<EventViewModel>());
-
                 foreach (var ev in events)
-                {
                     ev.TimeLeft = ev.Event.Date.Subtract(DateTime.Now);
-                }
-
-                /* DaysLabel.Text = remainingTime.Days.ToString();
-                 HoursLabel.Text = remainingTime.Hours.ToString();
-                 MinutesLabel.Text = remainingTime.Minutes.ToString();
-                 SecondsLabel.Text = remainingTime.Seconds.ToString();*/
-                //countdown.Text = remainingTime.Seconds.ToString();
                 await Task.Delay(1000);
             }
         }
@@ -85,9 +71,9 @@ namespace EventsPbMobile.Pages
             if (_event == null || _event.Event.Active == false) return;
 
             //deselect item just in case
-            ((ListView)sender).SelectedItem = null;
-           
-            var eventdetails = new EventDetails(_event.Event) { BindingContext = _event.Event };
+            ((ListView) sender).SelectedItem = null;
+
+            var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
             await Navigation.PushAsync(eventdetails);
         }
 
@@ -96,6 +82,14 @@ namespace EventsPbMobile.Pages
             IsLoading = true;
          //   var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
+        }
+
+        private void InitializeSeachButton()
+        {
+            ToolbarItems.Add(new ToolbarItem("Search", "search.png", () =>
+            {
+                
+            }));
         }
     }
 }

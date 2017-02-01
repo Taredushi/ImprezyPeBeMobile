@@ -35,7 +35,6 @@ namespace EventsPbMobile.Classes
         public void PopulateEventsCollectionFromDb()
         {
             var list = db.All<Event>();
-            Debug.WriteLine(list.Count() + " COUNT KURWA");
             list = list.Where(x => x.Date > DateTimeOffset.Now);
             Events.Clear();
             foreach (var data in list)

@@ -14,5 +14,12 @@ namespace EventsPbMobile.Pages
         {
             InitializeComponent();
         }
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            Navigation.PushAsync(new MainPage());
+            Navigation.RemovePage(this);
+            return true;
+        }
     }
 }

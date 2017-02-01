@@ -13,7 +13,7 @@ namespace EventsPbMobile.Pages
 {
     public partial class Settings : ContentPage
     {
-        private bool IsToggled { get; set; }
+        public static bool IsToggled { get; private set; }
 
         public Settings()
         {
@@ -23,6 +23,14 @@ namespace EventsPbMobile.Pages
         private void PushNotificationsProperty(object sender, ToggledEventArgs e)
         {
             IsToggled = e.Value;
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            Navigation.PushAsync(new MainPage());
+            Navigation.RemovePage(this);
+            return true;
         }
     }
 }
