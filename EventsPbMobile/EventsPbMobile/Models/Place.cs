@@ -7,10 +7,10 @@ namespace EventsPbMobile.Models
     {
         [PrimaryKey]
         public int PlaceId { get; set; }
+
         public float Latitude { get; set; }
         public float Longitude { get; set; }
         public string Name { get; set; }
         public IList<Activity> Activities { get; }
-
     }
 }

@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using EventsPbMobile.Models;
 using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
     public partial class EventDepartamentDetails : ContentPage
     {
-        public EventDepartamentDetails()
+        public EventDepartamentDetails(Activity activity, Place place)
         {
             InitializeComponent();
+
+            PlaceLat.Text = "lat:" + place.Latitude;
+            PlaceLong.Text = "long:" + place.Longitude;
         }
     }
 }

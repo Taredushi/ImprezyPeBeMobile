@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
 using Xamarin.Forms;
 
@@ -8,6 +9,7 @@ namespace EventsPbMobile.Pages
 {
     public partial class EventDetails
     {
+        private readonly EventsDataAccess _dataAccess;
         private readonly Event _event;
 
         public EventDetails(Event e)
@@ -17,6 +19,13 @@ namespace EventsPbMobile.Pages
             Title = e.Title;
             Counter();
             InitFavButton();
+            _dataAccess = new EventsDataAccess();
+            var activities = new ObservableCollection<Activity>();
+            activities.Clear();
+            foreach (var activity in e.Activities)
+                activities.Add(activity);
+
+            EventPlaces.ItemsSource = activities;
         }
 
         private async void Counter()
@@ -33,8 +42,6 @@ namespace EventsPbMobile.Pages
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
             var activities = _event.Activities;
-            foreach (var activity in activities)
-                Debug.WriteLine(activity.Place == null ? "NULL" : "NIE NULL");
             await Navigation.PushAsync(new EventMap(activities));
         }
 
@@ -46,10 +53,14 @@ namespace EventsPbMobile.Pages
 
         private void InitFavButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () =>
-            {
-                
-            }));
+            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () => { }));
+        }
+
+        private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var activity = e.SelectedItem as Activity;
+            var place = _dataAccess.GetPlace(activity.PlaceID);
+            await Navigation.PushAsync(new EventDepartamentDetails(activity, place));
         }
     }
 }

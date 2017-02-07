@@ -6,7 +6,8 @@
   
   <ContentPage.Content>
     <StackLayout>
-      <Label Text="Tutaj idzie zawartość" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+      <Label x:Name="PlaceLong" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+      <Label x:Name="PlaceLat" HorizontalOptions="Center" VerticalOptions="Center"></Label>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>

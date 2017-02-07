@@ -39,6 +39,17 @@ namespace EventsPbMobile.Classes
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var items = JsonConvert.DeserializeObject<List<Event>>(content);
+                
+                foreach (var item in items)
+                {
+                    foreach (var activity in item.Activities)
+                    {
+                        if (activity.Place != null)
+                        {
+
+                        }
+                    }
+                }
                 Debug.WriteLine(items.Count + " <====== COUNT");
                 return items;
             }

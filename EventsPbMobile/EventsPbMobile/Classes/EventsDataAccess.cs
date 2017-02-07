@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace EventsPbMobile.Classes
         private readonly ApiConnection api = new ApiConnection();
         private RealmConfiguration config;
         private Realm db;
-        public ObservableCollection<EventViewModel> Events { get; set; }
+
         public EventsDataAccess()
         {
             Configuration();
@@ -23,7 +22,7 @@ namespace EventsPbMobile.Classes
             PopulateEventsCollectionFromDb();
         }
 
-        
+        public ObservableCollection<EventViewModel> Events { get; }
 
         private void Configuration()
         {
@@ -36,6 +35,12 @@ namespace EventsPbMobile.Classes
         {
             var list = db.All<Event>();
             list = list.Where(x => x.Date > DateTimeOffset.Now);
+            foreach (var element in list)
+            foreach (var elementActivity in element.Activities)
+                if (elementActivity.Place != null)
+                    Debug.WriteLine(elementActivity.Title + " " + elementActivity.Place.Name);
+                else
+                    Debug.WriteLine("In " + elementActivity.Title + " Place is null");
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));
@@ -54,13 +59,12 @@ namespace EventsPbMobile.Classes
         {
             var pbevents = db.All<Event>().ToList();
             var pbevent = pbevents.Where(x => x.Date < DateTimeOffset.Now).OrderByDescending(x => x.Date).First();
-            Debug.WriteLine(pbevent.Title + " " + pbevent.Date);
             return pbevent;
         }
 
         public async Task<bool> SaveEventsToDb()
         {
-           // Realm.DeleteRealm(config);
+            //Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
 
             db.Write(() =>
@@ -75,6 +79,12 @@ namespace EventsPbMobile.Classes
 
             PopulateEventsCollectionFromDb();
             return true;
+        }
+
+        public Place GetPlace(int id)
+        {
+            var place = db.All<Place>().First(x => x.PlaceId == id);
+            return place;
         }
     }
 }

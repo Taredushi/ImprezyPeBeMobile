@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
@@ -72,7 +73,6 @@ namespace EventsPbMobile.Pages
 
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
-
             var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
             await Navigation.PushAsync(eventdetails);
         }
@@ -80,7 +80,7 @@ namespace EventsPbMobile.Pages
         protected override async void OnAppearing()
         {
             IsLoading = true;
-         //   var t = await _dataAccess.SaveEventsToDb();
+          //  var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
         }
 
