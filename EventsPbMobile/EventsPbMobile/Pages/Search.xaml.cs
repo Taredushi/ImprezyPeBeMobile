@@ -16,10 +16,9 @@ namespace EventsPbMobile.Pages
         public Search()
         {
             InitializeComponent();
+            Title = "Szukaj";
             events = new ObservableCollection<EventViewModel>();
             dataAccess = new EventsDataAccess();
-            NavigationPage.SetHasNavigationBar(this, false);
-            ImageTapInit();
             SearchedEvents.ItemsSource = events;
         }
 
@@ -41,16 +40,19 @@ namespace EventsPbMobile.Pages
         {
         }
 
-        private void ImageTapInit()
+        private async void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)
         {
-            var imageTappedRecogniser = new TapGestureRecognizer();
-            imageTappedRecogniser.Tapped += (s, e) => { Navigation.PopAsync(true); };
-            BackArrow.GestureRecognizers.Add(imageTappedRecogniser);
-        }
+            //checking if null because this event is triggered
+            //when item is selected, but also when item is diselected (then its null)
+            if (e.SelectedItem == null) return;
+            //cast object to event
+            var _event = e.SelectedItem as EventViewModel;
+            if (_event == null || _event.Event.Active == false) return;
 
-        private void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)
-        {
-            Debug.WriteLine("Check if works");
+            //deselect item just in case
+            ((ListView)sender).SelectedItem = null;
+            var eventdetails = new EventDetails(_event.Event) { BindingContext = _event.Event };
+            await Navigation.PushAsync(eventdetails);
         }
     }
 }

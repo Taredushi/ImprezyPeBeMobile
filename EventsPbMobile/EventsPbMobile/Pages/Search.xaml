@@ -5,31 +5,14 @@
              x:Class="EventsPbMobile.Pages.Search">
     <ScrollView>
         <StackLayout>
-            <StackLayout Padding="6" HeightRequest="48" VerticalOptions="Start"
-                         BackgroundColor="Green" Orientation="Vertical">
-
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image x:Name="BackArrow" Source="search.png" Grid.Column="0" />
-                    <Entry
-                        Placeholder="Wyszukaj wydarzenie"
-                        Text="{Binding Path=SearchText}"
-                        TextChanged="OnTextChanged"
-                        TextColor="White"
-                        PlaceholderColor="Silver"
-                        
-                        Grid.Column="1" />
-                </Grid>
-            </StackLayout>
-
             <StackLayout>
-
-
+                <Entry
+                    Placeholder="Wyszukaj wydarzenie"
+                    Text="{Binding Path=SearchText}"
+                    TextChanged="OnTextChanged" />
+            </StackLayout>
+            <StackLayout>
                 <ListView x:Name="SearchedEvents" ItemSelected="OnTappedSearchedEvent">
-
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="100">
