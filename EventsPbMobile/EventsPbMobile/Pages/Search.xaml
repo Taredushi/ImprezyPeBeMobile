@@ -3,26 +3,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.Search">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="6" HeightRequest="48" VerticalOptions="Start"
+                         BackgroundColor="Green" Orientation="Vertical">
 
-    <StackLayout Padding="6" HeightRequest="48" HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="Green">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Image x:Name="logo" Source="search.png" Grid.Column="0" />
-            <SearchBar x:Name="SearchFor"
-                       Placeholder="Wyszukaj wydarzenie"
-                       Text="{Binding Path=SearchText}"
-                       TextChanged="OnTextChanged"
-                       Grid.Column="1"
-                       SearchButtonPressed="OnSearch" />
-        </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="BackArrow" Source="search.png" Grid.Column="0" />
+                    <Entry
+                        Placeholder="Wyszukaj wydarzenie"
+                        Text="{Binding Path=SearchText}"
+                        TextChanged="OnTextChanged"
+                        TextColor="White"
+                        PlaceholderColor="Silver"
+                        
+                        Grid.Column="1" />
+                </Grid>
+            </StackLayout>
 
-    </StackLayout>
-    <!--    <SearchBar x:Name="SearchFor"
-               Placeholder="search for"
-               Text="{Binding Path=SearchText}"
-               TextChanged="OnTextChanged"
-               SearchButtonPressed="OnSearch" />-->
+            <StackLayout>
+
+
+                <ListView x:Name="SearchedEvents" ItemSelected="OnTappedSearchedEvent">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="100">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Text="{Binding Event.Title}" Grid.Row="0" Grid.Column="0" />
+
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

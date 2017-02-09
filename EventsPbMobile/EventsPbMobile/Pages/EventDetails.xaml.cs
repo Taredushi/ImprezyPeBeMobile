@@ -53,7 +53,10 @@ namespace EventsPbMobile.Pages
 
         private void InitFavButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () => { }));
+            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () =>
+            {
+                Navigation.PushAsync(new ReminderNotifySelect());
+            }));
         }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)

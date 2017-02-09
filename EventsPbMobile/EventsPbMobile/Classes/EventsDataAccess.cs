@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -35,12 +34,6 @@ namespace EventsPbMobile.Classes
         {
             var list = db.All<Event>();
             list = list.Where(x => x.Date > DateTimeOffset.Now);
-            foreach (var element in list)
-            foreach (var elementActivity in element.Activities)
-                if (elementActivity.Place != null)
-                    Debug.WriteLine(elementActivity.Title + " " + elementActivity.Place.Name);
-                else
-                    Debug.WriteLine("In " + elementActivity.Title + " Place is null");
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));

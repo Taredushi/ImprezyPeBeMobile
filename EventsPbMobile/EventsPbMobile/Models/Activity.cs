@@ -5,7 +5,6 @@ namespace EventsPbMobile.Models
 {
     public class Activity :RealmObject
     {
-
         [PrimaryKey]
         public int ActivityId { get; set; }
         public string Title { get; set; }
