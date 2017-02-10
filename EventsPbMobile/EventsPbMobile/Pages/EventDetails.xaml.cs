@@ -55,7 +55,7 @@ namespace EventsPbMobile.Pages
         {
             ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () =>
             {
-                Navigation.PushAsync(new ReminderNotifySelect());
+                Navigation.PushAsync(new ReminderNotifySelect(_event));
             }));
         }
 

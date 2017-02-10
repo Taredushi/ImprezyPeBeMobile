@@ -12,7 +12,6 @@ namespace EventsPbMobile.Pages
     {
         private readonly EventsDataAccess dataAccess;
         private readonly ObservableCollection<EventViewModel> events;
-
         public Search()
         {
             InitializeComponent();
@@ -20,6 +19,7 @@ namespace EventsPbMobile.Pages
             events = new ObservableCollection<EventViewModel>();
             dataAccess = new EventsDataAccess();
             SearchedEvents.ItemsSource = events;
+            
         }
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
