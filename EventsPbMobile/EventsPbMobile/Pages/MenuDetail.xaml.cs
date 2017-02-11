@@ -35,6 +35,12 @@ namespace EventsPbMobile.Pages
                 },
                 new Models.MenuItem()
                 {
+                    Title = "Zapisane Eventy",
+                    IconSource = "incomingevents.png",
+                    TargetType = typeof(IncomingEventsReminder)
+                },
+                new Models.MenuItem()
+                {
                     Title = "Przydatne Linki",
                     IconSource = "links.png",
                     TargetType = typeof(UsefulLinks)

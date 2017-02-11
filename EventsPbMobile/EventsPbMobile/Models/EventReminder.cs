@@ -9,15 +9,12 @@ namespace EventsPbMobile.Models
         }
 
 
-        public EventReminder(int eventid, Event e, int notificationtime)
+        public EventReminder(int eventId, int notificationtime)
         {
-            Event = e;
-            EventID = eventid;
+            EventID = eventId;
             NotificationTime = notificationtime;
         }
-
         public int EventID { get; set; }
-        public Event Event { get; set; }
 
         public int NotificationTime { get; set; }
     }

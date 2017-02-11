@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
@@ -27,7 +26,7 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = RealmConfiguration.DefaultConfiguration;
-            config.SchemaVersion = 5;
+            config.SchemaVersion = 9;
             db = Realm.GetInstance();
         }
 
@@ -86,20 +85,29 @@ namespace EventsPbMobile.Classes
             return db.All<EventReminder>().Where(x => x.EventID == eventID);
         }
 
-        public void SaveReminderStatusOfEvent(Event e, ObservableCollection<ReminderNotifySelect.ReminderCell> times)
+        public void SaveReminderStatusOfEvent(Event _event,
+            ObservableCollection<ReminderNotifySelect.ReminderCell> times)
         {
-           // var list = db.All<EventReminder>().Where(x => x.EventID == e.EventId);
-            foreach (var cell in times)
-                db.Write(() =>
-                {
-                    Debug.WriteLine(cell.TextDisplayed + " " + cell.Selected);
-                    if (cell.Selected)
+            var list = db.All<EventReminder>().Where(x => x.EventID == _event.EventId);
+            db.Write(() =>
+            {
+                foreach (var time in times)
+                    if (time.Selected)
                     {
-                        var reminderobject = new EventReminder(e.EventId, e, cell.ReminderTime);
-                        Debug.WriteLine("SAVING: " + e.Title);
-                        db.Add(reminderobject);
+                        var eventreminderfromdb = list.FirstOrDefault(x => x.NotificationTime == time.ReminderTime);
+                        if (eventreminderfromdb == null)
+                        {
+                            var eventreminder = new EventReminder(_event.EventId, time.ReminderTime);
+                            db.Add(eventreminder, true);
+                        }
                     }
-                });
+                    else
+                    {
+                        var eventreminder = list.FirstOrDefault(x => x.NotificationTime == time.ReminderTime);
+                        if (eventreminder != null)
+                            db.Remove(eventreminder);
+                    }
+            });
         }
     }
 }
