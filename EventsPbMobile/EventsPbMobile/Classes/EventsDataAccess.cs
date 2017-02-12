@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -83,6 +84,18 @@ namespace EventsPbMobile.Classes
         public IQueryable<EventReminder> GetEventtReminders(int eventID)
         {
             return db.All<EventReminder>().Where(x => x.EventID == eventID);
+        }
+
+        public IEnumerable<Event> GetEventsWithSetReminder()
+        {
+            var list = db.All<EventReminder>();
+            var eventsIDs = new List<int>();
+            foreach (var reminder in list)
+                if (!eventsIDs.Contains(reminder.EventID))
+                    eventsIDs.Add(reminder.EventID);
+
+            var events = eventsIDs.Select(eventid => db.All<Event>().FirstOrDefault(x => x.EventId == eventid)).ToList();
+            return events;
         }
 
         public void SaveReminderStatusOfEvent(Event _event,

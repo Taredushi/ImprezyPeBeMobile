@@ -31,10 +31,20 @@ namespace EventsPbMobile.Pages
         private async void Counter()
         {
             var rt = _event.Date.Subtract(DateTime.Now);
+            string hours, minutes, seconds;
             while (rt.TotalSeconds > 0)
             {
                 rt = _event.Date.Subtract(DateTime.Now);
-                TitleLabel.Text = "Start za: " + rt.Days + " dni, " + rt.Hours + ":" + rt.Minutes + ":" + rt.Seconds;
+                hours = rt.Hours.ToString();
+                minutes = rt.Minutes.ToString();
+                seconds = rt.Seconds.ToString();
+                if (hours.Length == 1)
+                    hours = "0" + rt.Hours;
+                if (minutes.Length == 1)
+                    minutes = "0" + rt.Minutes;
+                if (seconds.Length == 1)
+                    seconds = "0" + rt.Seconds;
+                TitleLabel.Text = "Start za: " + rt.Days + " dni, " + hours + ":" + minutes + ":" + seconds;
                 await Task.Delay(250);
             }
         }
@@ -53,10 +63,8 @@ namespace EventsPbMobile.Pages
 
         private void InitFavButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png", () =>
-            {
-                Navigation.PushAsync(new ReminderNotifySelect(_event));
-            }));
+            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png",
+                () => { Navigation.PushAsync(new ReminderNotifySelect(_event)); }));
         }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
