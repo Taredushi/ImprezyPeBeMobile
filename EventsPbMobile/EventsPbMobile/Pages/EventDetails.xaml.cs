@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -23,7 +24,11 @@ namespace EventsPbMobile.Pages
             var activities = new ObservableCollection<Activity>();
             activities.Clear();
             foreach (var activity in e.Activities)
-                activities.Add(activity);
+            {
+                var ac = new Activity(activity);
+                ac.Place = _dataAccess.GetPlace(ac.PlaceID);
+                activities.Add(ac);
+            }
 
             EventPlaces.ItemsSource = activities;
         }
@@ -52,7 +57,10 @@ namespace EventsPbMobile.Pages
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
             var activities = _event.Activities;
-            await Navigation.PushAsync(new EventMap(activities));
+
+            var stack = Navigation.NavigationStack;
+            if (stack[stack.Count - 1].GetType() != typeof(EventMap))
+                await Navigation.PushAsync(new EventMap(activities));
         }
 
         private void Notification_Clicked(object sender, EventArgs e)

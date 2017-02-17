@@ -28,7 +28,8 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20" />
                                     </Grid.RowDefinitions>
-                                    <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="0" />
+                                  <Label Text="{Binding Place.ShortName}" Grid.Row="0" Grid.Column="0" />
+                                  <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>

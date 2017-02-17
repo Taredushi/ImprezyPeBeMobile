@@ -27,7 +27,7 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = RealmConfiguration.DefaultConfiguration;
-            config.SchemaVersion = 9;
+            config.SchemaVersion = 10;
             db = Realm.GetInstance();
         }
 
@@ -58,7 +58,7 @@ namespace EventsPbMobile.Classes
 
         public async Task<bool> SaveEventsToDb()
         {
-            //Realm.DeleteRealm(config);
+           // Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
 
             db.Write(() =>

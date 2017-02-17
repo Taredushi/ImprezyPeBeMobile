@@ -10,40 +10,22 @@
         <ResourceDictionary>
 
             <DataTemplate x:Key="ActiveEventTemplate">
-                <ViewCell x:Key="viewCell">
+                <ViewCell>
+
                     <AbsoluteLayout>
-                        <Image Aspect="AspectFill" Source="cover.jpg" HorizontalOptions="Fill" />
 
+                        <Image Source="{Binding Event.Baner}"/>
+                      
                         <Label x:Key="Counter" Text="{Binding Event.Title}" BackgroundColor="Black" Opacity="0.7"
-                               AbsoluteLayout.LayoutBounds="1,1,1,.3" AbsoluteLayout.LayoutFlags="All"
-                               LineBreakMode="WordWrap"
-                               TextColor="White" FontSize="Medium" HorizontalOptions="Fill" />
+                               TextColor="White" FontSize="23"   />
                     </AbsoluteLayout>
-
 
                 </ViewCell>
             </DataTemplate>
             <DataTemplate x:Key="UnactiveEventTemplate">
                 <ViewCell>
-                    <Grid VerticalOptions="FillAndExpand">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Aspect="AspectFit" Source="old.jpg" HorizontalOptions="Center" Grid.Row="0"
-                               Grid.Column="0" />
+                    <Image Aspect="AspectFit" Source="old.jpg" HorizontalOptions="Center" />
 
-                        <!--                            <Label Text="{Binding Event.Title}" FontSize="Large" TextColor="Red"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0"
-                                   Grid.Column="0" />
-
-                            <Label Text="Szczegóły wkrótce" FontSize="Large" TextColor="Red"
-                                   HorizontalTextAlignment="Center" VerticalTextAlignment="End" Grid.Row="0"
-                                   Grid.Column="0" />-->
-
-                    </Grid>
                 </ViewCell>
             </DataTemplate>
             <classes:EventTemplateSelector x:Key="EventTemplateSelector"
@@ -54,16 +36,16 @@
     <ContentPage.Content>
 
         <AbsoluteLayout>
-            <ListView x:Name="EventsList" ItemSelected="OnEventSelected" RowHeight="150"
+            <ListView x:Name="EventsList" ItemSelected="OnEventSelected" HasUnevenRows="True"
                       ItemTemplate="{StaticResource EventTemplateSelector}" AbsoluteLayout.LayoutFlags="All"
                       AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <ListView.Header>
+                <!--                <ListView.Header>
                     <StackLayout BackgroundColor="White">
-                        <Image Aspect="AspectFit" Source="latest.jpg" HorizontalOptions="Center" />
-                        <!--<Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
-                <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />-->
+                        <Image Aspect="AspectFill" Source="latest.jpg" HorizontalOptions="FillAndExpand" />
+                        <Label x:Name="LastEventTitle" Text="Test" HorizontalTextAlignment="Center" />
+                <Button Text="Sprawdź szczegóły" HorizontalOptions="Center" />
                     </StackLayout>
-                </ListView.Header>
+                </ListView.Header>-->
 
             </ListView>
             <ContentView x:Name="actIndBackground" BackgroundColor="#222222" Opacity="0.5"

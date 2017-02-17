@@ -23,9 +23,8 @@ namespace EventsPbMobile.Pages
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
             EventsList.ItemsSource = _dataAccess.Events;
-            //LastEventTitle.Text = "Tytuł ostatniego wydarzenia";
             InitializeSeachButton();
-            CountDownTime();
+          //  CountDownTime();
         }
 
         public bool IsLoading
@@ -74,22 +73,24 @@ namespace EventsPbMobile.Pages
             //deselect item just in case
             ((ListView) sender).SelectedItem = null;
             var eventdetails = new EventDetails(_event.Event) {BindingContext = _event.Event};
-            await Navigation.PushAsync(eventdetails);
+
+            //prevent double tapping before opening another page
+            //double tap causes double push of page onto navigation stack
+            var stack = Navigation.NavigationStack;
+            if (stack[stack.Count - 1].GetType() != typeof(EventDetails))
+                await Navigation.PushAsync(eventdetails);
         }
 
         protected override async void OnAppearing()
         {
             IsLoading = true;
-          //  var t = await _dataAccess.SaveEventsToDb();
+            //var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
         }
 
         private void InitializeSeachButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Search", "search.png", () =>
-            {
-                Navigation.PushAsync(new Search());
-            }));
+            ToolbarItems.Add(new ToolbarItem("Search", "search.png", () => { Navigation.PushAsync(new Search()); }));
         }
     }
 }

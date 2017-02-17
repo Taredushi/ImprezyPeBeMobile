@@ -274,10 +274,10 @@
     <AndroidResource Include="Resources\drawable\about.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\cover.jpg" />
+    <AndroidResource Include="Resources\drawable\mode.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\old.jpg" />
+    <AndroidResource Include="Resources\drawable\lel.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />

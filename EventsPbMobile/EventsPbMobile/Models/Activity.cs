@@ -3,10 +3,26 @@ using Realms;
 
 namespace EventsPbMobile.Models
 {
-    public class Activity :RealmObject
+    public class Activity : RealmObject
     {
+        public Activity()
+        {
+        }
+
+        public Activity(Activity a)
+        {
+            Title = a.Title;
+            Text = a.Text;
+            StartHour = a.StartHour;
+            EndHour = a.EndHour;
+            Gameable = a.Gameable;
+            PlaceID = a.PlaceID;
+            EventID = a.EventID;
+        }
+
         [PrimaryKey]
         public int ActivityId { get; set; }
+
         public string Title { get; set; }
         public string Text { get; set; }
         public DateTimeOffset StartHour { get; set; }
@@ -16,6 +32,5 @@ namespace EventsPbMobile.Models
         public int EventID { get; set; }
 
         public Place Place { get; set; }
-
     }
 }
