@@ -18,7 +18,7 @@ namespace EventsPbMobile.Pages
         public MainPage()
         {
             InitializeComponent();
-            App.Notification.StartService();
+            //App.Notification.StartService();
             IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
@@ -84,7 +84,7 @@ namespace EventsPbMobile.Pages
         protected override async void OnAppearing()
         {
             IsLoading = true;
-       //    var t = await _dataAccess.SaveEventsToDb();
+           var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
         }
 

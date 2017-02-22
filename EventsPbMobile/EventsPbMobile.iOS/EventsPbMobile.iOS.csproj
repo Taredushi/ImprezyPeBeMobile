@@ -25,7 +25,20 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
-    <MtouchDebug>true</MtouchDebug>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchSdkVersion>10.2</MtouchSdkVersion>
+    <MtouchProfiling>False</MtouchProfiling>
+    <MtouchFastDev>False</MtouchFastDev>
+    <MtouchUseLlvm>False</MtouchUseLlvm>
+    <MtouchUseThumb>False</MtouchUseThumb>
+    <MtouchEnableBitcode>False</MtouchEnableBitcode>
+    <MtouchUseSGen>False</MtouchUseSGen>
+    <MtouchUseRefCounting>False</MtouchUseRefCounting>
+    <OptimizePNGs>True</OptimizePNGs>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchFloat32>False</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -234,6 +247,26 @@
     <Content Include="FodyWeavers.xml">
       <SubType>Designer</SubType>
     </Content>
+    <BundleResource Include="Resources\about.png" />
+    <BundleResource Include="Resources\alert.png" />
+    <BundleResource Include="Resources\blad.jpg" />
+    <BundleResource Include="Resources\contact.png" />
+    <BundleResource Include="Resources\help.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\icon.png" />
+    <BundleResource Include="Resources\incomingevents.png" />
+    <BundleResource Include="Resources\latest.jpg" />
+    <BundleResource Include="Resources\lel.jpg" />
+    <BundleResource Include="Resources\links.png" />
+    <BundleResource Include="Resources\map.png" />
+    <BundleResource Include="Resources\mode.jpg" />
+    <BundleResource Include="Resources\notiactive.png" />
+    <BundleResource Include="Resources\notidisabled.png" />
+    <BundleResource Include="Resources\pb.jpg" />
+    <BundleResource Include="Resources\save.png" />
+    <BundleResource Include="Resources\search.png" />
+    <BundleResource Include="Resources\settings.png" />
+    <BundleResource Include="Resources\transblack.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

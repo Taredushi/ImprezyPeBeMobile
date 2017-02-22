@@ -61,16 +61,20 @@ namespace EventsPbMobile.Classes
         {
            // Realm.DeleteRealm(config);
             var items = await api.GetEventsAllAsync();
-
-            db.Write(() =>
+            var events = db.All<Event>();
+            if (!events.Any())
             {
-                if (items == null) return;
-                foreach (var item in items)
+                db.Write(() =>
                 {
-                    var ev = new Event(item);
-                    db.Add(ev, true);
-                }
-            });
+                    if (items == null) return;
+                    foreach (var item in items)
+                    {
+                        var ev = new Event(item);
+                        db.Add(ev, true);
+                    }
+                });
+            }
+            
 
             PopulateEventsCollectionFromDb();
             return true;
