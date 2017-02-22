@@ -10,14 +10,6 @@ namespace EventsPbMobile.Pages
     public partial class ReminderNotifySelect : ContentPage
     {
         private readonly EventsDataAccess db;
-        private readonly IQueryable<EventReminder> remindersFromDB;
-
-        private readonly ObservableCollection<ReminderCell> times = new ObservableCollection<ReminderCell>
-        {
-            new ReminderCell(1, false, "Za jedną minutę"),
-            new ReminderCell(2, false, "Za dwie minuty"),
-            new ReminderCell(3, false, "Za trzy minuty")
-        };
 
         public ReminderNotifySelect(Event e)
         {
@@ -25,8 +17,7 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = "Ustaw powiadomienie";
             _Event = e;
-            remindersFromDB = db.GetEventtReminders(e.EventId);
-            InitSelectionCells();
+           // InitSelectionCells();
             InitFavButton();
         }
 
@@ -38,7 +29,7 @@ namespace EventsPbMobile.Pages
             ((ListView) sender).SelectedItem = null;
         }
 
-        private void InitSelectionCells()
+/*        private void InitSelectionCells()
         {
             Debug.WriteLine("Count from remindersDB " + remindersFromDB.Count());
             foreach (var cell in times)
@@ -51,17 +42,14 @@ namespace EventsPbMobile.Pages
             }
 
             TimeSelection.ItemsSource = times;
-        }
+        }*/
 
         private void InitFavButton()
         {
             ToolbarItems.Add(new ToolbarItem("Zapisz", "save.png", () =>
             {
                 
-                db.SaveReminderStatusOfEvent(_Event,times);
-
-                DisplayAlert("Sukces", "Pomyślnie zapisano powiadomienia", "OK");
-                Navigation.PopAsync();
+               
             }));
         }
 

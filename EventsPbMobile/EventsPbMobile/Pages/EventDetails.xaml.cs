@@ -19,7 +19,7 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = e.Title;
             Counter();
-            InitFavButton();
+
             _dataAccess = new EventsDataAccess();
             var activities = new ObservableCollection<Activity>();
             activities.Clear();
@@ -29,7 +29,7 @@ namespace EventsPbMobile.Pages
                 ac.Place = _dataAccess.GetPlace(ac.PlaceID);
                 activities.Add(ac);
             }
-
+            InitFavButton();
             EventPlaces.ItemsSource = activities;
         }
 
@@ -57,7 +57,6 @@ namespace EventsPbMobile.Pages
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
             var activities = _event.Activities;
-
             var stack = Navigation.NavigationStack;
             if (stack[stack.Count - 1].GetType() != typeof(EventMap))
                 await Navigation.PushAsync(new EventMap(activities));
@@ -71,8 +70,29 @@ namespace EventsPbMobile.Pages
 
         private void InitFavButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Remind", "alert.png",
-                () => { Navigation.PushAsync(new ReminderNotifySelect(_event)); }));
+            var eventreminder = _dataAccess.GetEventReminder(_event.EventId);
+            bool answer;
+            if (eventreminder.NotificationEnabled)
+                ToolbarItems.Add(new ToolbarItem("Remind", "notidisabled.png", async () =>
+                {
+                    answer = await DisplayAlert("Powiadomienie",
+                        "Czy chcesz wyłączyć powiadomienie dla tego wydarzenie?", "Tak", "Nie");
+                    Debug.WriteLine(answer);
+                    if (answer) 
+                    {
+                        _dataAccess.RemoveEventWithSetReminder(_event.EventId);
+                    }
+                }));
+            else
+                ToolbarItems.Add(new ToolbarItem("Remind", "notiactive.png", async () =>
+                {
+                    answer = await DisplayAlert("Powiadomienie", "Czy chcesz ustawić powiadomienie na to wydarzenie?",
+                        "Tak", "Nie");
+                    if (answer)
+                    {
+                        _dataAccess.SaveEventWithSetReminder(_event.EventId);
+                    }
+                }));
         }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)

@@ -3,39 +3,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.EventDetails">
-    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
-        <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-            <Image Aspect="AspectFit" Source="cover.jpg" />
-            <StackLayout VerticalOptions="Start" BackgroundColor="Green">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                    <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" />
-                </StackLayout>
-            </StackLayout>
-
-
-            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" />
-            <Button Text="Powiadomienie o wydarzeniu" Clicked="Notification_Clicked" />
-            <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Height="50">
-                            <ViewCell.View>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="25*" />
-                                        <ColumnDefinition Width="25*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20" />
-                                    </Grid.RowDefinitions>
-                                  <Label Text="{Binding Place.ShortName}" Grid.Row="0" Grid.Column="0" />
-                                  <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
-                                </Grid>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+<ScrollView>
+    <StackLayout Orientation="Vertical" Padding="0,0,0,0">
+      
+        <Image Source="{Binding Baner}" />
+        <StackLayout BackgroundColor="#1E5327" Margin="0,-6,-0,0">
+            <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" />
         </StackLayout>
-    </ScrollView>
+        <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" />
+        <!-- <Button Text="Powiadomienie o wydarzeniu" Clicked="Notification_Clicked" IsVisible="False" />-->
+        <Label Text="{Binding Text}" FontSize="20" />
+        <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" Margin="0,0,0,-50">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="5,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding Place.ShortName}" Grid.Row="0" Grid.Column="0"
+                                   FontAttributes="Bold" FontSize="20" />
+                            <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ScrollView>
 </ContentPage>

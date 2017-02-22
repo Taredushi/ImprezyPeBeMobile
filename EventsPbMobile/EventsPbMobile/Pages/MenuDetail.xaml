@@ -5,15 +5,11 @@
              x:Class="EventsPbMobile.Pages.MenuDetail"
              Icon="hamburger.png"
              Padding="0,40,0,0"
-             Title="PBEvents">
+             Title="PBEvents" BackgroundColor="Green">
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Green">
           <StackLayout>
-            <Grid>
-              <Label Text="Aplikacja Wydarzenia" BackgroundColor="Teal" />
-
-            </Grid>
           </StackLayout>
           <ListView x:Name="MenuListView" VerticalOptions="FillAndExpand" SeparatorVisibility="None"
                       BackgroundColor="Green">

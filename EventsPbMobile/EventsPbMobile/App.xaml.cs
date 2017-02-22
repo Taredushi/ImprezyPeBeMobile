@@ -11,11 +11,19 @@ namespace EventsPbMobile
     public partial class App : Application
     {
         public static INotification Notification { get; private set; }
+        private EventsDataAccess _dataAccess;
         public App()
         {
             InitializeComponent();
+            _dataAccess = new EventsDataAccess();
+            InitNotificationSettings();
             MainPage = new MainMenu();
-        }     
+        }
+
+        private void InitNotificationSettings()
+        {
+            
+        }
 
         public static void Init(INotification notification)
         {

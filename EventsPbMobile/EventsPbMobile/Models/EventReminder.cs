@@ -8,14 +8,14 @@ namespace EventsPbMobile.Models
         {
         }
 
-
-        public EventReminder(int eventId, int notificationtime)
+        public EventReminder(int eventid, bool notstatus)
         {
-            EventID = eventId;
-            NotificationTime = notificationtime;
+            EventId = eventid;
+            NotificationEnabled = notstatus;
         }
-        public int EventID { get; set; }
-
-        public int NotificationTime { get; set; }
+        [PrimaryKey]
+        public int EventId { get; set; }
+        public bool NotificationEnabled { get; set; }
+       
     }
 }

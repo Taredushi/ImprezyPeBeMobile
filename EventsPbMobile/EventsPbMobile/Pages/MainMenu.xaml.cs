@@ -19,6 +19,7 @@ namespace EventsPbMobile.Pages
             if (item != null)
             {
                 Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
+                var xx = new NavigationPage();
                 MenuDetail.ListView.SelectedItem = null;
                 IsPresented = false;
             }

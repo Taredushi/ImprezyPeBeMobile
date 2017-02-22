@@ -22,7 +22,7 @@ namespace EventsPbMobile.Pages
             IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
-            EventsList.ItemsSource = _dataAccess.Events;
+            EventsList.ItemsSource = _dataAccess.Events.ToList();
             InitializeSeachButton();
           //  CountDownTime();
         }
@@ -84,13 +84,22 @@ namespace EventsPbMobile.Pages
         protected override async void OnAppearing()
         {
             IsLoading = true;
-            //var t = await _dataAccess.SaveEventsToDb();
+       //    var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
         }
 
         private void InitializeSeachButton()
         {
             ToolbarItems.Add(new ToolbarItem("Search", "search.png", () => { Navigation.PushAsync(new Search()); }));
+        }
+
+        private async void Events_PullToRefreshAction(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Początek refreshu");
+            var eventlist = sender as ListView;
+            await Task.Delay(1000);
+            eventlist.IsRefreshing = false;
+            Debug.WriteLine("Koniec refreshu");
         }
     }
 }

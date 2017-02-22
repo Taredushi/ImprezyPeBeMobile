@@ -8,7 +8,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace EventsPbMobile.Droid
 {
-    [Activity(Label = "EventsPbMobile", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "Eventy na Politechnice", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {

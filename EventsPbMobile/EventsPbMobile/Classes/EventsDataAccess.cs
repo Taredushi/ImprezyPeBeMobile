@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
@@ -27,7 +28,7 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = RealmConfiguration.DefaultConfiguration;
-            config.SchemaVersion = 10;
+            config.SchemaVersion = 14;
             db = Realm.GetInstance();
         }
 
@@ -81,46 +82,68 @@ namespace EventsPbMobile.Classes
             return place;
         }
 
-        public IQueryable<EventReminder> GetEventtReminders(int eventID)
+        public void SaveReminderSettings(EventReminder reminder)
         {
-            return db.All<EventReminder>().Where(x => x.EventID == eventID);
+            db.Write(() =>
+            {
+                db.RemoveAll<EventReminder>();
+                db.Add(reminder);
+            });
+        }
+
+        public void SaveEventWithSetReminder(int eventId)
+        {
+            db.Write(() =>
+            {
+                var eventreminder = db.Find("EventReminder", eventId) as EventReminder;
+                eventreminder.NotificationEnabled = true;
+                db.Add(eventreminder, true);
+                var xx = db.All<EventReminder>();
+                Debug.WriteLine(xx.Count() + " count");
+            });
+        }
+
+        public void RemoveEventWithSetReminder(int eventId)
+        {
+            db.Write(() =>
+            {
+                var eventreminder = db.Find("EventReminder", eventId) as EventReminder;
+                eventreminder.NotificationEnabled = false;
+                db.Add(eventreminder,true);
+            });
         }
 
         public IEnumerable<Event> GetEventsWithSetReminder()
         {
-            var list = db.All<EventReminder>();
-            var eventsIDs = new List<int>();
-            foreach (var reminder in list)
-                if (!eventsIDs.Contains(reminder.EventID))
-                    eventsIDs.Add(reminder.EventID);
-
-            var events = eventsIDs.Select(eventid => db.All<Event>().FirstOrDefault(x => x.EventId == eventid)).ToList();
-            return events;
-        }
-
-        public void SaveReminderStatusOfEvent(Event _event,
-            ObservableCollection<ReminderNotifySelect.ReminderCell> times)
-        {
-            var list = db.All<EventReminder>().Where(x => x.EventID == _event.EventId);
-            db.Write(() =>
+            var listeventreminder = db.All<EventReminder>().Where(x => x.NotificationEnabled);
+            var listofevents = new List<Event>();
+            foreach (var eventReminder in listeventreminder)
             {
-                foreach (var time in times)
-                    if (time.Selected)
-                    {
-                        var eventreminderfromdb = list.FirstOrDefault(x => x.NotificationTime == time.ReminderTime);
-                        if (eventreminderfromdb == null)
-                        {
-                            var eventreminder = new EventReminder(_event.EventId, time.ReminderTime);
-                            db.Add(eventreminder, true);
-                        }
-                    }
-                    else
-                    {
-                        var eventreminder = list.FirstOrDefault(x => x.NotificationTime == time.ReminderTime);
-                        if (eventreminder != null)
-                            db.Remove(eventreminder);
-                    }
-            });
+                var ev = db.Find("Event", eventReminder.EventId) as Event;
+                listofevents.Add(ev);
+            }
+            return listofevents;
         }
+
+        public EventReminder GetEventReminder(int eventid)
+        {
+            var eventreminders = db.All<EventReminder>();
+            var events = db.All<Event>();
+            if (eventreminders.Count() != events.Count())
+            {
+                foreach (var ev in events)
+                {
+                    if (!eventreminders.Any(x => x.EventId ==ev.EventId))
+                    {
+                        db.Write(() =>
+                        {
+                            var evrem = new EventReminder(ev.EventId,false);
+                            db.Add(evrem);
+                        });
+                    }
+                }
+            }
+            return db.All<EventReminder>().FirstOrDefault(x => x.EventId == eventid);
+        } 
     }
 }
