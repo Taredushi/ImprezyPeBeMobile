@@ -41,7 +41,7 @@
     <ContentPage.Content>
 
         <ListView x:Name="EventsList" ItemSelected="OnEventSelected" HasUnevenRows="True" Margin="0,-1,0,-1"
-                  BackgroundColor="Black"
+                  BackgroundColor="Black" SeparatorVisibility="None"
                   ItemTemplate="{StaticResource EventTemplateSelector}" IsPullToRefreshEnabled="True"
                   Refreshing="Events_PullToRefreshAction" />
         <!--            <ContentView x:Name="actIndBackground" BackgroundColor="#222222" Opacity="0.5"

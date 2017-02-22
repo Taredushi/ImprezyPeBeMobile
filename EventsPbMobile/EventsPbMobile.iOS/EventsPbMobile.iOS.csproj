@@ -106,7 +106,9 @@
     <Compile Include="AppDelegate.cs" />
     <None Include="app.config" />
     <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
@@ -216,11 +218,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Maps, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\Xamarin.iOS10\Xamarin.Forms.Maps.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Maps.iOS, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.2.127\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
+      <HintPath>..\..\packages\Xamarin.Forms.Maps.2.3.3.180\lib\Xamarin.iOS10\Xamarin.Forms.Maps.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
