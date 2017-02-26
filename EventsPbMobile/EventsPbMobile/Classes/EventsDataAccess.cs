@@ -32,7 +32,7 @@ namespace EventsPbMobile.Classes
             db = Realm.GetInstance();
         }
 
-        public void PopulateEventsCollectionFromDb()
+        private void PopulateEventsCollectionFromDb()
         {
             var list = db.All<Event>();
             list = list.Where(x => x.Date > DateTimeOffset.Now);
@@ -43,19 +43,13 @@ namespace EventsPbMobile.Classes
 
         private EventViewModel EventToViewModel(Event data)
         {
-            var evm = new EventViewModel();
-            evm.TimeLeft = data.Date.Subtract(DateTime.Now);
-            evm.Event = data;
-
-            return evm;
+            return new EventViewModel
+            {
+                TimeLeft = data.Date.Subtract(DateTime.Now),
+                Event = data
+            };
         }
 
-        public Event GetLastEvent()
-        {
-            var pbevents = db.All<Event>().ToList();
-            var pbevent = pbevents.Where(x => x.Date < DateTimeOffset.Now).OrderByDescending(x => x.Date).First();
-            return pbevent;
-        }
 
         public async Task<bool> SaveEventsToDb()
         {
@@ -74,8 +68,6 @@ namespace EventsPbMobile.Classes
                     }
                 });
             }
-            
-
             PopulateEventsCollectionFromDb();
             return true;
         }

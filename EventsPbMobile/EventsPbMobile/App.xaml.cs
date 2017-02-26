@@ -11,6 +11,7 @@ namespace EventsPbMobile
     public partial class App : Application
     {
         public static INotification Notification { get; private set; }
+        public static IDownloadManager DownloadManager { get; private set; }
         private EventsDataAccess _dataAccess;
         public App()
         {
@@ -29,9 +30,10 @@ namespace EventsPbMobile
         {
             App.Notification = notification;
         }
-        public static Page GetMainPage()
+
+        public static void InitDownload(IDownloadManager manager)
         {
-            return new NavigationPage(new MainMenu());
+            App.DownloadManager = manager;
         }
 
         protected override void OnStart()
@@ -49,8 +51,6 @@ namespace EventsPbMobile
         {
             // Handle when your app resumes
         }
-
-        
         
     }
 }

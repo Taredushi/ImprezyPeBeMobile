@@ -22,12 +22,11 @@ namespace EventsPbMobile.Pages
             IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
-            EventsList.ItemsSource = _dataAccess.Events.ToList();
+            EventsList.ItemsSource = _dataAccess.Events.ToList();  
             InitializeSeachButton();
-          //  CountDownTime();
         }
 
-        public bool IsLoading
+        private bool IsLoading
         {
             get { return isLoading; }
             set
@@ -43,22 +42,6 @@ namespace EventsPbMobile.Pages
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-
-        private async void CountDownTime()
-        {
-            IsLoading = true;
-            var eventTime = DateTime.Now.AddMonths(1);
-            var remainingTime = eventTime - DateTime.Now;
-
-            while (remainingTime.Seconds > 0)
-            {
-                var events = new List<EventViewModel>();
-                events.AddRange(EventsList.ItemsSource.OfType<EventViewModel>());
-                foreach (var ev in events)
-                    ev.TimeLeft = ev.Event.Date.Subtract(DateTime.Now);
-                await Task.Delay(1000);
-            }
         }
 
         private async void OnEventSelected(object sender, SelectedItemChangedEventArgs e)
@@ -84,8 +67,15 @@ namespace EventsPbMobile.Pages
         protected override async void OnAppearing()
         {
             IsLoading = true;
-           var t = await _dataAccess.SaveEventsToDb();
+          // var t = await _dataAccess.SaveEventsToDb();
             IsLoading = false;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            Debug.WriteLine("GARBAGE COLLECTOR");
+            GC.Collect();
         }
 
         private void InitializeSeachButton()

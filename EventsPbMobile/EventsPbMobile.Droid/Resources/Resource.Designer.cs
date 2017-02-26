@@ -30,6 +30,8 @@ namespace EventsPbMobile.Droid
 			global::PCLCrypto.Resource.String.Hello = global::EventsPbMobile.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::EventsPbMobile.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::EventsPbMobile.Droid.Resource.String.Hello;
+			global::Xam.Plugin.DownloadManager.Droid.Resource.String.ApplicationName = global::EventsPbMobile.Droid.Resource.String.ApplicationName;
+			global::Xam.Plugin.DownloadManager.Droid.Resource.String.Hello = global::EventsPbMobile.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::EventsPbMobile.Droid.Resource.Attribute.actionBarSize;
 		}
 		

@@ -47,6 +47,12 @@ namespace EventsPbMobile.Pages
                 },
                 new Models.MenuItem()
                 {
+                    Title = "Informator",
+                    IconSource = "links.png",
+                    TargetType = typeof(Informer)
+                },
+                new Models.MenuItem()
+                {
                     Title = "Kontakt",
                     IconSource = "contact.png",
                     TargetType = typeof(ContactsPage)

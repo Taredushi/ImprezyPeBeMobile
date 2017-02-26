@@ -23,11 +23,8 @@ namespace EventsPbMobile.Classes
         {
             client.BaseAddress = new Uri(Url);
             var request = new HttpRequestMessage(HttpMethod.Post, "/oauth/token");
-
             var requestContent = "grant_type=password&username=politechnikamobile@gmail.com&password=Mobile123";
             request.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            var x = client.SendAsync(request);
-            Debug.WriteLine("CHUUJ : " + x.Status +   " " + x.Result);
         }
 
         public async Task<List<Event>> GetEventsAllAsync()
@@ -39,21 +36,8 @@ namespace EventsPbMobile.Classes
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var items = JsonConvert.DeserializeObject<List<Event>>(content);
-                
-                foreach (var item in items)
-                {
-                    foreach (var activity in item.Activities)
-                    {
-                        if (activity.Place != null)
-                        {
-
-                        }
-                    }
-                }
-                Debug.WriteLine(items.Count + " <====== COUNT");
                 return items;
             }
-
             return null;
         }
 
