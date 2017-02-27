@@ -18,7 +18,13 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Event.Baner}" Aspect="AspectFill" Grid.Row="0" Grid.Column="0" />
+                        <Image Aspect="AspectFill" Grid.Row="0" Grid.Column="0" >
+                            <Image.Source>
+                                <UriImageSource Uri="{Binding Event.Baner}"
+			                        CacheValidity="7" 
+			                        CachingEnabled="true"/>
+                            </Image.Source>
+                        </Image>
                         <Image Source="transblack.png" Aspect="AspectFill" Grid.Row="0" Grid.Column="0" />
                         <StackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="End" Margin="0,0,0,5">
                             <Label x:Key="Counter" Text="{Binding Event.Title}" TextColor="White" FontSize="23"
@@ -30,7 +36,14 @@
             </DataTemplate>
             <DataTemplate x:Key="UnactiveEventTemplate">
                 <ViewCell>
-                    <Image Aspect="AspectFit" Source="old.jpg" HorizontalOptions="Center" />
+                    <Image Aspect="AspectFit" HorizontalOptions="Center">
+                        <Image.Source>
+                            <UriImageSource Uri="{Binding Event.Baner}" 
+			                        CacheValidity="7" 
+			                        CachingEnabled="true"/>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="{Binding Event.Title}"/>
                 </ViewCell>
             </DataTemplate>
             <classes:EventTemplateSelector x:Key="EventTemplateSelector"

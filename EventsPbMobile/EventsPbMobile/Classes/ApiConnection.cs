@@ -16,6 +16,7 @@ namespace EventsPbMobile.Classes
         private readonly string EventsUrl = "http://webapipb.azurewebsites.net/api/events";
         private readonly string PhotosUrl = "http://webapipb.azurewebsites.net/api/photos";
         private readonly string PlacessUrl = "http://webapipb.azurewebsites.net/api/places";
+        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";
 
         private readonly string Url = "http://webapipb.azurewebsites.net";
 
@@ -25,6 +26,7 @@ namespace EventsPbMobile.Classes
             var request = new HttpRequestMessage(HttpMethod.Post, "/oauth/token");
             var requestContent = "grant_type=password&username=politechnikamobile@gmail.com&password=Mobile123";
             request.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var x = client.SendAsync(request);
         }
 
         public async Task<List<Event>> GetEventsAllAsync()
@@ -149,6 +151,22 @@ namespace EventsPbMobile.Classes
                 var content = await response.Content.ReadAsStringAsync();
                 var item = JsonConvert.DeserializeObject<Place>(content);
                 return item;
+            }
+
+            return null;
+        }
+
+        public async Task<List<PhotoEvent>> GetPhotoEventsAllAsync()
+        {
+            ConnectToAPI();
+            var uri = new Uri(PhotosUrl);
+            var response = await client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var items = JsonConvert.DeserializeObject<List<PhotoEvent>>(content);
+                return items;
             }
 
             return null;

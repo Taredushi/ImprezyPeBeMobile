@@ -22,7 +22,8 @@ namespace EventsPbMobile.Pages
             IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
-            EventsList.ItemsSource = _dataAccess.Events.ToList();  
+           // _dataAccess.DeleteDatabase();
+            EventsList.ItemsSource = _dataAccess.Events;  
             InitializeSeachButton();
         }
 
@@ -66,15 +67,14 @@ namespace EventsPbMobile.Pages
 
         protected override async void OnAppearing()
         {
-            IsLoading = true;
-          // var t = await _dataAccess.SaveEventsToDb();
-            IsLoading = false;
+            EventsList.IsRefreshing = true;
+            var t = await RefreshDatabase();
+            EventsList.IsRefreshing = false;
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            Debug.WriteLine("GARBAGE COLLECTOR");
             GC.Collect();
         }
 
@@ -85,11 +85,20 @@ namespace EventsPbMobile.Pages
 
         private async void Events_PullToRefreshAction(object sender, EventArgs e)
         {
-            Debug.WriteLine("Początek refreshu");
             var eventlist = sender as ListView;
-            await Task.Delay(1000);
+            var t = await RefreshDatabase();
             eventlist.IsRefreshing = false;
-            Debug.WriteLine("Koniec refreshu");
+        }
+
+        private async Task<bool> RefreshDatabase()
+        {
+            var photos = await _dataAccess.SavePhotosToDb();
+            var places = await _dataAccess.SavePlacesToDb();
+            var events = await _dataAccess.SaveEventsToDb();
+            var activities = await _dataAccess.SaveActivitiesToDb();
+            var photoevents = await _dataAccess.SavePhotoEventsToDb();
+
+            return true;
         }
     }
 }

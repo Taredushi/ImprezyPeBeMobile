@@ -14,14 +14,14 @@ namespace EventsPbMobile.Droid
     {
         public void ShowNotification(string title, string text)
         {
-            Notification.Builder builder = new Notification.Builder(Forms.Context);
+            var builder = new Notification.Builder(Forms.Context);
             builder.SetContentTitle(title);
             builder.SetContentText(text);
             builder.SetSmallIcon(Resource.Drawable.ic_media_play);
 
-            Notification notification = builder.Build();
+            var notification = builder.Build();
 
-            NotificationManager notificationManager = Xamarin.Forms.Forms.Context.GetSystemService(Context.NotificationService) as NotificationManager;
+            var notificationManager = Forms.Context.GetSystemService(Context.NotificationService) as NotificationManager;
 
             const int notificationId = 0;
 

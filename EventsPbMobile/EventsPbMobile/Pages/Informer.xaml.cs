@@ -20,10 +20,17 @@ namespace EventsPbMobile.Pages
         public Informer()
         {
             InitializeComponent();
-           // LoadTestFile();
+            LoadTestFile();
             OpenFileInBrowser();
         }
 
+       /* protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Navigation.PushAsync(new MainPage());
+            OpenFileInBrowser();
+            Navigation.RemovePage(this);
+        }*/
 
         private void LoadTestFile()
         {

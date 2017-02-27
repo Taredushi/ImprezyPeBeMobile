@@ -18,6 +18,7 @@ namespace EventsPbMobile.Models
             Gameable = a.Gameable;
             PlaceID = a.PlaceID;
             EventID = a.EventID;
+            Place = a.Place;
         }
 
         [PrimaryKey]

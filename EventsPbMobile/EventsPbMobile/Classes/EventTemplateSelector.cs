@@ -13,9 +13,7 @@ namespace EventsPbMobile.Classes
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             var _event = (EventViewModel) item;
-            if (_event.Event.Active)
-                return ActiveEvent;
-            return UnactiveEvent;
+            return _event.Event.Active ? ActiveEvent : UnactiveEvent;
         }
     }
 }

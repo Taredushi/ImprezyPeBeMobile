@@ -31,16 +31,21 @@ namespace EventsPbMobile.Droid
                 Debug.WriteLine("Nie istnieje");
                 return;
             }*/
-
-            var uri = Android.Net.Uri.Parse(downloadpath);
+            var file = new Java.IO.File(downloadpath);
+            var uri = Android.Net.Uri.FromFile(file);
             var intent = new Intent(Intent.ActionView);
             intent.SetDataAndType(uri, "application/pdf");
-            intent.SetFlags(ActivityFlags.ClearWhenTaskReset | ActivityFlags.NewTask);
+
+            if (!File.Exists(downloadpath))
+            {
+                Toast.MakeText(Forms.Context, "Nie ma takiego pliku!", ToastLength.Short).Show();
+                return;
+            }
 
             try
             {
                 Forms.Context.StartActivity(intent);
-                Toast.MakeText(Forms.Context, "Próba otwarcia PDFa", ToastLength.Short).Show();
+                Toast.MakeText(Forms.Context, downloadpath, ToastLength.Short).Show();
 
             }
             catch (Exception e)

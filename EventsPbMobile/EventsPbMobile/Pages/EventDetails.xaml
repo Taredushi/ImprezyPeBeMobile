@@ -22,12 +22,10 @@
                                 <ColumnDefinition Width="50" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Label Text="{Binding Place.ShortName}" Grid.Row="0" Grid.Column="0"
-                                   FontAttributes="Bold" FontSize="20" />
-                            <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
