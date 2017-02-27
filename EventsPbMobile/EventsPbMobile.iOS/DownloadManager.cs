@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using EventsPbMobile.Classes;
 using UIKit;
-using Xam.Plugin.DownloadManager.Abstractions;
-
 namespace EventsPbMobile.iOS
 {
     public class DownloadManager :IDownloadManager

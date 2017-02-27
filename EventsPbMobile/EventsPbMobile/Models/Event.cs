@@ -21,6 +21,7 @@ namespace EventsPbMobile.Models
         public IList<Activity> Activities { get; }
         public IList<PhotoEvent> PhotoEvents { get; }
         public IList<UserEvent> UserGames { get; }
+
         public Event() { }
 
         public Event(Event item)

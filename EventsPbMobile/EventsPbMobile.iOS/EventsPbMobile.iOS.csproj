@@ -161,6 +161,14 @@
       <HintPath>..\..\packages\PInvoke.Windows.Core.0.3.2\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\PInvoke.Windows.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Plugin.Connectivity, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Connectivity.Abstractions, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.3.0\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Realm, Version=0.81.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Realm.0.81.0\lib\Xamarin.iOS10\Realm.dll</HintPath>
       <Private>True</Private>
@@ -175,10 +183,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Validation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Validation.2.2.8\lib\dotnet\Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Xam.Plugin.DownloadManager.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.DownloadManager.1.0.0.1\lib\portable-net45+wp8+win8+MonoAndroid10+MonoTouch10\Xam.Plugin.DownloadManager.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">

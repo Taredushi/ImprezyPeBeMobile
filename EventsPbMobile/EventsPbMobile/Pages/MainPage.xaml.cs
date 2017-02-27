@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
@@ -19,30 +18,11 @@ namespace EventsPbMobile.Pages
         {
             InitializeComponent();
             //App.Notification.StartService();
-            IsLoading = false;
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
-           // _dataAccess.DeleteDatabase();
-            EventsList.ItemsSource = _dataAccess.Events;  
+            // _dataAccess.DeleteDatabase();
+            EventsList.ItemsSource = _dataAccess.Events;
             InitializeSeachButton();
-        }
-
-        private bool IsLoading
-        {
-            get { return isLoading; }
-            set
-            {
-                isLoading = value;
-                RaisePropertyChanged("IsLoading");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         private async void OnEventSelected(object sender, SelectedItemChangedEventArgs e)
@@ -92,6 +72,11 @@ namespace EventsPbMobile.Pages
 
         private async Task<bool> RefreshDatabase()
         {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await DisplayAlert("Błąd", "Nie masz połączenia z internetem", "OK");
+                return false;
+            }
             var photos = await _dataAccess.SavePhotosToDb();
             var places = await _dataAccess.SavePlacesToDb();
             var events = await _dataAccess.SaveEventsToDb();

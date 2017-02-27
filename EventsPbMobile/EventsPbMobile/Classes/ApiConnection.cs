@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 
 namespace EventsPbMobile.Classes
 {
@@ -14,9 +14,9 @@ namespace EventsPbMobile.Classes
         private readonly string ActivitiesUrl = "http://webapipb.azurewebsites.net/api/activities";
         private readonly HttpClient client = new HttpClient();
         private readonly string EventsUrl = "http://webapipb.azurewebsites.net/api/events";
+        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";
         private readonly string PhotosUrl = "http://webapipb.azurewebsites.net/api/photos";
         private readonly string PlacessUrl = "http://webapipb.azurewebsites.net/api/places";
-        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";
 
         private readonly string Url = "http://webapipb.azurewebsites.net";
 
@@ -26,11 +26,13 @@ namespace EventsPbMobile.Classes
             var request = new HttpRequestMessage(HttpMethod.Post, "/oauth/token");
             var requestContent = "grant_type=password&username=politechnikamobile@gmail.com&password=Mobile123";
             request.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
+            if (!IsInternetConnectionAvailable()) return;
             var x = client.SendAsync(request);
         }
 
         public async Task<List<Event>> GetEventsAllAsync()
         {
+            if (!IsInternetConnectionAvailable()) return null;
             ConnectToAPI();
             var uri = new Uri(EventsUrl);
             var response = await client.GetAsync(uri);
@@ -62,6 +64,7 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Photo>> GetPhotosAllAsync()
         {
+            if (!IsInternetConnectionAvailable()) return null;
             ConnectToAPI();
             var uri = new Uri(PhotosUrl);
             var response = await client.GetAsync(uri);
@@ -95,6 +98,8 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Activity>> GetActivitiesAllAsync()
         {
+            if (!IsInternetConnectionAvailable()) return null;
+
             ConnectToAPI();
             var uri = new Uri(ActivitiesUrl);
             var response = await client.GetAsync(uri);
@@ -127,6 +132,8 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Place>> GetPlacesAllAsync()
         {
+            if (!IsInternetConnectionAvailable()) return null;
+
             var uri = new Uri(PlacessUrl);
             var response = await client.GetAsync(uri);
 
@@ -158,6 +165,8 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<PhotoEvent>> GetPhotoEventsAllAsync()
         {
+            if (!IsInternetConnectionAvailable()) return null;
+
             ConnectToAPI();
             var uri = new Uri(PhotosUrl);
             var response = await client.GetAsync(uri);
@@ -170,6 +179,11 @@ namespace EventsPbMobile.Classes
             }
 
             return null;
+        }
+
+        private static bool IsInternetConnectionAvailable()
+        {
+            return CrossConnectivity.Current.IsConnected;
         }
     }
 }

@@ -35,10 +35,13 @@ namespace EventsPbMobile.Classes
         {
             var list = db.All<Event>();
             //NIE ZAPOMNIEC PRZYWROCIC!
-            list = list.Where(x => x.Date > DateTimeOffset.Now);
+          //  list = list.Where(x => x.Date > DateTimeOffset.Now);
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));
+
+            var listaa = db.All<Event>().Where(xx=>xx.Active==false);
+            var x = 5;
         }
 
         private EventViewModel EventToViewModel(Event data)
