@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -77,12 +78,19 @@ namespace EventsPbMobile.Pages
                 await DisplayAlert("Błąd", "Nie masz połączenia z internetem", "OK");
                 return false;
             }
-            var photos = await _dataAccess.SavePhotosToDb();
-            var places = await _dataAccess.SavePlacesToDb();
-            var events = await _dataAccess.SaveEventsToDb();
-            var activities = await _dataAccess.SaveActivitiesToDb();
-            var photoevents = await _dataAccess.SavePhotoEventsToDb();
-
+            try
+            {
+                var photos = await _dataAccess.SavePhotosToDb();
+                var places = await _dataAccess.SavePlacesToDb();
+                var events = await _dataAccess.SaveEventsToDb();
+                var activities = await _dataAccess.SaveActivitiesToDb();
+                var photoevents = await _dataAccess.SavePhotoEventsToDb();
+            }
+            catch (Exception)
+            {
+                await DisplayAlert("Błąd", "Utraciłeś połączenie z internetem", "OK");
+                return false;
+            }
             return true;
         }
     }
