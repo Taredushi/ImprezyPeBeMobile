@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
 using Plugin.Connectivity;
-using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
@@ -46,12 +45,12 @@ namespace EventsPbMobile.Pages
                 await Navigation.PushAsync(eventdetails);
         }
 
-        protected override async void OnAppearing()
-        {
-            EventsList.IsRefreshing = true;
-            var t = await RefreshDatabase();
-            EventsList.IsRefreshing = false;
-        }
+        /*  protected override async void OnAppearing()
+           {
+               EventsList.IsRefreshing = true;
+               var t = await RefreshDatabase();
+               EventsList.IsRefreshing = false;
+           }*/
 
         protected override void OnDisappearing()
         {
@@ -86,9 +85,11 @@ namespace EventsPbMobile.Pages
                 var activities = await _dataAccess.SaveActivitiesToDb();
                 var photoevents = await _dataAccess.SavePhotoEventsToDb();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 await DisplayAlert("Błąd", "Utraciłeś połączenie z internetem", "OK");
+                Debug.WriteLine(e.StackTrace);
+                Debug.WriteLine(e.Message);
                 return false;
             }
             return true;

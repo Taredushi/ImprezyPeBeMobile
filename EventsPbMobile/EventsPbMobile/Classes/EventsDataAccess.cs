@@ -27,7 +27,7 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = RealmConfiguration.DefaultConfiguration;
-            config.SchemaVersion = 14;
+            config.SchemaVersion = 17;
             db = Realm.GetInstance();
         }
 
@@ -40,14 +40,19 @@ namespace EventsPbMobile.Classes
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));
 
-            var listaa = db.All<Event>().Where(xx=>xx.Active==false);
-            var x = 5;
+        }
+
+        public IList<Activity> GetActivitiesForEvent(int eventId)
+        {
+
+            var activities = db.All<Activity>().Where(x => x.EventID == eventId).ToList();
+            return activities;
         }
 
         private EventViewModel EventToViewModel(Event data)
         {
             var evm = new EventViewModel();
-            evm.TimeLeft = data.Date.Subtract(DateTime.Now);
+            evm.TimeLeft = data.StartDate.Subtract(DateTime.Now);
             evm.Event = data;
 
             return evm;
@@ -60,6 +65,7 @@ namespace EventsPbMobile.Classes
 
             db.Write(() =>
             {
+                db.RemoveAll<Event>();
                 if (items == null) return;
                 foreach (var item in items)
                 {
@@ -105,7 +111,7 @@ namespace EventsPbMobile.Classes
         public async Task<bool> SaveActivitiesToDb()
         {
             var items = await api.GetActivitiesAllAsync();
-
+            
             db.Write(() =>
             {
                 if (items == null) return;

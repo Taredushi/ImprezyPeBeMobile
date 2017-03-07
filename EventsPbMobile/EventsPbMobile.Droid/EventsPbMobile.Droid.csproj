@@ -258,6 +258,7 @@
     <AndroidResource Include="Resources\drawable\transblack.png" />
     <AndroidResource Include="Resources\drawable\notidisabled.png" />
     <AndroidResource Include="Resources\drawable\notiactive.png" />
+    <AndroidResource Include="Resources\drawable\cnk.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

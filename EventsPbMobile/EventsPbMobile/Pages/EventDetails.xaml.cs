@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -12,7 +13,8 @@ namespace EventsPbMobile.Pages
     {
         private readonly EventsDataAccess _dataAccess;
         private readonly Event _event;
-
+        private IList<Activity> activities;
+        private ObservableCollection<Activity> evenActivities;
         public EventDetails(Event e)
         {
             _event = e;
@@ -21,25 +23,27 @@ namespace EventsPbMobile.Pages
             Counter();
 
             _dataAccess = new EventsDataAccess();
-            var activities = new ObservableCollection<Activity>();
-            activities.Clear();
-            foreach (var activity in e.Activities)
+            evenActivities = new ObservableCollection<Activity>();
+            activities = _dataAccess.GetActivitiesForEvent(e.EventId);
+            evenActivities.Clear();
+
+            foreach (var activity in activities)
             {
                 var ac = new Activity(activity);
                 ac.Place = _dataAccess.GetPlace(ac.PlaceID);
-                activities.Add(ac);
+                evenActivities.Add(ac);
             }
             InitFavButton();
-            EventPlaces.ItemsSource = activities;
+            EventPlaces.ItemsSource = evenActivities;
         }
 
         private async void Counter()
         {
-            var rt = _event.Date.Subtract(DateTime.Now);
+            var rt = _event.StartDate.Subtract(DateTime.Now);
             string hours, minutes, seconds;
             while (rt.TotalSeconds > 0)
             {
-                rt = _event.Date.Subtract(DateTime.Now);
+                rt = _event.StartDate.Subtract(DateTime.Now);
                 hours = rt.Hours.ToString();
                 minutes = rt.Minutes.ToString();
                 seconds = rt.Seconds.ToString();
@@ -56,10 +60,9 @@ namespace EventsPbMobile.Pages
 
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
-            var activities = _event.Activities;
             var stack = Navigation.NavigationStack;
             if (stack[stack.Count - 1].GetType() != typeof(EventMap))
-                await Navigation.PushAsync(new EventMap(activities));
+                await Navigation.PushAsync(new EventMap(evenActivities));
         }
 
         private void Notification_Clicked(object sender, EventArgs e)

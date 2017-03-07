@@ -11,27 +11,30 @@ namespace EventsPbMobile.Models
 
         public Activity(Activity a)
         {
+            ActivityID = a.ActivityID;
             Title = a.Title;
             Text = a.Text;
             StartHour = a.StartHour;
             EndHour = a.EndHour;
-            Gameable = a.Gameable;
             PlaceID = a.PlaceID;
             EventID = a.EventID;
             Place = a.Place;
+            Date = a.Date;
+            Event = a.Event;
         }
 
         [PrimaryKey]
-        public int ActivityId { get; set; }
+        public int ActivityID { get; set; }
 
         public string Title { get; set; }
         public string Text { get; set; }
+        public DateTimeOffset Date { get; set; }
         public DateTimeOffset StartHour { get; set; }
         public DateTimeOffset EndHour { get; set; }
-        public bool Gameable { get; set; }
         public int PlaceID { get; set; }
-        public int EventID { get; set; }
-
         public Place Place { get; set; }
+        public int EventID { get; set; }
+        public Event Event { get; set; }
+
     }
 }

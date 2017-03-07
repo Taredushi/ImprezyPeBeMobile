@@ -26,13 +26,11 @@ namespace EventsPbMobile.Classes
             var request = new HttpRequestMessage(HttpMethod.Post, "/oauth/token");
             var requestContent = "grant_type=password&username=politechnikamobile@gmail.com&password=Mobile123";
             request.Content = new StringContent(requestContent, Encoding.UTF8, "application/x-www-form-urlencoded");
-            if (!IsInternetConnectionAvailable()) return;
             var x = client.SendAsync(request);
         }
 
         public async Task<List<Event>> GetEventsAllAsync()
         {
-            if (!IsInternetConnectionAvailable()) return null;
             ConnectToAPI();
             var uri = new Uri(EventsUrl);
             var response = await client.GetAsync(uri);
@@ -64,7 +62,6 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Photo>> GetPhotosAllAsync()
         {
-            if (!IsInternetConnectionAvailable()) return null;
             ConnectToAPI();
             var uri = new Uri(PhotosUrl);
             var response = await client.GetAsync(uri);
@@ -98,8 +95,6 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Activity>> GetActivitiesAllAsync()
         {
-            if (!IsInternetConnectionAvailable()) return null;
-
             ConnectToAPI();
             var uri = new Uri(ActivitiesUrl);
             var response = await client.GetAsync(uri);
@@ -132,8 +127,6 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<Place>> GetPlacesAllAsync()
         {
-            if (!IsInternetConnectionAvailable()) return null;
-
             var uri = new Uri(PlacessUrl);
             var response = await client.GetAsync(uri);
 
@@ -165,8 +158,6 @@ namespace EventsPbMobile.Classes
 
         public async Task<List<PhotoEvent>> GetPhotoEventsAllAsync()
         {
-            if (!IsInternetConnectionAvailable()) return null;
-
             ConnectToAPI();
             var uri = new Uri(PhotosUrl);
             var response = await client.GetAsync(uri);
@@ -179,11 +170,6 @@ namespace EventsPbMobile.Classes
             }
 
             return null;
-        }
-
-        private static bool IsInternetConnectionAvailable()
-        {
-            return CrossConnectivity.Current.IsConnected;
         }
     }
 }
