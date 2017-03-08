@@ -65,7 +65,6 @@ namespace EventsPbMobile.Classes
 
             db.Write(() =>
             {
-                db.RemoveAll<Event>();
                 if (items == null) return;
                 foreach (var item in items)
                 {
@@ -138,7 +137,6 @@ namespace EventsPbMobile.Classes
                     db.Add(pe,true);
                 }
             });
-            var photoevents = db.All<PhotoEvent>();
             return true;
         }
 

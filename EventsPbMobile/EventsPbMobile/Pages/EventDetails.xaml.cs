@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -13,8 +11,9 @@ namespace EventsPbMobile.Pages
     {
         private readonly EventsDataAccess _dataAccess;
         private readonly Event _event;
-        private IList<Activity> activities;
-        private ObservableCollection<Activity> evenActivities;
+        private ToolbarItem _enableNotificationItem, _disableNotificationItem;
+        private readonly ObservableCollection<Activity> evenActivities;
+
         public EventDetails(Event e)
         {
             _event = e;
@@ -24,7 +23,7 @@ namespace EventsPbMobile.Pages
 
             _dataAccess = new EventsDataAccess();
             evenActivities = new ObservableCollection<Activity>();
-            activities = _dataAccess.GetActivitiesForEvent(e.EventId);
+            var activities = _dataAccess.GetActivitiesForEvent(e.EventId);
             evenActivities.Clear();
 
             foreach (var activity in activities)
@@ -33,6 +32,7 @@ namespace EventsPbMobile.Pages
                 ac.Place = _dataAccess.GetPlace(ac.PlaceID);
                 evenActivities.Add(ac);
             }
+            InitToolbarItems();
             InitFavButton();
             EventPlaces.ItemsSource = evenActivities;
         }
@@ -71,38 +71,54 @@ namespace EventsPbMobile.Pages
                 App.Notification.ShowNotification("Nadchodzące wydarzenie", _event.Title);
         }
 
-        private void InitFavButton()
-        {
-            var eventreminder = _dataAccess.GetEventReminder(_event.EventId);
-            bool answer;
-            if (eventreminder.NotificationEnabled)
-                ToolbarItems.Add(new ToolbarItem("Remind", "notidisabled.png", async () =>
-                {
-                    answer = await DisplayAlert("Powiadomienie",
-                        "Czy chcesz wyłączyć powiadomienie dla tego wydarzenie?", "Tak", "Nie");
-                    Debug.WriteLine(answer);
-                    if (answer) 
-                    {
-                        _dataAccess.RemoveEventWithSetReminder(_event.EventId);
-                    }
-                }));
-            else
-                ToolbarItems.Add(new ToolbarItem("Remind", "notiactive.png", async () =>
-                {
-                    answer = await DisplayAlert("Powiadomienie", "Czy chcesz ustawić powiadomienie na to wydarzenie?",
-                        "Tak", "Nie");
-                    if (answer)
-                    {
-                        _dataAccess.SaveEventWithSetReminder(_event.EventId);
-                    }
-                }));
-        }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
             await Navigation.PushAsync(new EventDepartamentDetails(activity, place));
+        }
+
+        private void InitToolbarItems()
+        {
+            _enableNotificationItem = new ToolbarItem("Remind", "notiactive.png", async () =>
+            {
+                var answer = await DisplayAlert("Powiadomienie", "Czy chcesz ustawić powiadomienie na to wydarzenie?",
+                    "Tak", "Nie");
+
+                if (!answer) return;
+
+                _dataAccess.SaveEventWithSetReminder(_event.EventId);
+                InitFavButton();
+            });
+
+            _disableNotificationItem = new ToolbarItem("Remind", "notidisabled.png", async () =>
+            {
+                var answer = await DisplayAlert("Powiadomienie",
+                    "Czy chcesz wyłączyć powiadomienie dla tego wydarzenie?", "Tak", "Nie");
+
+                if (!answer) return;
+
+                _dataAccess.RemoveEventWithSetReminder(_event.EventId);
+                InitFavButton();
+            });
+        }
+
+        private void InitFavButton()
+        {
+            var eventreminder = _dataAccess.GetEventReminder(_event.EventId);
+            if (eventreminder.NotificationEnabled)
+            {
+                if (ToolbarItems.Count > 0)
+                    ToolbarItems.RemoveAt(0);
+                ToolbarItems.Add(_disableNotificationItem);
+            }
+            else
+            {
+                if (ToolbarItems.Count > 0)
+                    ToolbarItems.RemoveAt(0);
+                ToolbarItems.Add(_enableNotificationItem);
+            }
         }
     }
 }
