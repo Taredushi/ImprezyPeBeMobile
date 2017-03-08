@@ -26,9 +26,9 @@ namespace EventsPbMobile.Classes
 
         private void Configuration()
         {
-            config = RealmConfiguration.DefaultConfiguration;
+            config = new RealmConfiguration();
             config.SchemaVersion = 17;
-            db = Realm.GetInstance();
+            db = Realm.GetInstance(config);
         }
 
         private void PopulateEventsCollectionFromDb()
@@ -142,7 +142,7 @@ namespace EventsPbMobile.Classes
 
         public Place GetPlace(int id)
         {
-            var place = db.All<Place>().First(x => x.PlaceId == id);
+            var place = db.All<Place>().FirstOrDefault(x => x.PlaceId == id);
             return place;
         }
 
