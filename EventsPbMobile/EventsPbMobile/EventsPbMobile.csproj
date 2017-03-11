@@ -52,8 +52,7 @@
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\PhotoEvent.cs" />
     <Compile Include="Models\Place.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserEvent.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -89,12 +88,6 @@
     </Compile>
     <Compile Include="Pages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\NotificationSettings.xaml.cs">
-      <DependentUpon>NotificationSettings.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\ReminderNotifySelect.xaml.cs">
-      <DependentUpon>ReminderNotifySelect.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
@@ -267,19 +260,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Pages\ReminderNotifySelect.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Pages\IncomingEventsReminder.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Pages\NotificationSettings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

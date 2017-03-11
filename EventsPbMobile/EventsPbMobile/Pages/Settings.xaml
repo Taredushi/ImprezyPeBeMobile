@@ -17,9 +17,9 @@
             </Grid.ColumnDefinitions>
 
             <Label FontSize="20" Text="Powiadomienia" Grid.Row="0" Grid.Column="0"  Margin="10,10,0,0" />
-            <Switch Toggled="NotificationSwitch" Grid.Row="0" Grid.Column="1" WidthRequest="20"/>
+            <Switch x:Name="SettingsEnabled"  Toggled="NotificationSwitch" Grid.Row="0" Grid.Column="1" WidthRequest="20"/>
           </Grid>
-          <ListView x:Name="NotificationTimesListView" IsVisible="False" ItemSelected="DisableSelectionItem" HeightRequest="60">
+          <ListView x:Name="NotificationTimesListView" IsVisible="False" ItemSelected="ListViewItemSwitchChanged" HeightRequest="60">
             <ListView.ItemTemplate>
               <DataTemplate>
                 <ViewCell>
@@ -28,8 +28,8 @@
                       <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*"></ColumnDefinition>
-                      <ColumnDefinition Width="*"></ColumnDefinition>
+                      <ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label FontSize="18" Text="{Binding NotifyTime}" Grid.Row="0" Grid.Column="0"></Label>
@@ -39,7 +39,6 @@
               </DataTemplate>
             </ListView.ItemTemplate>
           </ListView>
-            <!--<BoxView HeightRequest="1" WidthRequest="1" BackgroundColor="Silver" />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

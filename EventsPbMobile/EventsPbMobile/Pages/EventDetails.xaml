@@ -4,35 +4,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.EventDetails">
     <ScrollView>
-        <StackLayout Orientation="Vertical" Padding="0,0,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-            <Image Source="{Binding Baner}" />
-            <StackLayout BackgroundColor="#1E5327"  >
+            <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0" />
+            <StackLayout BackgroundColor="#1E5327" Grid.Row="1" Grid.Column="0">
                 <StackLayout HorizontalOptions="Center">
                     <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" />
 
                 </StackLayout>
             </StackLayout>
-            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" />
-            <Label Text="{Binding Text}" FontSize="20" />
-            <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" Margin="0,0,0,-50">
+            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" Grid.Row="2" Grid.Column="0" />
+            <Label Text="{Binding Text}" FontSize="16" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"
+                   Grid.Row="3" Grid.Column="0" />
+            <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" Grid.Row="4" Grid.Column="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="5,0,0,0">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="1" />
+                                <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Place.Name}" Grid.Row="1" Grid.Column="0" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

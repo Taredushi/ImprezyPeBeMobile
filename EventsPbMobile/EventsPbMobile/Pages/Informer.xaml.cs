@@ -24,13 +24,13 @@ namespace EventsPbMobile.Pages
             OpenFileInBrowser();
         }
 
-       /* protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            Navigation.PushAsync(new MainPage());
-            OpenFileInBrowser();
-            Navigation.RemovePage(this);
-        }*/
+        /* protected override void OnAppearing()
+         {
+             base.OnAppearing();
+             Navigation.PushAsync(new MainPage());
+             OpenFileInBrowser();
+             Navigation.RemovePage(this);
+         }*/
 
         private void LoadTestFile()
         {
@@ -45,9 +45,20 @@ namespace EventsPbMobile.Pages
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
+            return true;
+        }
+
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            RemovePageFromStack();
+        }
+
+        private void RemovePageFromStack()
+        {
             Navigation.PushAsync(new MainPage());
             Navigation.RemovePage(this);
-            return true;
         }
     }
 

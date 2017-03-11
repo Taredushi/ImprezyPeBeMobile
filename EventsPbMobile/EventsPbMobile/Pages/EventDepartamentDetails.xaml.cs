@@ -8,7 +8,6 @@ namespace EventsPbMobile.Pages
         public EventDepartamentDetails(Activity activity, Place place)
         {
             InitializeComponent();
-
             PlaceLat.Text = "lat:" + place.Latitude;
             PlaceLong.Text = "long:" + place.Longitude;
         }

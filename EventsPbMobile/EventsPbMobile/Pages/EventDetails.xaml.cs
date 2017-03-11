@@ -39,23 +39,40 @@ namespace EventsPbMobile.Pages
 
         private async void Counter()
         {
-            var rt = _event.StartDate.Subtract(DateTime.Now);
+            var start = _event.StartDate.Subtract(DateTimeOffset.Now);
+            var end = _event.EndDate.Subtract(DateTimeOffset.Now);
+
             string hours, minutes, seconds;
-            while (rt.TotalSeconds > 0)
+            if(start.TotalSeconds>0) 
+            while (start.TotalSeconds > 0)
             {
-                rt = _event.StartDate.Subtract(DateTime.Now);
-                hours = rt.Hours.ToString();
-                minutes = rt.Minutes.ToString();
-                seconds = rt.Seconds.ToString();
+                start = _event.StartDate.Subtract(DateTime.Now);
+                hours = start.Hours.ToString();
+                minutes = start.Minutes.ToString();
+                seconds = start.Seconds.ToString();
                 if (hours.Length == 1)
-                    hours = "0" + rt.Hours;
+                    hours = "0" + start.Hours;
                 if (minutes.Length == 1)
-                    minutes = "0" + rt.Minutes;
+                    minutes = "0" + start.Minutes;
                 if (seconds.Length == 1)
-                    seconds = "0" + rt.Seconds;
-                TitleLabel.Text = "Start za: " + rt.Days + " dni, " + hours + ":" + minutes + ":" + seconds;
+                    seconds = "0" + start.Seconds;
+                TitleLabel.Text = "Start za: " + start.Days + " dni, " + hours + ":" + minutes + ":" + seconds;
                 await Task.Delay(250);
             }
+
+            else if (start.TotalSeconds <= 0 && end.TotalSeconds > 0)
+            {
+                while (end.TotalSeconds > 0)
+                {
+                    TitleLabel.Text = "Event trwa!";
+                    await Task.Delay(10000);
+                }
+            }
+            else
+            {
+                TitleLabel.Text = "Event zakończony";
+            }
+            
         }
 
         private async void MapButton_OnClicked(object sender, EventArgs e)
@@ -64,13 +81,6 @@ namespace EventsPbMobile.Pages
             if (stack[stack.Count - 1].GetType() != typeof(EventMap))
                 await Navigation.PushAsync(new EventMap(evenActivities));
         }
-
-        private void Notification_Clicked(object sender, EventArgs e)
-        {
-            if (Settings.IsToggled)
-                App.Notification.ShowNotification("Nadchodzące wydarzenie", _event.Title);
-        }
-
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
         {

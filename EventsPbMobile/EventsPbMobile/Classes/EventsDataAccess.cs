@@ -27,24 +27,27 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = new RealmConfiguration();
-            config.SchemaVersion = 17;
+            config.SchemaVersion = 19;
             db = Realm.GetInstance(config);
+        }
+
+        public Realm GetDbInstance()
+        {
+            return db;
         }
 
         private void PopulateEventsCollectionFromDb()
         {
             var list = db.All<Event>();
             //NIE ZAPOMNIEC PRZYWROCIC!
-          //  list = list.Where(x => x.Date > DateTimeOffset.Now);
+            list = list.Where(x => x.Viewable && x.StartDate > DateTimeOffset.Now);
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));
-
         }
 
         public IList<Activity> GetActivitiesForEvent(int eventId)
         {
-
             var activities = db.All<Activity>().Where(x => x.EventID == eventId).ToList();
             return activities;
         }
@@ -62,10 +65,16 @@ namespace EventsPbMobile.Classes
         public async Task<bool> SaveEventsToDb()
         {
             var items = await api.GetEventsAllAsync();
-
             db.Write(() =>
             {
                 if (items == null) return;
+
+                var eventsSetToDelete = db.All<Event>();
+
+                foreach (var eventdelete in eventsSetToDelete)
+                    if (items.All(x => x.EventId != eventdelete.EventId))
+                        db.Remove(eventdelete);
+
                 foreach (var item in items)
                 {
                     var ev = new Event(item);
@@ -98,10 +107,19 @@ namespace EventsPbMobile.Classes
             db.Write(() =>
             {
                 if (items == null) return;
+
+                var placesSetToDelete = db.All<Place>();
+
+                foreach (var place in placesSetToDelete)
+                {
+                    if(items.All(x => x.PlaceId != place.PlaceId)) 
+                        db.Remove(place);
+                }
+
                 foreach (var place in items)
                 {
                     var pl = new Place(place);
-                    db.Add(pl, true);
+                    db.Add(place, true);
                 }
             });
             return true;
@@ -110,10 +128,19 @@ namespace EventsPbMobile.Classes
         public async Task<bool> SaveActivitiesToDb()
         {
             var items = await api.GetActivitiesAllAsync();
-            
+
             db.Write(() =>
             {
                 if (items == null) return;
+
+                var activitiesSetToDelete = db.All<Activity>();
+
+                foreach (var activity in activitiesSetToDelete)
+                {
+                    if(items.All(x=>x.ActivityID != activity.ActivityID))
+                        db.Remove(activity);
+                }
+
                 foreach (var activity in items)
                 {
                     var act = new Activity(activity);
@@ -134,7 +161,7 @@ namespace EventsPbMobile.Classes
                 foreach (var photoEvent in items)
                 {
                     var pe = new PhotoEvent(photoEvent);
-                    db.Add(pe,true);
+                    db.Add(pe, true);
                 }
             });
             return true;
@@ -162,8 +189,6 @@ namespace EventsPbMobile.Classes
                 var eventreminder = db.Find("EventReminder", eventId) as EventReminder;
                 eventreminder.NotificationEnabled = true;
                 db.Add(eventreminder, true);
-                var xx = db.All<EventReminder>();
-                Debug.WriteLine(xx.Count() + " count");
             });
         }
 
@@ -172,6 +197,7 @@ namespace EventsPbMobile.Classes
             db.Write(() =>
             {
                 var eventreminder = db.Find("EventReminder", eventId) as EventReminder;
+                if (eventreminder == null) return;
                 eventreminder.NotificationEnabled = false;
                 db.Add(eventreminder, true);
             });
@@ -202,6 +228,33 @@ namespace EventsPbMobile.Classes
                             db.Add(evrem);
                         });
             return db.All<EventReminder>().FirstOrDefault(x => x.EventId == eventid);
+        }
+
+        public Settings GetSettings()
+        {
+            var settings = db.All<Settings>().FirstOrDefault(x => x.SettingsId == 1);
+            if (settings == null)
+                db.Write(() =>
+                {
+                    var stng = new Settings
+                    {
+                        SettingsId = 1,
+                        NotificationsEnabled = false,
+                        Notify1DBefore = false,
+                        Notify1HBefore = false,
+                        Notify2DBefore = false,
+                        LastRefreshDate = DateTimeOffset.Now.AddDays(-2)
+                    };
+                    db.Add(stng, true);
+                });
+            settings = db.All<Settings>().FirstOrDefault(x => x.SettingsId == 1);
+
+            return settings;
+        }
+
+        public void SaveSettings(Settings s)
+        {
+            db.Write(() => { db.Add(s, true); });
         }
 
         public void DeleteDatabase()

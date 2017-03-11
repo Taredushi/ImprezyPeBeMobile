@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
@@ -9,10 +8,9 @@ using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class MainPage : ContentPage, INotifyPropertyChanged
+    public partial class MainPage
     {
         private readonly EventsDataAccess _dataAccess;
-        private bool isLoading;
 
         public MainPage()
         {
@@ -45,17 +43,16 @@ namespace EventsPbMobile.Pages
                 await Navigation.PushAsync(eventdetails);
         }
 
-        /*  protected override async void OnAppearing()
-           {
-               EventsList.IsRefreshing = true;
-               var t = await RefreshDatabase();
-               EventsList.IsRefreshing = false;
-           }*/
-
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
             GC.Collect();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await RefreshAfterPeriodOfTime();
         }
 
         private void InitializeSeachButton()
@@ -63,10 +60,25 @@ namespace EventsPbMobile.Pages
             ToolbarItems.Add(new ToolbarItem("Search", "search.png", () => { Navigation.PushAsync(new Search()); }));
         }
 
+        private async Task<bool> RefreshAfterPeriodOfTime()
+        {
+            var settings = _dataAccess.GetSettings();
+            var lastrefresh = DateTimeOffset.Now.Subtract(settings.LastRefreshDate);
+
+            if (lastrefresh.TotalHours < 5) return true;
+
+            await RefreshDatabase();
+
+            var stng = new Models.Settings(settings) {LastRefreshDate = DateTimeOffset.Now};
+            _dataAccess.SaveSettings(stng);
+            return true;
+        }
+
         private async void Events_PullToRefreshAction(object sender, EventArgs e)
         {
             var eventlist = sender as ListView;
-            var t = await RefreshDatabase();
+            eventlist.IsRefreshing = true;
+            await RefreshDatabase();
             eventlist.IsRefreshing = false;
         }
 
@@ -79,11 +91,17 @@ namespace EventsPbMobile.Pages
             }
             try
             {
-                var photos = await _dataAccess.SavePhotosToDb();
-                var places = await _dataAccess.SavePlacesToDb();
-                var events = await _dataAccess.SaveEventsToDb();
-                var activities = await _dataAccess.SaveActivitiesToDb();
-                var photoevents = await _dataAccess.SavePhotoEventsToDb();
+                EventsList.IsRefreshing = true;
+
+                await _dataAccess.SavePlacesToDb();
+                await _dataAccess.SaveActivitiesToDb();
+                await _dataAccess.SaveEventsToDb();
+
+                var settings = _dataAccess.GetSettings();
+                var stngs = new Models.Settings(settings) {LastRefreshDate = DateTimeOffset.Now};
+                _dataAccess.SaveSettings(stngs);
+
+                EventsList.IsRefreshing = false;
             }
             catch (Exception e)
             {
