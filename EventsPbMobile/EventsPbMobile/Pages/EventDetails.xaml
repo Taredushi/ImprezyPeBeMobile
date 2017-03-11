@@ -25,7 +25,7 @@
             </StackLayout>
             <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" Grid.Row="2" Grid.Column="0" />
             <Label Text="{Binding Text}" FontSize="16" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"
-                   Grid.Row="3" Grid.Column="0" />
+                   Grid.Row="3" Grid.Column="0" BackgroundColor="Gainsboro" />
             <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" Grid.Row="4" Grid.Column="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -38,7 +38,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label Text="{Binding Title}" Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding Title}" FontSize="16" Grid.Row="0" Grid.Column="0" />
                                 <Label Text="{Binding Place.Name}" Grid.Row="1" Grid.Column="0" />
                             </Grid>
                         </ViewCell>

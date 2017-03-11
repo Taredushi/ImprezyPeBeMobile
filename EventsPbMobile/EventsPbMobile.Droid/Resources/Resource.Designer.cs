@@ -2505,8 +2505,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f0200d9
 			public const int notidisabled = 2130837721;
 			
-			// aapt resource value: 0x7f0200df
-			public const int notification_template_icon_bg = 2130837727;
+			// aapt resource value: 0x7f0200e0
+			public const int notification_template_icon_bg = 2130837728;
 			
 			// aapt resource value: 0x7f0200da
 			public const int pb = 2130837722;
@@ -2521,7 +2521,10 @@ namespace EventsPbMobile.Droid
 			public const int settings = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int transblack = 2130837726;
+			public const int splash_screen = 2130837726;
+			
+			// aapt resource value: 0x7f0200df
+			public const int transblack = 2130837727;
 			
 			static Drawable()
 			{
@@ -3983,6 +3986,15 @@ namespace EventsPbMobile.Droid
 			
 			// aapt resource value: 0x7f0b0173
 			public const int MainTheme_Base = 2131427699;
+			
+			// aapt resource value: 0x7f0b0176
+			public const int MyTheme = 2131427702;
+			
+			// aapt resource value: 0x7f0b0175
+			public const int MyTheme_Base = 2131427701;
+			
+			// aapt resource value: 0x7f0b0177
+			public const int MyTheme_Splash = 2131427703;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int Platform_AppCompat = 2131427378;
