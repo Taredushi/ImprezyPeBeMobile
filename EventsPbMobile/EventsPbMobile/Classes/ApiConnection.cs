@@ -14,7 +14,7 @@ namespace EventsPbMobile.Classes
         private readonly string ActivitiesUrl = "http://webapipb.azurewebsites.net/api/activities";
         private readonly HttpClient client = new HttpClient();
         private readonly string EventsUrl = "http://webapipb.azurewebsites.net/api/events";
-        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";
+        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";   
         private readonly string PhotosUrl = "http://webapipb.azurewebsites.net/api/photos";
         private readonly string PlacessUrl = "http://webapipb.azurewebsites.net/api/places";
 

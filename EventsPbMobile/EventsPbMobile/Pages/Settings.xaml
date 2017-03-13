@@ -5,40 +5,51 @@
              x:Class="EventsPbMobile.Pages.Settings"
              Title="Ustawienia">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand">
-
-          <Grid>
+        <Grid>
             <Grid.RowDefinitions>
-              <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*"></ColumnDefinition>
-              <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Label FontSize="20" Text="Powiadomienia" Grid.Row="0" Grid.Column="0"  Margin="10,10,0,0" />
-            <Switch x:Name="SettingsEnabled"  Toggled="NotificationSwitch" Grid.Row="0" Grid.Column="1" WidthRequest="20"/>
-          </Grid>
-          <ListView x:Name="NotificationTimesListView" IsVisible="False" ItemSelected="ListViewItemSwitchChanged" HeightRequest="60">
-            <ListView.ItemTemplate>
-              <DataTemplate>
-                <ViewCell>
-                  <Grid>
-                    <Grid.RowDefinitions>
-                      <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*"/>
-                      <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Label FontSize="20" Text="Powiadomienia" Grid.Row="0" Grid.Column="0" Margin="10,10,0,0" />
+                <Switch x:Name="SettingsEnabled" Toggled="NotificationSwitch" Grid.Row="0" Grid.Column="1"
+                        WidthRequest="20" />
+            </Grid>
+            <ListView x:Name="NotificationTimesListView" IsVisible="False" ItemSelected="ListViewItemSwitchChanged"
+                      HeightRequest="60" Grid.Row="1" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                    <Label FontSize="18" Text="{Binding NotifyTime}" Grid.Row="0" Grid.Column="0"></Label>
-                    <Switch Toggled="SelectionChange" IsToggled="{Binding Selected}" Grid.Row="0" Grid.Column="1"/>
-                  </Grid>
-                </ViewCell>
-              </DataTemplate>
-            </ListView.ItemTemplate>
-          </ListView>
-        </StackLayout>
+                                <Label FontSize="18" Text="{Binding NotifyTime}" Grid.Row="0" Grid.Column="0" />
+                                <Switch Toggled="SelectionChange" IsToggled="{Binding Selected}" Grid.Row="0"
+                                        Grid.Column="1" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

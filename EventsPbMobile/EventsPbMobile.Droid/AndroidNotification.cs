@@ -17,7 +17,7 @@ namespace EventsPbMobile.Droid
             var builder = new Notification.Builder(Forms.Context);
             builder.SetContentTitle(title);
             builder.SetContentText(text);
-            builder.SetSmallIcon(Resource.Drawable.ic_media_play);
+            builder.SetSmallIcon(Resource.Drawable.abc_btn_default_mtrl_shape);
 
             var notification = builder.Build();
 

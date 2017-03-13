@@ -35,6 +35,7 @@ namespace EventsPbMobile.Pages
             InitToolbarItems();
             InitFavButton();
             EventPlaces.ItemsSource = evenActivities;
+           
         }
 
         private async void Counter()
@@ -78,6 +79,7 @@ namespace EventsPbMobile.Pages
         private async void MapButton_OnClicked(object sender, EventArgs e)
         {
             var stack = Navigation.NavigationStack;
+
             if (stack[stack.Count - 1].GetType() != typeof(EventMap))
                 await Navigation.PushAsync(new EventMap(evenActivities));
         }

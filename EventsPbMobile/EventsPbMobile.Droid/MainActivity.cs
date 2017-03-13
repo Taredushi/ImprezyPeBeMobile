@@ -5,6 +5,7 @@ using Android.OS;
 using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Debug = System.Diagnostics.Debug;
 
 namespace EventsPbMobile.Droid
 {
@@ -23,7 +24,6 @@ namespace EventsPbMobile.Droid
             FormsMaps.Init(this, bundle);
 
             App.Init(new AndroidNotification());
-            var service = new NotificationService();
             LoadApplication(new App());
         }
 
@@ -35,10 +35,8 @@ namespace EventsPbMobile.Droid
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                
+                Debug.WriteLine(e);
             }
-            
         }
     }
 }

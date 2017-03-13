@@ -2,49 +2,58 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventsPbMobile.Pages.EventDetails">
-    <ScrollView>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+             x:Class="EventsPbMobile.Pages.EventDetails" BackgroundColor="#2d7a3a">
+    <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" SeparatorColor="White"
+              SeparatorVisibility="Default" HasUnevenRows="True">
+        <ListView.Header>
+            <Grid Margin="7,0,7,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0" />
-            <StackLayout BackgroundColor="#1E5327" Grid.Row="1" Grid.Column="0">
-                <StackLayout HorizontalOptions="Center">
-                    <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" />
-
+                <Image Source="{Binding Baner}" Grid.Row="0" />
+                <StackLayout BackgroundColor="#2d7a3a" Grid.Row="1">
+                    <StackLayout HorizontalOptions="Center">
+                        <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" />
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" Grid.Row="2" Grid.Column="0" />
-            <Label Text="{Binding Text}" FontSize="16" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"
-                   Grid.Row="3" Grid.Column="0" BackgroundColor="Gainsboro" />
-            <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" Grid.Row="4" Grid.Column="0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Title}" FontSize="16" Grid.Row="0" Grid.Column="0" />
-                                <Label Text="{Binding Place.Name}" Grid.Row="1" Grid.Column="0" />
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-    </ScrollView>
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="2" />
+                <!--            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" Grid.Row="2" Grid.Column="0" />-->
+                <Label Text="{Binding Text}" FontSize="16" HorizontalTextAlignment="Start" BackgroundColor="#2d7a3a"
+                       TextColor="White"
+                       Grid.Row="3" Grid.Column="0" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="4" />
+                <StackLayout HorizontalOptions="Center" Grid.Row="5">
+                    <Label FontSize="Large" TextColor="White" Text="Lista wydarzeń:" />
+                </StackLayout>
+
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="6" />
+            </Grid>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="7,10,7,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding Title}" FontSize="20" Grid.Row="0" TextColor="White"
+                               LineBreakMode="WordWrap" />
+                        <Label Text="{Binding PlaceAndDate}" Grid.Row="1" TextColor="White" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

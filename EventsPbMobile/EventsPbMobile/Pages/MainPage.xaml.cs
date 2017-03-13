@@ -43,12 +43,6 @@ namespace EventsPbMobile.Pages
                 await Navigation.PushAsync(eventdetails);
         }
 
-        protected override void OnDisappearing()
-        {
-            base.OnDisappearing();
-            GC.Collect();
-        }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -77,6 +71,9 @@ namespace EventsPbMobile.Pages
         private async void Events_PullToRefreshAction(object sender, EventArgs e)
         {
             var eventlist = sender as ListView;
+
+            if (eventlist == null) return;
+
             eventlist.IsRefreshing = true;
             await RefreshDatabase();
             eventlist.IsRefreshing = false;
