@@ -8,7 +8,7 @@ namespace EventsPbMobile.Pages
 {
     public partial class EventMap : ContentPage
     {
-        public EventMap(IList<Activity> activities)
+        public EventMap(IList<Activity> activities, string title)
         {
             InitializeComponent();
             var dataAccess = new EventsDataAccess();
@@ -27,7 +27,7 @@ namespace EventsPbMobile.Pages
 
                 pin.Clicked += async (sender, args) =>
                 {
-                   await Navigation.PushAsync(new EventDepartamentDetails(activity, place));
+                   await Navigation.PushAsync(new EventDepartamentDetails(title, activity, place));
                 };
 
                 MyMap.Pins.Add(pin);

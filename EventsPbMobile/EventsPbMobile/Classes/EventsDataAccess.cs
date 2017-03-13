@@ -41,6 +41,7 @@ namespace EventsPbMobile.Classes
             var list = db.All<Event>();
             //NIE ZAPOMNIEC PRZYWROCIC!
             list = list.Where(x => x.Viewable && x.StartDate > DateTimeOffset.Now);
+            list = list.OrderBy(x => x.StartDate);
             Events.Clear();
             foreach (var data in list)
                 Events.Add(EventToViewModel(data));

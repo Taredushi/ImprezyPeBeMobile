@@ -81,14 +81,14 @@ namespace EventsPbMobile.Pages
             var stack = Navigation.NavigationStack;
 
             if (stack[stack.Count - 1].GetType() != typeof(EventMap))
-                await Navigation.PushAsync(new EventMap(evenActivities));
+                await Navigation.PushAsync(new EventMap(evenActivities, Title));
         }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
-            await Navigation.PushAsync(new EventDepartamentDetails(activity, place));
+            await Navigation.PushAsync(new EventDepartamentDetails(Title, activity, place));
         }
 
         private void InitToolbarItems()
