@@ -92,6 +92,22 @@ namespace EventsPbMobile.Droid
 			}
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f0d0000
+			public const int androidcolors = 2131558400;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -1162,32 +1178,32 @@ namespace EventsPbMobile.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f080059
-			public const int abc_background_cache_hint_selector_material_dark = 2131230809;
+			// aapt resource value: 0x7f080063
+			public const int abc_background_cache_hint_selector_material_dark = 2131230819;
 			
-			// aapt resource value: 0x7f08005a
-			public const int abc_background_cache_hint_selector_material_light = 2131230810;
+			// aapt resource value: 0x7f080064
+			public const int abc_background_cache_hint_selector_material_light = 2131230820;
 			
-			// aapt resource value: 0x7f08005b
-			public const int abc_color_highlight_material = 2131230811;
+			// aapt resource value: 0x7f080065
+			public const int abc_color_highlight_material = 2131230821;
 			
 			// aapt resource value: 0x7f080015
 			public const int abc_input_method_navigation_guard = 2131230741;
 			
-			// aapt resource value: 0x7f08005c
-			public const int abc_primary_text_disable_only_material_dark = 2131230812;
+			// aapt resource value: 0x7f080066
+			public const int abc_primary_text_disable_only_material_dark = 2131230822;
 			
-			// aapt resource value: 0x7f08005d
-			public const int abc_primary_text_disable_only_material_light = 2131230813;
+			// aapt resource value: 0x7f080067
+			public const int abc_primary_text_disable_only_material_light = 2131230823;
 			
-			// aapt resource value: 0x7f08005e
-			public const int abc_primary_text_material_dark = 2131230814;
+			// aapt resource value: 0x7f080068
+			public const int abc_primary_text_material_dark = 2131230824;
 			
-			// aapt resource value: 0x7f08005f
-			public const int abc_primary_text_material_light = 2131230815;
+			// aapt resource value: 0x7f080069
+			public const int abc_primary_text_material_light = 2131230825;
 			
-			// aapt resource value: 0x7f080060
-			public const int abc_search_url_text = 2131230816;
+			// aapt resource value: 0x7f08006a
+			public const int abc_search_url_text = 2131230826;
 			
 			// aapt resource value: 0x7f080016
 			public const int abc_search_url_text_normal = 2131230742;
@@ -1198,11 +1214,11 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f080018
 			public const int abc_search_url_text_selected = 2131230744;
 			
-			// aapt resource value: 0x7f080061
-			public const int abc_secondary_text_material_dark = 2131230817;
+			// aapt resource value: 0x7f08006b
+			public const int abc_secondary_text_material_dark = 2131230827;
 			
-			// aapt resource value: 0x7f080062
-			public const int abc_secondary_text_material_light = 2131230818;
+			// aapt resource value: 0x7f08006c
+			public const int abc_secondary_text_material_light = 2131230828;
 			
 			// aapt resource value: 0x7f080019
 			public const int accent_material_dark = 2131230745;
@@ -1221,6 +1237,9 @@ namespace EventsPbMobile.Droid
 			
 			// aapt resource value: 0x7f08001e
 			public const int background_material_light = 2131230750;
+			
+			// aapt resource value: 0x7f080059
+			public const int blue = 2131230809;
 			
 			// aapt resource value: 0x7f08001f
 			public const int bright_foreground_disabled_material_dark = 2131230751;
@@ -1261,8 +1280,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f080008
 			public const int common_action_bar_splitter = 2131230728;
 			
-			// aapt resource value: 0x7f080063
-			public const int common_google_signin_btn_text_dark = 2131230819;
+			// aapt resource value: 0x7f08006d
+			public const int common_google_signin_btn_text_dark = 2131230829;
 			
 			// aapt resource value: 0x7f080009
 			public const int common_google_signin_btn_text_dark_default = 2131230729;
@@ -1276,8 +1295,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f08000a
 			public const int common_google_signin_btn_text_dark_pressed = 2131230730;
 			
-			// aapt resource value: 0x7f080064
-			public const int common_google_signin_btn_text_light = 2131230820;
+			// aapt resource value: 0x7f08006e
+			public const int common_google_signin_btn_text_light = 2131230830;
 			
 			// aapt resource value: 0x7f08000d
 			public const int common_google_signin_btn_text_light_default = 2131230733;
@@ -1291,8 +1310,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f08000e
 			public const int common_google_signin_btn_text_light_pressed = 2131230734;
 			
-			// aapt resource value: 0x7f080065
-			public const int common_plus_signin_btn_text_dark = 2131230821;
+			// aapt resource value: 0x7f08006f
+			public const int common_plus_signin_btn_text_dark = 2131230831;
 			
 			// aapt resource value: 0x7f080000
 			public const int common_plus_signin_btn_text_dark_default = 2131230720;
@@ -1306,8 +1325,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f080001
 			public const int common_plus_signin_btn_text_dark_pressed = 2131230721;
 			
-			// aapt resource value: 0x7f080066
-			public const int common_plus_signin_btn_text_light = 2131230822;
+			// aapt resource value: 0x7f080070
+			public const int common_plus_signin_btn_text_light = 2131230832;
 			
 			// aapt resource value: 0x7f080004
 			public const int common_plus_signin_btn_text_light_default = 2131230724;
@@ -1320,6 +1339,21 @@ namespace EventsPbMobile.Droid
 			
 			// aapt resource value: 0x7f080005
 			public const int common_plus_signin_btn_text_light_pressed = 2131230725;
+			
+			// aapt resource value: 0x7f08005e
+			public const int darkblue = 2131230814;
+			
+			// aapt resource value: 0x7f080060
+			public const int darkgreen = 2131230816;
+			
+			// aapt resource value: 0x7f080061
+			public const int darkorange = 2131230817;
+			
+			// aapt resource value: 0x7f08005f
+			public const int darkpurple = 2131230815;
+			
+			// aapt resource value: 0x7f080062
+			public const int darkred = 2131230818;
 			
 			// aapt resource value: 0x7f08004f
 			public const int design_fab_shadow_end_color = 2131230799;
@@ -1369,6 +1403,9 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f08002c
 			public const int foreground_material_light = 2131230764;
 			
+			// aapt resource value: 0x7f08005b
+			public const int green = 2131230811;
+			
 			// aapt resource value: 0x7f08002d
 			public const int highlighted_text_material_dark = 2131230765;
 			
@@ -1417,6 +1454,9 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f08003c
 			public const int material_grey_900 = 2131230780;
 			
+			// aapt resource value: 0x7f08005c
+			public const int orange = 2131230812;
+			
 			// aapt resource value: 0x7f08003d
 			public const int primary_dark_material_dark = 2131230781;
 			
@@ -1440,6 +1480,12 @@ namespace EventsPbMobile.Droid
 			
 			// aapt resource value: 0x7f080044
 			public const int primary_text_disabled_material_light = 2131230788;
+			
+			// aapt resource value: 0x7f08005a
+			public const int purple = 2131230810;
+			
+			// aapt resource value: 0x7f08005d
+			public const int red = 2131230813;
 			
 			// aapt resource value: 0x7f080045
 			public const int ripple_material_dark = 2131230789;
@@ -1465,11 +1511,11 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f08004c
 			public const int switch_thumb_disabled_material_light = 2131230796;
 			
-			// aapt resource value: 0x7f080067
-			public const int switch_thumb_material_dark = 2131230823;
+			// aapt resource value: 0x7f080071
+			public const int switch_thumb_material_dark = 2131230833;
 			
-			// aapt resource value: 0x7f080068
-			public const int switch_thumb_material_light = 2131230824;
+			// aapt resource value: 0x7f080072
+			public const int switch_thumb_material_light = 2131230834;
 			
 			// aapt resource value: 0x7f08004d
 			public const int switch_thumb_normal_material_dark = 2131230797;
@@ -2505,8 +2551,8 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f0200d9
 			public const int notidisabled = 2130837721;
 			
-			// aapt resource value: 0x7f0200e0
-			public const int notification_template_icon_bg = 2130837728;
+			// aapt resource value: 0x7f0200e1
+			public const int notification_template_icon_bg = 2130837729;
 			
 			// aapt resource value: 0x7f0200da
 			public const int pb = 2130837722;
@@ -2521,10 +2567,13 @@ namespace EventsPbMobile.Droid
 			public const int settings = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int splash_screen = 2130837726;
+			public const int splash = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int transblack = 2130837727;
+			public const int splash_screen = 2130837727;
+			
+			// aapt resource value: 0x7f0200e0
+			public const int transblack = 2130837728;
 			
 			static Drawable()
 			{

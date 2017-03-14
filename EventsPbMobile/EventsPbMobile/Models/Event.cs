@@ -22,6 +22,9 @@ namespace EventsPbMobile.Models
         public bool Viewable { get; set; }
         public IList<Activity> Activities { get; }
         public IList<PhotoEvent> PhotoEvents { get; }
+        [Ignored]
+        public string StringDate => StartDate.ToString("f");
+
 
         public Event() { }
 

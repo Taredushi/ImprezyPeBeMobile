@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
@@ -38,12 +37,17 @@ namespace EventsPbMobile.Classes
 
         private void PopulateEventsCollectionFromDb()
         {
-            var list = db.All<Event>();
-            //NIE ZAPOMNIEC PRZYWROCIC!
-            list = list.Where(x => x.Viewable && x.StartDate > DateTimeOffset.Now);
-            list = list.OrderBy(x => x.StartDate);
+            var list = db.All<Event>().Where(x => x.Viewable).OrderBy(x => x.StartDate);
+            var events = new List<Event>();
+            foreach (var ev in list)
+            {
+                if (ev.EndDate.LocalDateTime >= DateTime.Today)
+                {
+                    events.Add(ev);
+                }
+            }
             Events.Clear();
-            foreach (var data in list)
+            foreach (var data in events)
                 Events.Add(EventToViewModel(data));
         }
 
@@ -71,7 +75,6 @@ namespace EventsPbMobile.Classes
                 if (items == null) return;
 
                 var eventsSetToDelete = db.All<Event>();
-
                 foreach (var eventdelete in eventsSetToDelete)
                     if (items.All(x => x.EventId != eventdelete.EventId))
                         db.Remove(eventdelete);
@@ -112,10 +115,8 @@ namespace EventsPbMobile.Classes
                 var placesSetToDelete = db.All<Place>();
 
                 foreach (var place in placesSetToDelete)
-                {
-                    if(items.All(x => x.PlaceId != place.PlaceId)) 
+                    if (items.All(x => x.PlaceId != place.PlaceId))
                         db.Remove(place);
-                }
 
                 foreach (var place in items)
                 {
@@ -137,10 +138,8 @@ namespace EventsPbMobile.Classes
                 var activitiesSetToDelete = db.All<Activity>();
 
                 foreach (var activity in activitiesSetToDelete)
-                {
-                    if(items.All(x=>x.ActivityID != activity.ActivityID))
+                    if (items.All(x => x.ActivityID != activity.ActivityID))
                         db.Remove(activity);
-                }
 
                 foreach (var activity in items)
                 {

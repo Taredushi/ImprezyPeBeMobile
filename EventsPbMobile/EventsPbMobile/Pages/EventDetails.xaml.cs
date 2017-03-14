@@ -21,7 +21,6 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = e.Title;
             Counter();
-
             _dataAccess = new EventsDataAccess();
             evenActivities = new ObservableCollection<Activity>();
             var activities = _dataAccess.GetActivitiesForEvent(e.EventId);
@@ -87,8 +86,11 @@ namespace EventsPbMobile.Pages
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if(e==null || ((ListView)sender).SelectedItem == null) return;
+            
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
+            ((ListView) sender).SelectedItem = null;
             await Navigation.PushAsync(new EventDepartamentDetails(Title, activity, place));
         }
 
