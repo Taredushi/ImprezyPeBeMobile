@@ -29,7 +29,7 @@ namespace EventsPbMobile.Pages
                 events.Clear();
                 return;
             }
-            var list = dataAccess.Events.Where(x => x.Event.Title.Contains(e.NewTextValue));
+            var list = dataAccess.Events.Where(x => x.Event.Title.Contains(e.NewTextValue) || x.Event.Text.Contains(e.NewTextValue));
             events.Clear();
 
             foreach (var element in list)

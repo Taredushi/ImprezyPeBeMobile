@@ -36,6 +36,6 @@ namespace EventsPbMobile.Models
         public int EventID { get; set; }
         public Event Event { get; set; }
         [Ignored]
-        public string PlaceAndDate => Place.Name + ", " + StartHour.Date.ToString("f");
+        public string PlaceAndDate => Place.Name + ", " + StartHour.ToString("f");
     }
 }

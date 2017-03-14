@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace EventsPbMobile.Pages
 {

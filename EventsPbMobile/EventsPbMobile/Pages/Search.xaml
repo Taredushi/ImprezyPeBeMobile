@@ -2,14 +2,14 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventsPbMobile.Pages.Search">
+             x:Class="EventsPbMobile.Pages.Search" BackgroundColor="#2d7a3a">
     <ScrollView>
         <StackLayout>
             <StackLayout>
                 <Entry
                     Placeholder="Wyszukaj wydarzenie"
                     Text="{Binding Path=SearchText}"
-                    TextChanged="OnTextChanged" />
+                    TextChanged="OnTextChanged" PlaceholderColor="White" TextColor="White" />
             </StackLayout>
             <StackLayout>
                 <ListView x:Name="SearchedEvents" ItemSelected="OnTappedSearchedEvent">
@@ -20,11 +20,8 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-
-                                    <Label Text="{Binding Event.Title}" Grid.Row="0" Grid.Column="0" />
-
+                                    <Label Text="{Binding Event.Title}" Grid.Row="0" Grid.Column="0" TextColor="White" />
                                 </Grid>
-
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

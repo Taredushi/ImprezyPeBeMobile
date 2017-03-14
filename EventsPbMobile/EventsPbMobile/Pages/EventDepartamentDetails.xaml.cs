@@ -22,7 +22,7 @@ namespace EventsPbMobile.Pages
             TitleLabel.Text = activity.Title;
             PlaceLabel.Text = place.Name;
     //        DateLabel.Text = activity.StartHour.Date.ToString("D");
-            StartHourLabel.Text = activity.StartHour.ToString("D");
+            StartHourLabel.Text = activity.StartHour.ToString("f");
    //         EndHourLabel.Text = activity.EndHour.ToString("t");
             DescriptionLabel.Text = activity.Text;
 
