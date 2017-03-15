@@ -5,21 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace EventsPbMobile.Pages
 {
-    public partial class Help : ContentPage
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Help : CarouselPage
     {
         public Help()
         {
             InitializeComponent();
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            base.OnBackButtonPressed();
-            Navigation.PushAsync(new MainPage());
-            Navigation.RemovePage(this);
-            return true;
         }
     }
 }

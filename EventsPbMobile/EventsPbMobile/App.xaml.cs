@@ -10,6 +10,8 @@ namespace EventsPbMobile
 {
     public partial class App : Application
     {
+        public static double ScreenWidth;
+        public static double ScreenHeight;
         public static INotification Notification { get; private set; }
         public static IDownloadManager DownloadManager { get; private set; }
         private EventsDataAccess _dataAccess;

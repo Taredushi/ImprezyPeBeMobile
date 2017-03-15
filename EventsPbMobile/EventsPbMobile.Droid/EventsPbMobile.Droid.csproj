@@ -193,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidNotification.cs" />
+    <Compile Include="CustomTabbedRenderer.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="NotificationService.cs" />
@@ -267,7 +268,6 @@
     <AndroidResource Include="Resources\drawable\cnk.jpg" />
     <AndroidResource Include="Resources\drawable\splash_screen.jpg" />
     <AndroidResource Include="Resources\drawable\splash.xml" />
-    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

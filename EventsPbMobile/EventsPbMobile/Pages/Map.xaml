@@ -1,16 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="EventsPbMobile.Pages.Map"
-             Title="Mapa PB">
-    <ContentPage.Content>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+            xmlns:classes="clr-namespace:EventsPbMobile.Classes;assembly=EventsPbMobile"
+            x:Class="EventsPbMobile.Pages.Map"
+            Title="Mapy PB">
+    <ContentPage Title="Kampus">
+        <classes:PanContainer>
+            <Image Aspect="AspectFill">
+                    <Image.Source>
+                        <UriImageSource Uri="http://www.zd2009.pb.edu.pl/img/mapa_kampusu_pb_2009.jpg"
+                                        CacheValidity="7"
+                                        CachingEnabled="true" />
+                    </Image.Source>
+                </Image>
+        </classes:PanContainer>
+
+    </ContentPage>
+    <ContentPage Title="Białystok">
         <StackLayout>
             <maps:Map
-                x:Name="MyMap"
+                x:Name="BialystokGoogleMap"
                 IsShowingUser="true"
                 MapType="Hybrid" />
         </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentPage>
+    <ContentPage Title="Hajnówka">
+        <StackLayout>
+            <maps:Map
+                x:Name="HajnowkaGoogleMap"
+                IsShowingUser="true"
+                MapType="Hybrid" />
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>
