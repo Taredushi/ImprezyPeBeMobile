@@ -5,16 +5,13 @@
              Title="Pomoc">
   <ContentPage>
     <StackLayout>
-      <Label Text="This is a CarouselPage, you can swipe left and right to browse through additional pages." Margin="5" />
-      <Label Text="Red" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5" />
-      <BoxView Color="Red" VerticalOptions="FillAndExpand" />
+      <Image Source="help1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
     </StackLayout>
   </ContentPage>
   <ContentPage>
     <StackLayout>
-      <Label Text="Green" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />
-      <BoxView Color="Green" VerticalOptions="FillAndExpand" />
-    </StackLayout>
+            <Image Source="help2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
   </ContentPage>
   <ContentPage>
     <StackLayout>

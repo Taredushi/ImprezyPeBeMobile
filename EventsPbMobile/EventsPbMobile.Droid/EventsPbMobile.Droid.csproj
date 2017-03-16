@@ -293,6 +293,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\ic_notifications_off_white_36dp.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_notifications_off_white_36dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_notifications_off_white_36dp.png" />
+    <AndroidResource Include="Resources\drawable\help1.png" />
+    <AndroidResource Include="Resources\drawable\help2.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
