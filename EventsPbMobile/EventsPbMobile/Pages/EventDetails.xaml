@@ -2,6 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="EventsPbMobile.Pages.EventDetails" BackgroundColor="#eae5d7">
     <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" SeparatorColor="#2d7a3a"
               SeparatorVisibility="Default" HasUnevenRows="True">
@@ -58,5 +59,13 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
+        <ListView.Footer>
+            <StackLayout HeightRequest="350">
+                <maps:Map
+                x:Name="EventMap"
+                IsShowingUser="true"
+                MapType="Hybrid" />
+            </StackLayout>
+        </ListView.Footer>
     </ListView>
 </ContentPage>

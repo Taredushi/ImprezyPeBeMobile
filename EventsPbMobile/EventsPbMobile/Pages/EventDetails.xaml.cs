@@ -12,8 +12,8 @@ namespace EventsPbMobile.Pages
     {
         private readonly EventsDataAccess _dataAccess;
         private readonly Event _event;
+        private readonly ObservableCollection<Activity> _eventActivities;
         private ToolbarItem _enableNotificationItem, _disableNotificationItem;
-        private readonly ObservableCollection<Activity> evenActivities;
 
         public EventDetails(Event e)
         {
@@ -22,20 +22,21 @@ namespace EventsPbMobile.Pages
             Title = e.Title;
             Counter();
             _dataAccess = new EventsDataAccess();
-            evenActivities = new ObservableCollection<Activity>();
+            _eventActivities = new ObservableCollection<Activity>();
             var activities = _dataAccess.GetActivitiesForEvent(e.EventId);
-            evenActivities.Clear();
+            _eventActivities.Clear();
 
             foreach (var activity in activities)
             {
                 var ac = new Activity(activity);
                 ac.Place = _dataAccess.GetPlace(ac.PlaceID);
-                evenActivities.Add(ac);
+                _eventActivities.Add(ac);
             }
             InitToolbarItems();
             InitFavButton();
-            EventPlaces.ItemsSource = evenActivities;
-           
+            InitEventMap();
+
+            EventPlaces.ItemsSource = _eventActivities;
         }
 
         private async void Counter()
@@ -44,54 +45,43 @@ namespace EventsPbMobile.Pages
             var end = _event.EndDate.Subtract(DateTimeOffset.Now);
 
             string hours, minutes, seconds;
-            if(start.TotalSeconds>0) 
-            while (start.TotalSeconds > 0)
-            {
-                start = _event.StartDate.Subtract(DateTime.Now);
-                hours = start.Hours.ToString();
-                minutes = start.Minutes.ToString();
-                seconds = start.Seconds.ToString();
-                if (hours.Length == 1)
-                    hours = "0" + start.Hours;
-                if (minutes.Length == 1)
-                    minutes = "0" + start.Minutes;
-                if (seconds.Length == 1)
-                    seconds = "0" + start.Seconds;
-                TitleLabel.Text = "Start za: " + start.Days + " dni, " + hours + ":" + minutes + ":" + seconds;
-                await Task.Delay(250);
-            }
+            if (start.TotalSeconds > 0)
+                while (start.TotalSeconds > 0)
+                {
+                    start = _event.StartDate.Subtract(DateTime.Now);
+                    hours = start.Hours.ToString();
+                    minutes = start.Minutes.ToString();
+                    seconds = start.Seconds.ToString();
+                    if (hours.Length == 1)
+                        hours = "0" + start.Hours;
+                    if (minutes.Length == 1)
+                        minutes = "0" + start.Minutes;
+                    if (seconds.Length == 1)
+                        seconds = "0" + start.Seconds;
+                    TitleLabel.Text = "Start za: " + start.Days + " dni, " + hours + ":" + minutes + ":" + seconds;
+                    await Task.Delay(250);
+                }
 
             else if (start.TotalSeconds <= 0 && end.TotalSeconds > 0)
-            {
                 while (end.TotalSeconds > 0)
                 {
                     TitleLabel.Text = "Event trwa!";
                     await Task.Delay(10000);
                 }
-            }
             else
-            {
                 TitleLabel.Text = "Event zakończony";
-            }
-            
-        }
-
-        private async void MapButton_OnClicked(object sender, EventArgs e)
-        {
-            var stack = Navigation.NavigationStack;
-
-            if (stack[stack.Count - 1].GetType() != typeof(EventMap))
-                await Navigation.PushAsync(new EventMap(evenActivities, Title));
         }
 
         private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if(e==null || ((ListView)sender).SelectedItem == null) return;
-            
+            if (e == null || ((ListView) sender).SelectedItem == null) return;
+
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
-            ((ListView) sender).SelectedItem = null;
+            
             await Navigation.PushAsync(new EventDepartamentDetails(Title, activity, place));
+
+            ((ListView)sender).SelectedItem = null;
         }
 
         private void InitToolbarItems()
@@ -134,6 +124,28 @@ namespace EventsPbMobile.Pages
                     ToolbarItems.RemoveAt(0);
                 ToolbarItems.Add(_enableNotificationItem);
             }
+        }
+
+        private void InitEventMap()
+        {
+            float avgLatitude = 0, avgLongitude = 0;
+            foreach (var activity in _eventActivities)
+            {
+                var pin = new Pin();
+                var place = _dataAccess.GetPlace(activity.PlaceID);
+                pin.Position = new Position(place.Latitude, place.Longitude);
+                pin.Label = place.Name;
+                avgLatitude += place.Latitude;
+                avgLongitude += place.Longitude;
+                EventMap.Pins.Add(pin);
+            }
+
+            avgLatitude /= _eventActivities.Count;
+            avgLongitude /= _eventActivities.Count;
+
+            EventMap.MoveToRegion(
+                MapSpan.FromCenterAndRadius(
+                    new Position(avgLatitude, avgLongitude), Distance.FromMeters(400)));
         }
     }
 }
