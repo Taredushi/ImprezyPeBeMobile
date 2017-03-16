@@ -2,7 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="EventsPbMobile.Pages.EventDepartamentDetails"
-             Title="Szczegóły" BackgroundColor="#2d7a3a">
+             Title="Szczegóły" BackgroundColor="#eae5d7">
 
     <ContentPage.Content>
         <ScrollView>
@@ -11,22 +11,25 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <StackLayout BackgroundColor="MediumSeaGreen" Grid.Row="0">
+                <StackLayout Grid.Row="0" BackgroundColor="White" HeightRequest="3" Margin="-8,-6,-8,-6" />
+                <StackLayout BackgroundColor="#1E5327" Grid.Row="1" Padding="14,8,14,8">
                     <Label x:Name="TitleLabel" HorizontalTextAlignment="Center" TextColor="White" FontSize="30" />
                 </StackLayout>
 
-                <StackLayout BackgroundColor="DarkGreen" Grid.Row="1" Margin="0,-5,0,-5">
-                    <Label x:Name="StartHourLabel" TextColor="White" FontSize="18"
+                <StackLayout Grid.Row="3" Padding="14,8,14,8">
+                    <Label x:Name="StartHourLabel" TextColor="#676767" FontSize="18"
                            Margin="7,10,7,5" />
-                    <Label x:Name="PlaceLabel" TextColor="White" FontSize="25"
+                    <Label x:Name="PlaceLabel" TextColor="#676767" FontSize="25"
                            Margin="7,0,7,10" />
-                    <StackLayout BackgroundColor="White" HeightRequest="3" />
-                    <Label x:Name="DescriptionLabel" TextColor="White" FontSize="16"
+                    <StackLayout BackgroundColor="#1E5327" HeightRequest="3" Margin="-14,0,-14,0" />
+                    <Label x:Name="DescriptionLabel" TextColor="#676767" FontSize="16"
                            Margin="7,10,7,10" />
                 </StackLayout>
 
-                <StackLayout HeightRequest="350" Grid.Row="2">
+                <StackLayout HeightRequest="350" Grid.Row="5">
                     <maps:Map
                         x:Name="MyMap" IsShowingUser="true" MapType="Hybrid" />
                 </StackLayout>

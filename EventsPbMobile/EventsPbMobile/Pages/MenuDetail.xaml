@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.MenuDetail"
              Icon="hamburger.png"
-             Title="PBEvents" BackgroundColor="Green">
-
+             Title="PBEvents" BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="Green">
+        <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="#eae5d7">
             <StackLayout>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -16,30 +14,34 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="cnk.jpg" Aspect="AspectFill" Grid.Column="0" Grid.Row="0"/>
+                    <Image Source="cnk.jpg" Aspect="AspectFill" Grid.Column="0" Grid.Row="0" />
                 </Grid>
-                
+
             </StackLayout>
             <ListView x:Name="MenuListView" VerticalOptions="FillAndExpand" SeparatorVisibility="None"
-                      BackgroundColor="Green">
+                      BackgroundColor="#2d7a3a">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid HeightRequest="48">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="48" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-
-                                <Image Source="{Binding IconSource}" Margin="3,3,0,0" Grid.Column="0" />
-                                <Label Text="{Binding Title}" TextColor="White" FontAttributes="Bold" FontSize="20"
+                                <StackLayout Padding="16,8,0,0">
+                                    <Image Source="{Binding IconSource}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
+                                </StackLayout>
+                                <StackLayout Grid.Column="1" Padding="40,8,0,0" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" TextColor="White" FontSize="16"
                                        Grid.Column="1" VerticalTextAlignment="Center" />
+                                </StackLayout>
+
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

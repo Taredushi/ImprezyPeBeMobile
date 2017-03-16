@@ -2,12 +2,13 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventsPbMobile.Pages.EventDetails" BackgroundColor="#2d7a3a">
-    <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" SeparatorColor="White"
+             x:Class="EventsPbMobile.Pages.EventDetails" BackgroundColor="#eae5d7">
+    <ListView x:Name="EventPlaces" ItemSelected="EventInDepartamentSelected" SeparatorColor="#2d7a3a"
               SeparatorVisibility="Default" HasUnevenRows="True">
         <ListView.Header>
-            <Grid Margin="7,0,7,0">
+            <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -21,36 +22,38 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" />
-                <StackLayout BackgroundColor="#2d7a3a" Grid.Row="1">
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="1" Margin="-8,0,-8,0" />
+                <StackLayout BackgroundColor="#1E5327" Grid.Row="2" Margin="-8,-6,-8,-6">
                     <StackLayout HorizontalOptions="Center">
-                        <Label x:Name="TitleLabel" FontSize="Large" TextColor="White" />
+                        <Label x:Name="TitleLabel" FontSize="30" TextColor="White" Opacity="87"/>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="2" />
-                <!--            <Button Text="Pokaż mapę" Clicked="MapButton_OnClicked" Grid.Row="2" Grid.Column="0" />-->
-                <Label Text="{Binding Text}" FontSize="16" HorizontalTextAlignment="Start" BackgroundColor="#2d7a3a"
-                       TextColor="White"
-                       Grid.Row="3" Grid.Column="0" />
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="4" Margin="-7,0,-7,0" />
-                <StackLayout BackgroundColor="#1E5327" Grid.Row="5" Margin="-7,-5,-7,-5" Padding="0,5,0,5">
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="3" Margin="-8,0,-8,0" />
+                <StackLayout Grid.Row="4" Padding="14,8,14,8">
+                    <Label Text="{Binding Text}" FontSize="16"  HorizontalTextAlignment="Start"
+                       TextColor="#676767" Opacity="87" Grid.Column="0" />
+                </StackLayout>
+
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="5" Margin="-8,0,-8,0" />
+                <StackLayout BackgroundColor="#1E5327" Grid.Row="6" Margin="-8,-6,-8,-6" Padding="0,5,0,5">
                     <StackLayout HorizontalOptions="Center">
-                        <Label FontSize="Large" TextColor="White" Text="Lista wydarzeń:" />
+                        <Label FontSize="30" TextColor="White" Text="Lista wydarzeń:" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="6" Margin="-7,0,-7,0" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="7" Margin="-8,0,-8,0" />
             </Grid>
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="7,10,7,10">
+                    <Grid  Margin="14,8,14,8" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label Text="{Binding Title}" FontSize="20" Grid.Row="0" TextColor="White"
-                               LineBreakMode="WordWrap" />
-                        <Label Text="{Binding PlaceAndDate}" Grid.Row="1" TextColor="White" />
+                        <Label Text="{Binding Title}" FontSize="20"  Grid.Row="0" TextColor="#676767"
+                               LineBreakMode="WordWrap" Opacity="87" />
+                        <Label Text="{Binding PlaceAndDate}" Grid.Row="1" FontSize="16" TextColor="#676767" Opacity="87" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
