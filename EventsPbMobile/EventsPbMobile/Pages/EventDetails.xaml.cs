@@ -86,7 +86,7 @@ namespace EventsPbMobile.Pages
 
         private void InitToolbarItems()
         {
-            _enableNotificationItem = new ToolbarItem("Remind", "notiactive.png", async () =>
+            _enableNotificationItem = new ToolbarItem("Remind", "ic_notifications_active_white_36dp.png", async () =>
             {
                 var answer = await DisplayAlert("Powiadomienie", "Czy chcesz ustawić powiadomienie na to wydarzenie?",
                     "Tak", "Nie");
@@ -97,7 +97,7 @@ namespace EventsPbMobile.Pages
                 InitFavButton();
             });
 
-            _disableNotificationItem = new ToolbarItem("Remind", "notidisabled.png", async () =>
+            _disableNotificationItem = new ToolbarItem("Remind", "ic_notifications_off_white_36dp.png", async () =>
             {
                 var answer = await DisplayAlert("Powiadomienie",
                     "Czy chcesz wyłączyć powiadomienie dla tego wydarzenie?", "Tak", "Nie");

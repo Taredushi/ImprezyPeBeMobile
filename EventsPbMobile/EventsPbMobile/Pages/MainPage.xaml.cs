@@ -51,7 +51,7 @@ namespace EventsPbMobile.Pages
 
         private void InitializeSeachButton()
         {
-            ToolbarItems.Add(new ToolbarItem("Search", "search.png", () => { Navigation.PushAsync(new Search()); }));
+            ToolbarItems.Add(new ToolbarItem("Search", "ic_search_white_36dp.png", () => { Navigation.PushAsync(new Search()); }));
         }
 
         private async Task<bool> RefreshAfterPeriodOfTime()

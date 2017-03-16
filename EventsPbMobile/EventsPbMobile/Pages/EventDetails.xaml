@@ -57,7 +57,6 @@
                         <Label Text="{Binding PlaceAndDate}" Grid.Row="1" FontSize="16" TextColor="#676767"
                                Opacity="87" />
                     </Grid>
-
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
