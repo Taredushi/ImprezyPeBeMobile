@@ -90,8 +90,6 @@ namespace EventsPbMobile.Pages
             {
                 EventsList.IsRefreshing = true;
 
-                await _dataAccess.SavePlacesToDb();
-                await _dataAccess.SaveActivitiesToDb();
                 await _dataAccess.SaveEventsToDb();
 
                 var settings = _dataAccess.GetSettings();

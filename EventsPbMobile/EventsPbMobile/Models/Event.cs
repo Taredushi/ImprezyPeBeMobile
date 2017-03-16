@@ -41,5 +41,19 @@ namespace EventsPbMobile.Models
             PhotoEvents = item.PhotoEvents;
             Baner = item.Baner;
         }
+
+        public Event(Event item, IList<Activity> activities)
+        {
+            EventId = item.EventId;
+            StartDate = item.StartDate;
+            EndDate = item.EndDate;
+            Title = item.Title;
+            Text = item.Text;
+            Active = item.Active;
+            Viewable = item.Viewable;
+            Activities = activities;
+            PhotoEvents = item.PhotoEvents;
+            Baner = item.Baner;
+        }
     }
 }

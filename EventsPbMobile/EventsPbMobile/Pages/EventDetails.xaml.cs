@@ -12,7 +12,6 @@ namespace EventsPbMobile.Pages
     {
         private readonly EventsDataAccess _dataAccess;
         private readonly Event _event;
-        private readonly ObservableCollection<Activity> _eventActivities;
         private ToolbarItem _enableNotificationItem, _disableNotificationItem;
 
         public EventDetails(Event e)
@@ -22,21 +21,11 @@ namespace EventsPbMobile.Pages
             Title = e.Title;
             Counter();
             _dataAccess = new EventsDataAccess();
-            _eventActivities = new ObservableCollection<Activity>();
-            var activities = _dataAccess.GetActivitiesForEvent(e.EventId);
-            _eventActivities.Clear();
-
-            foreach (var activity in activities)
-            {
-                var ac = new Activity(activity);
-                ac.Place = _dataAccess.GetPlace(ac.PlaceID);
-                _eventActivities.Add(ac);
-            }
             InitToolbarItems();
             InitFavButton();
             InitEventMap();
 
-            EventPlaces.ItemsSource = _eventActivities;
+            EventPlaces.ItemsSource = _event.Activities;
         }
 
         private async void Counter()
@@ -79,7 +68,7 @@ namespace EventsPbMobile.Pages
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
 
-            await Navigation.PushAsync(new EventDepartamentDetails(Title, activity, place));
+            await Navigation.PushAsync(new EventDepartamentDetails(Title, activity));
 
             ((ListView) sender).SelectedItem = null;
         }
@@ -129,10 +118,10 @@ namespace EventsPbMobile.Pages
         private void InitEventMap()
         {
             float avgLatitude = 0, avgLongitude = 0;
-            foreach (var activity in _eventActivities)
+            foreach (var activity in _event.Activities)
             {
                 var pin = new Pin();
-                var place = _dataAccess.GetPlace(activity.PlaceID);
+                var place = activity.Place;
                 pin.Position = new Position(place.Latitude, place.Longitude);
                 pin.Label = place.Name;
                 avgLatitude += place.Latitude;
@@ -140,10 +129,10 @@ namespace EventsPbMobile.Pages
                 EventMap.Pins.Add(pin);
             }
 
-            if (_eventActivities.Count == 0)
+            if (_event.Activities.Count != 0)
             {
-                avgLatitude /= _eventActivities.Count;
-                avgLongitude /= _eventActivities.Count;
+                avgLatitude /= _event.Activities.Count;
+                avgLongitude /= _event.Activities.Count;
                 EventMap.MoveToRegion(
                     MapSpan.FromCenterAndRadius(
                         new Position(avgLatitude, avgLongitude), Distance.FromMeters(400)));

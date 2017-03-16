@@ -51,12 +51,6 @@ namespace EventsPbMobile.Classes
                 Events.Add(EventToViewModel(data));
         }
 
-        public IList<Activity> GetActivitiesForEvent(int eventId)
-        {
-            var activities = db.All<Activity>().Where(x => x.EventID == eventId).ToList();
-            return activities;
-        }
-
         private EventViewModel EventToViewModel(Event data)
         {
             var evm = new EventViewModel();
@@ -70,6 +64,9 @@ namespace EventsPbMobile.Classes
         public async Task<bool> SaveEventsToDb()
         {
             var items = await api.GetEventsAllAsync();
+
+            var activitiesgood = await SaveActivitiesToDb();
+
             db.Write(() =>
             {
                 if (items == null) return;
@@ -81,7 +78,8 @@ namespace EventsPbMobile.Classes
 
                 foreach (var item in items)
                 {
-                    var ev = new Event(item);
+                    var activities = db.All<Activity>().Where(x => x.EventID == item.EventId).ToList();
+                    var ev = new Event(item, activities);
                     db.Add(ev, true);
                 }
             });
@@ -104,10 +102,10 @@ namespace EventsPbMobile.Classes
             return true;
         }
 
-        public async Task<bool> SavePlacesToDb()
+        private async Task<bool> SavePlacesToDb()
         {
             var items = await api.GetPlacesAllAsync();
-
+            
             db.Write(() =>
             {
                 if (items == null) return;
@@ -121,15 +119,17 @@ namespace EventsPbMobile.Classes
                 foreach (var place in items)
                 {
                     var pl = new Place(place);
-                    db.Add(place, true);
+                    db.Add(pl, true);
                 }
             });
             return true;
         }
 
-        public async Task<bool> SaveActivitiesToDb()
+        private async Task<bool> SaveActivitiesToDb()
         {
             var items = await api.GetActivitiesAllAsync();
+
+            var places = await SavePlacesToDb();
 
             db.Write(() =>
             {
@@ -143,7 +143,8 @@ namespace EventsPbMobile.Classes
 
                 foreach (var activity in items)
                 {
-                    var act = new Activity(activity);
+                    var place = db.All<Place>().FirstOrDefault(x => x.PlaceId == activity.PlaceID);
+                    var act = new Activity(activity,place);
                     db.Add(act, true);
                 }
             });
@@ -230,6 +231,12 @@ namespace EventsPbMobile.Classes
             return db.All<EventReminder>().FirstOrDefault(x => x.EventId == eventid);
         }
 
+        public string GetEventTitle(int eventId)
+        {
+            var ev =  db.All<Event>().FirstOrDefault(x => x.EventId == eventId);
+            return ev.Title;
+        } 
+
         public Settings GetSettings()
         {
             var settings = db.All<Settings>().FirstOrDefault(x => x.SettingsId == 1);
@@ -256,6 +263,11 @@ namespace EventsPbMobile.Classes
         public void SaveSettings(Settings s)
         {
             db.Write(() => { db.Add(s, true); });
+        }
+
+        public IList<Activity> GetActivities()
+        {
+            return db.All<Activity>().ToList();
         }
 
         public void DeleteDatabase()

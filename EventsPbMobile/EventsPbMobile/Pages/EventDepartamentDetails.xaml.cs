@@ -7,24 +7,18 @@ namespace EventsPbMobile.Pages
 {
     public partial class EventDepartamentDetails : ContentPage
     {
-        private Activity activity;
-        private Place place;
-        private EventsDataAccess db;
-        public EventDepartamentDetails(string title, Activity act, Place pla)
+        private readonly Activity _activity;
+        public EventDepartamentDetails(string title, Activity act)
         {
             InitializeComponent();
 
-            db = new EventsDataAccess();
-            activity = act;
-            place = pla;
-            
+            _activity = act;
+           
             Title = title;
-            TitleLabel.Text = activity.Title;
-            PlaceLabel.Text = place.Name;
-    //        DateLabel.Text = activity.StartHour.Date.ToString("D");
-            StartHourLabel.Text = activity.StartHour.ToString("f");
-   //         EndHourLabel.Text = activity.EndHour.ToString("t");
-            DescriptionLabel.Text = activity.Text;
+            TitleLabel.Text = _activity.Title;
+            PlaceLabel.Text = _activity.Place.Name;
+            StartHourLabel.Text = _activity.StartHour.ToString("f");
+            DescriptionLabel.Text = _activity.Text;
 
             InitMap();
         }
@@ -33,7 +27,7 @@ namespace EventsPbMobile.Pages
         private void InitMap()
         {
             var pin = new Pin();
-            var place = db.GetPlace(activity.PlaceID);
+            var place = _activity.Place;
             pin.Position = new Position(place.Latitude, place.Longitude);
             pin.Label = place.Name;
 

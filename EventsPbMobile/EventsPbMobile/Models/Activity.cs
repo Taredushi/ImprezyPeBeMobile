@@ -23,6 +23,20 @@ namespace EventsPbMobile.Models
             Event = a.Event;
         }
 
+        public Activity(Activity a, Place p)
+        {
+            ActivityID = a.ActivityID;
+            Title = a.Title;
+            Text = a.Text;
+            StartHour = a.StartHour;
+            EndHour = a.EndHour;
+            PlaceID = a.PlaceID;
+            EventID = a.EventID;
+            Place = p;
+            Date = a.Date;
+            Event = a.Event;
+        }
+
         [PrimaryKey]
         public int ActivityID { get; set; }
 
@@ -35,6 +49,7 @@ namespace EventsPbMobile.Models
         public Place Place { get; set; }
         public int EventID { get; set; }
         public Event Event { get; set; }
+
         [Ignored]
         public string PlaceAndDate => Place.Name + ", " + StartHour.ToString("f");
     }

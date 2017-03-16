@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -10,49 +9,54 @@ namespace EventsPbMobile.Pages
 {
     public partial class Search : ContentPage
     {
-        private readonly EventsDataAccess dataAccess;
-        private readonly ObservableCollection<EventViewModel> events;
+        private readonly ObservableCollection<Activity> _activities;
+        private readonly IList<Activity> _activitiesQueryable;
+        private readonly EventsDataAccess _dataAccess;
         public Search()
         {
             InitializeComponent();
             Title = "Szukaj";
-            events = new ObservableCollection<EventViewModel>();
-            dataAccess = new EventsDataAccess();
-            SearchedEvents.ItemsSource = events;
-            
+            _activities = new ObservableCollection<Activity>();
+            _dataAccess = new EventsDataAccess();
+            _activitiesQueryable = _dataAccess.GetActivities();
+
+            SearchedActivities.ItemsSource = _activities;
         }
 
         private void OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            _activities.Clear();
             if (e.NewTextValue == "")
             {
-                events.Clear();
                 return;
             }
-            var list = dataAccess.Events.Where(x => x.Event.Title.Contains(e.NewTextValue) || x.Event.Text.Contains(e.NewTextValue));
-            events.Clear();
 
-            foreach (var element in list)
-                events.Add(element);
+            var activitiesList =
+                _activitiesQueryable.Where(
+                    x =>
+                        x.Title.ToLower().Contains(e.NewTextValue.ToLower()) ||
+                        x.Text.ToLower().Contains(e.NewTextValue.ToLower()));
+
+            foreach (var activity in activitiesList)
+                _activities.Add(activity);
         }
 
-        private void OnSearch(object sender, EventArgs e)
-        {
-        }
-
-        private async void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)
+        private async void OnTappedSearchedActivity(object sender, SelectedItemChangedEventArgs e)
         {
             //checking if null because this event is triggered
             //when item is selected, but also when item is diselected (then its null)
             if (e.SelectedItem == null) return;
             //cast object to event
-            var _event = e.SelectedItem as EventViewModel;
-            if (_event == null || _event.Event.Active == false) return;
+            Activity activity = e.SelectedItem as Activity;
+            if (activity == null) return;
 
             //deselect item just in case
-            ((ListView)sender).SelectedItem = null;
-            var eventdetails = new EventDetails(_event.Event) { BindingContext = _event.Event };
+            ((ListView) sender).SelectedItem = null;
+
+            var eventtitle = _dataAccess.GetEventTitle(activity.EventID);
+            var eventdetails = new EventDepartamentDetails(eventtitle, activity) {BindingContext = activity.Event};
             await Navigation.PushAsync(eventdetails);
         }
+
     }
 }

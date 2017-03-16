@@ -22,40 +22,39 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" />
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="1" Margin="-8,0,-8,0" />
+                <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="1" Margin="-8,-6,-8,0" />
                 <StackLayout BackgroundColor="#1E5327" Grid.Row="2" Margin="-8,-6,-8,-6">
                     <StackLayout HorizontalOptions="Center">
-                        <Label x:Name="TitleLabel" FontSize="30" TextColor="White" Opacity="87" />
+                        <Label x:Name="TitleLabel" FontSize="30" TextColor="White" Opacity="87"/>
                     </StackLayout>
                 </StackLayout>
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="3" Margin="-8,0,-8,0" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="3" Margin="-8,0,-8,-6" />
                 <StackLayout Grid.Row="4" Padding="14,8,14,8">
-                    <Label Text="{Binding Text}" FontSize="16" HorizontalTextAlignment="Start"
-                           TextColor="#676767" Opacity="87" Grid.Column="0" />
+                    <Label Text="{Binding Text}" FontSize="16"  HorizontalTextAlignment="Start"
+                       TextColor="#676767" Opacity="87" Grid.Column="0" />
                 </StackLayout>
 
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="5" Margin="-8,0,-8,0" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="5" Margin="-8,-6,-8,0" />
                 <StackLayout BackgroundColor="#1E5327" Grid.Row="6" Margin="-8,-6,-8,-6" Padding="0,5,0,5">
                     <StackLayout HorizontalOptions="Center">
                         <Label FontSize="30" TextColor="White" Text="Lista wydarzeń:" />
                     </StackLayout>
                 </StackLayout>
-                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="7" Margin="-8,0,-8,0" />
+                <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="7" Margin="-8,0,-8,-6" />
             </Grid>
         </ListView.Header>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Margin="14,8,14,8">
+                    <Grid  Margin="14,8,14,8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Label Text="{Binding Title}" FontSize="20" Grid.Row="0" TextColor="#676767"
+                        <Label Text="{Binding Title}" FontSize="20"  Grid.Row="0" TextColor="#676767"
                                LineBreakMode="WordWrap" Opacity="87" />
-                        <Label Text="{Binding PlaceAndDate}" Grid.Row="1" FontSize="16" TextColor="#676767"
-                               Opacity="87" />
+                        <Label Text="{Binding PlaceAndDate}" Grid.Row="1" FontSize="16" TextColor="#676767" Opacity="87" />
                     </Grid>
                 </ViewCell>
             </DataTemplate>
@@ -63,9 +62,9 @@
         <ListView.Footer>
             <StackLayout HeightRequest="350">
                 <maps:Map
-                    x:Name="EventMap"
-                    IsShowingUser="true"
-                    MapType="Hybrid" />
+                x:Name="EventMap"
+                IsShowingUser="true"
+                MapType="Hybrid" />
             </StackLayout>
         </ListView.Footer>
     </ListView>

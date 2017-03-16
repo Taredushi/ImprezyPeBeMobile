@@ -19,7 +19,7 @@
 
             </StackLayout>
             <ListView x:Name="MenuListView" VerticalOptions="FillAndExpand" SeparatorVisibility="None"
-                      BackgroundColor="#2d7a3a">
+                      BackgroundColor="#2d7a3a" Margin="0,-6,0,0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -28,15 +28,13 @@
                                     <ColumnDefinition Width="48" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Padding="16,8,0,0">
+                                <StackLayout Padding="16,4,0,4" VerticalOptions="Center">
                                     <Image Source="{Binding IconSource}" Grid.Column="0" HeightRequest="40" WidthRequest="40"/>
                                 </StackLayout>
-                                <StackLayout Grid.Column="1" Padding="40,8,0,0" VerticalOptions="Center">
+                                <StackLayout Grid.Column="1" Padding="24,8,0,8" VerticalOptions="Center">
                                     <Label Text="{Binding Title}" TextColor="White" FontSize="16"
                                        Grid.Column="1" VerticalTextAlignment="Center" />
                                 </StackLayout>
-
-
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
