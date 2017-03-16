@@ -15,6 +15,7 @@ namespace EventsPbMobile.Models
         public bool Notify1HBefore { get; set; }
         public bool Notify1DBefore { get; set; }
         public bool Notify2DBefore { get; set; }
+        public bool AhotherLauchOfApp { get; set; }
 
         public DateTimeOffset LastRefreshDate { get; set; }
 
@@ -31,6 +32,7 @@ namespace EventsPbMobile.Models
             Notify1DBefore = s.Notify1DBefore;
             Notify2DBefore = s.Notify2DBefore;
             LastRefreshDate = s.LastRefreshDate;
+            AhotherLauchOfApp = s.AhotherLauchOfApp;
         }
     }
 }

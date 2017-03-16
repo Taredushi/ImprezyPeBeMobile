@@ -26,7 +26,7 @@ namespace EventsPbMobile.Classes
         private void Configuration()
         {
             config = new RealmConfiguration();
-            config.SchemaVersion = 19;
+            config.SchemaVersion = 20;
             db = Realm.GetInstance(config);
         }
 
@@ -243,7 +243,8 @@ namespace EventsPbMobile.Classes
                         Notify1DBefore = false,
                         Notify1HBefore = false,
                         Notify2DBefore = false,
-                        LastRefreshDate = DateTimeOffset.Now.AddDays(-2)
+                        LastRefreshDate = DateTimeOffset.Now.AddDays(-2),
+                        AhotherLauchOfApp = false
                     };
                     db.Add(stng, true);
                 });

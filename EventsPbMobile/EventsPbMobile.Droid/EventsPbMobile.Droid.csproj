@@ -247,21 +247,12 @@
     <AndroidResource Include="Resources\drawable\about.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\mode.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\lel.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-    <AndroidResource Include="Resources\drawable\latest.jpg" />
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable\alert.png" />
     <AndroidResource Include="Resources\drawable\save.png" />
     <AndroidResource Include="Resources\drawable\incomingevents.png" />
     <AndroidResource Include="Resources\drawable\map.png" />
-    <AndroidResource Include="Resources\drawable\pb.jpg" />
-    <AndroidResource Include="Resources\drawable\blad.jpg" />
     <AndroidResource Include="Resources\drawable\transblack.png" />
     <AndroidResource Include="Resources\drawable\notidisabled.png" />
     <AndroidResource Include="Resources\drawable\notiactive.png" />

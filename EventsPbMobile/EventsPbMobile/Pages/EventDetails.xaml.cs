@@ -78,10 +78,10 @@ namespace EventsPbMobile.Pages
 
             var activity = e.SelectedItem as Activity;
             var place = _dataAccess.GetPlace(activity.PlaceID);
-            
+
             await Navigation.PushAsync(new EventDepartamentDetails(Title, activity, place));
 
-            ((ListView)sender).SelectedItem = null;
+            ((ListView) sender).SelectedItem = null;
         }
 
         private void InitToolbarItems()
@@ -140,12 +140,21 @@ namespace EventsPbMobile.Pages
                 EventMap.Pins.Add(pin);
             }
 
-            avgLatitude /= _eventActivities.Count;
-            avgLongitude /= _eventActivities.Count;
+            if (_eventActivities.Count == 0)
+            {
+                avgLatitude /= _eventActivities.Count;
+                avgLongitude /= _eventActivities.Count;
+                EventMap.MoveToRegion(
+                    MapSpan.FromCenterAndRadius(
+                        new Position(avgLatitude, avgLongitude), Distance.FromMeters(400)));
+            }
 
-            EventMap.MoveToRegion(
-                MapSpan.FromCenterAndRadius(
-                    new Position(avgLatitude, avgLongitude), Distance.FromMeters(400)));
+            else
+            {
+                EventMap.MoveToRegion(
+                    MapSpan.FromCenterAndRadius(
+                        new Position(53.118293, 23.149717), Distance.FromMeters(300)));
+            }
         }
     }
 }

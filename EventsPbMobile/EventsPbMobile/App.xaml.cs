@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EventsPbMobile.Classes;
+﻿using EventsPbMobile.Classes;
 using EventsPbMobile.Pages;
 using Xamarin.Forms;
 
@@ -12,35 +8,54 @@ namespace EventsPbMobile
     {
         public static double ScreenWidth;
         public static double ScreenHeight;
-        public static INotification Notification { get; private set; }
-        public static IDownloadManager DownloadManager { get; private set; }
-        private EventsDataAccess _dataAccess;
+        private readonly EventsDataAccess _dataAccess;
+
         public App()
         {
             InitializeComponent();
             _dataAccess = new EventsDataAccess();
             InitNotificationSettings();
-            MainPage = new MainMenu();
+            CheckIfFirstLauch();
+            
         }
+
+        public static INotification Notification { get; private set; }
+        public static IDownloadManager DownloadManager { get; private set; }
 
         private void InitNotificationSettings()
         {
-            
+        }
+
+        private void CheckIfFirstLauch()
+        {
+            var settings = _dataAccess.GetSettings();
+            if (settings.AhotherLauchOfApp)
+            {
+                MainPage = new MainMenu();
+            }
+            else
+            {
+                var dbinstance = _dataAccess.GetDbInstance();
+                dbinstance.Write(() =>
+                {
+                    settings.AhotherLauchOfApp = true;
+                });
+                MainPage = new Help();
+            }
         }
 
         public static void Init(INotification notification)
         {
-            App.Notification = notification;
+            Notification = notification;
         }
 
         public static void InitDownload(IDownloadManager manager)
         {
-            App.DownloadManager = manager;
+            DownloadManager = manager;
         }
 
         protected override void OnStart()
         {
-
             // Handle when your app starts
         }
 
@@ -53,6 +68,5 @@ namespace EventsPbMobile
         {
             // Handle when your app resumes
         }
-        
     }
 }
