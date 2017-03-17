@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
@@ -34,11 +33,10 @@
                     <Label Text="{Binding Text}" FontSize="16"  HorizontalTextAlignment="Start"
                        TextColor="#676767" Opacity="87" Grid.Column="0" />
                 </StackLayout>
-
                 <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="5" Margin="-8,-6,-8,0" />
                 <StackLayout BackgroundColor="#1E5327" Grid.Row="6" Margin="-8,-6,-8,-6" Padding="0,5,0,5">
                     <StackLayout HorizontalOptions="Center">
-                        <Label FontSize="30" TextColor="White" Text="Lista wydarzeń:" />
+                        <Label FontSize="30" TextColor="White" Text="Program:" />
                     </StackLayout>
                 </StackLayout>
                 <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="7" Margin="-8,0,-8,-6" />

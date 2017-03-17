@@ -6,7 +6,7 @@
         <StackLayout>
             <StackLayout Padding="14,4,14,4" BackgroundColor="#2d7a3a">
                 <Entry
-                    Placeholder="Wyszukaj wydarzenie"
+                    Placeholder="Wyszukaj w programie"
                     Text="{Binding Path=SearchText}"
                     TextChanged="OnTextChanged" PlaceholderColor="#E0E0E0" TextColor="White"/>
             </StackLayout>

@@ -36,7 +36,7 @@ namespace EventsPbMobile.Pages
                 },
                 new Models.MenuItem()
                 {
-                    Title = "Zapisane Eventy",
+                    Title = "Zapisane imprezy",
                     IconSource = "ic_alarm_white_36dp.png",
                     TargetType = typeof(IncomingEventsReminder)
                 },

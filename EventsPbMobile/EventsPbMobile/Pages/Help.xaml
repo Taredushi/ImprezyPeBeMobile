@@ -4,28 +4,70 @@
              x:Class="EventsPbMobile.Pages.Help"
              Title="Pomoc">
     <ContentPage>
-        <StackLayout BackgroundColor="#2d7a3a">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition  Height="30*"/>
-                    <RowDefinition  Height="70*"/>
-                </Grid.RowDefinitions>
-                <StackLayout Grid.Row = "0" Padding="14,8,14,8" HorizontalOptions="Center" VerticalOptions="Center" >
-                    <Label  Text="Wyszukuj aktywności po dacie, miejscu, tytule lub opisie" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
-                </StackLayout>
-                <Image Grid.Row = "1" Source="nowe1.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-            </Grid>
-        </StackLayout>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="30*"/>
+                <RowDefinition  Height="70*"/>
+            </Grid.RowDefinitions>
+            <!--<Grid.ColumnDefinitions>
+				<ColumnDefinition  Width="Auto"/>
+			</Grid.ColumnDefinitions>-->
+            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label  Text="Przeszukuj program imprez!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Grid.Row = "1" Source="szukaj.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
     </ContentPage>
     <ContentPage>
-        <StackLayout>
-        </StackLayout>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="30*"/>
+                <RowDefinition  Height="70*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label  Text="Ustawiaj filtry wyszukiwania!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Grid.Row = "1" Source="filtry.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
     </ContentPage>
     <ContentPage>
-        <StackLayout>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="30*"/>
+                <RowDefinition  Height="70*"/>
+            </Grid.RowDefinitions>
+            <!--<Grid.ColumnDefinitions>
+			<ColumnDefinition  Width="Auto"/>
+		</Grid.ColumnDefinitions>-->
+            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label  Text="Ustawiaj powiadomienia przypominające o imprezie!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Grid.Row = "1" Source="powiadomienia.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="30*"/>
+                <RowDefinition  Height="70*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label  Text="Używaj nawigacji z Google Maps aby dotrzeć na miejsce imprezy!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Grid.Row = "1" Source="nawigacja.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="30*"/>
+                <RowDefinition  Height="70*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label  Text="Przeglądaj program imprezy!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+            </StackLayout>
+            <Image Grid.Row = "1" Source="program.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
 
-            <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="Fill" Margin="5"  />
-            <BoxView Color="Blue" VerticalOptions="FillAndExpand" />
-        </StackLayout>
-    </ContentPage>
 </CarouselPage>

@@ -192,6 +192,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmReceiver.cs" />
     <Compile Include="AndroidNotification.cs" />
     <Compile Include="CustomTabbedRenderer.cs" />
     <Compile Include="DownloadManager.cs" />
@@ -296,6 +297,11 @@
     <AndroidResource Include="Resources\drawable\help1.png" />
     <AndroidResource Include="Resources\drawable\help2.png" />
     <AndroidResource Include="Resources\drawable\nowe1.png" />
+    <AndroidResource Include="Resources\drawable\filtry.png" />
+    <AndroidResource Include="Resources\drawable\nawigacja.png" />
+    <AndroidResource Include="Resources\drawable\powiadomienia.png" />
+    <AndroidResource Include="Resources\drawable\program.png" />
+    <AndroidResource Include="Resources\drawable\szukaj.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
