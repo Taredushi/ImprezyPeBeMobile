@@ -2505,17 +2505,20 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f0200d9
 			public const int mr_ic_play_light = 2130837721;
 			
-			// aapt resource value: 0x7f0200dd
-			public const int notification_template_icon_bg = 2130837725;
+			// aapt resource value: 0x7f0200de
+			public const int notification_template_icon_bg = 2130837726;
 			
 			// aapt resource value: 0x7f0200da
-			public const int splash = 2130837722;
+			public const int nowe1 = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int splash_screen = 2130837723;
+			public const int splash = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int transblack = 2130837724;
+			public const int splash_screen = 2130837724;
+			
+			// aapt resource value: 0x7f0200dd
+			public const int transblack = 2130837725;
 			
 			static Drawable()
 			{
