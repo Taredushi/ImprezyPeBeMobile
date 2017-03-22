@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
@@ -51,7 +51,7 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Label Text="{Binding Title}" FontSize="20"  Grid.Row="0" TextColor="#676767"
-                               LineBreakMode="WordWrap" Opacity="87" />
+                               LineBreakMode="WordWrap" Opacity="87" FontAttributes="Bold"/>
                         <Label Text="{Binding PlaceAndDate}" Grid.Row="1" FontSize="16" TextColor="#676767" Opacity="87" />
                     </Grid>
                 </ViewCell>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -9,7 +10,7 @@ namespace EventsPbMobile.Pages
 {
     public partial class Search : ContentPage
     {
-        private readonly ObservableCollection<Activity> _activities;
+        private ObservableCollection<Activity> _activities;
         private readonly IList<Activity> _activitiesQueryable;
         private readonly EventsDataAccess _dataAccess;
         public Search()
@@ -31,13 +32,27 @@ namespace EventsPbMobile.Pages
                 return;
             }
 
-            var activitiesList =
-                _activitiesQueryable.Where(
-                    x =>
-                        x.Title.ToLower().Contains(e.NewTextValue.ToLower()) ||
-                        x.Text.ToLower().Contains(e.NewTextValue.ToLower()));
+			var result = new List<Activity>();
 
-            foreach (var activity in activitiesList)
+			if (AdvancedSearchOptions.Date)
+			{
+				result = result.Union(SearchByDate(e.NewTextValue.ToLower())).ToList();
+			}
+			if (AdvancedSearchOptions.Place)
+			{
+				result = result.Union(SearchByPlace(e.NewTextValue.ToLower())).ToList();
+			}
+			if (AdvancedSearchOptions.Text)
+			{
+				result = result.Union(SearchByText(e.NewTextValue.ToLower())).ToList();
+			}
+			if (AdvancedSearchOptions.Title)
+			{
+				result = result.Union(SearchByTitle(e.NewTextValue.ToLower())).ToList();
+			}
+
+
+			foreach (var activity in result)
                 _activities.Add(activity);
         }
 
@@ -57,6 +72,38 @@ namespace EventsPbMobile.Pages
             var eventdetails = new EventDepartamentDetails(eventtitle, activity) {BindingContext = activity.Event};
             await Navigation.PushAsync(eventdetails);
         }
+
+		async void AdvancedSearch_Clicked(object sender, System.EventArgs e)
+		{
+			await Navigation.PushModalAsync(new AdvancedSearch());
+		}
+
+		private ICollection<Activity> SearchByDate(string searchstring)
+		{
+			return _activitiesQueryable.Where(
+				x => x.StartHour.Date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture).ToLower().Contains(searchstring) || 
+				x.StartHour.Date.DayOfWeek.ToString().ToLower().Contains(searchstring) ||
+				x.StartHour.Date.ToString("MMMM").ToLower().Contains(searchstring)
+			).Distinct().ToList();
+		}
+
+		private ICollection<Activity> SearchByPlace(string searchstring)
+		{
+			return _activitiesQueryable.Where(
+				x => x.Place.Name.ToLower().Contains(searchstring)).Distinct().ToList();
+		}
+
+		private ICollection<Activity> SearchByText(string searchstring)
+		{
+			return _activitiesQueryable.Where(
+				x =>x.Text.ToLower().Contains(searchstring)).Distinct().ToList();
+		}
+
+		private ICollection<Activity> SearchByTitle(string searchstring)
+		{
+			return _activitiesQueryable.Where(
+				x => x.Title.ToLower().Contains(searchstring)).Distinct().ToList();
+		}
 
     }
 }

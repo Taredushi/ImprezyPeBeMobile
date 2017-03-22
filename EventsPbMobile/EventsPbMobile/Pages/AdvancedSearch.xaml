@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="EventsPbMobile.AdvancedSearch" BackgroundColor="#eae5d7">
+	<ContentPage.Content>
+		<Grid Padding="14,8,14,8">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="2"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="2"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="2"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<StackLayout Grid.Column="0" Grid.Row="0" VerticalOptions="Center">
+				<Label Text="Wyszukiwanie po dacie" FontSize="20" TextColor="#676767"/>
+			</StackLayout>
+			<StackLayout Margin="-14,0,-14,0" Grid.Row="1" Grid.ColumnSpan="2" HeightRequest="2" BackgroundColor="#2d7a3a"></StackLayout>
+			<StackLayout Grid.Column="0" Grid.Row="2" VerticalOptions="Center">
+				<Label Text="Wyszukiwanie po miejscu" FontSize="20" TextColor="#676767"/>
+			</StackLayout>
+			<StackLayout Margin="-14,0,-14,0" Grid.Row="3" Grid.ColumnSpan="2" HeightRequest="2" BackgroundColor="#2d7a3a"></StackLayout>
+			<StackLayout Grid.Column="0" Grid.Row="4" VerticalOptions="Center">
+				<Label Text="Wyszukiwanie po opisie" FontSize="20" TextColor="#676767"/>
+			</StackLayout>
+			<StackLayout Margin="-14,0,-14,0" Grid.Row="5" Grid.ColumnSpan="2" HeightRequest="2" BackgroundColor="#2d7a3a"></StackLayout>
+			<StackLayout Grid.Column="0" Grid.Row="6" VerticalOptions="Center">
+				<Label Text="Wyszukiwanie po tytule" FontSize="20" TextColor="#676767"/>
+			</StackLayout>
+			<StackLayout Grid.Column="1" Grid.Row="0" VerticalOptions="Center">
+				<Switch Grid.Row="0" x:Name="DateSwitch"/>
+			</StackLayout>
+			<StackLayout Grid.Column="1" Grid.Row="2" VerticalOptions="Center"> 
+				<Switch Grid.Row="1" x:Name="PlaceSwitch" />
+			</StackLayout>
+			<StackLayout Grid.Column="1" Grid.Row="4" VerticalOptions="Center">
+				<Switch Grid.Row="2" x:Name="TextSwitch" />
+			</StackLayout>
+			<StackLayout Grid.Column="1" Grid.Row="6" VerticalOptions="Center">
+				<Switch Grid.Row="3" x:Name="TitleSwitch" />
+			</StackLayout>
+			<Button Grid.Row="7" Grid.ColumnSpan="2" Clicked="BackButton_Clicked" Text="Zapisz" TextColor="White" BackgroundColor="#2d7a3a"/>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

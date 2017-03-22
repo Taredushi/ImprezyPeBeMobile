@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.Help"
@@ -13,7 +13,7 @@
 				<ColumnDefinition  Width="Auto"/>
 			</Grid.ColumnDefinitions>-->
             <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Przeszukuj program imprez!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Label  Text="Przeszukuj program imprez!" FontSize="25" TextColor="White" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <Image Grid.Row = "1" Source="szukaj.png" HorizontalOptions="Fill" VerticalOptions="Center" />
         </Grid>
@@ -25,7 +25,7 @@
                 <RowDefinition  Height="70*"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Ustawiaj filtry wyszukiwania!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Label  Text="Ustawiaj filtry wyszukiwania!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <Image Grid.Row = "1" Source="filtry.png" HorizontalOptions="Fill" VerticalOptions="Center" />
         </Grid>
@@ -40,7 +40,7 @@
 			<ColumnDefinition  Width="Auto"/>
 		</Grid.ColumnDefinitions>-->
             <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Ustawiaj powiadomienia przypominające o imprezie!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Label  Text="Ustawiaj powiadomienia przypominające o imprezie!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <Image Grid.Row = "1" Source="powiadomienia.png" HorizontalOptions="Fill" VerticalOptions="Center" />
         </Grid>
@@ -52,7 +52,7 @@
                 <RowDefinition  Height="70*"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Używaj nawigacji z Google Maps aby dotrzeć na miejsce imprezy!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Label  Text="Używaj nawigacji z Google Maps aby dotrzeć na miejsce imprezy!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <Image Grid.Row = "1" Source="nawigacja.png" HorizontalOptions="Fill" VerticalOptions="Center" />
         </Grid>
@@ -64,7 +64,7 @@
                 <RowDefinition  Height="70*"/>
             </Grid.RowDefinitions>
             <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Przeglądaj program imprezy!" FontSize="30" TextColor="White" HorizontalTextAlignment="Center"/>
+                <Label  Text="Przeglądaj program imprezy!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
             </StackLayout>
             <Image Grid.Row = "1" Source="program.png" HorizontalOptions="Fill" VerticalOptions="Center" />
         </Grid>

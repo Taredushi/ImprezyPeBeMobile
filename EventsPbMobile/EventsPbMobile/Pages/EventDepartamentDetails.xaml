@@ -1,4 +1,4 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="EventsPbMobile.Pages.EventDepartamentDetails"
@@ -20,10 +20,16 @@
                 </StackLayout>
 
                 <StackLayout Grid.Row="3" Padding="14,8,14,8" Margin="0,-6,0,0">
+					<Label Text="Start:" TextColor="#676767" FontSize="20"
+                           Margin="7,5,7,0" />
                     <Label x:Name="StartHourLabel" TextColor="#676767" FontSize="18"
-                           Margin="7,10,7,5" />
+                           Margin="25,0,7,5" />
+                    <Label Text="Koniec:" TextColor="#676767" FontSize="20"
+                           Margin="7,5,7,0" />
+					<Label x:Name="EndHourLabel" TextColor="#676767" FontSize="18"
+                           Margin="25,0,7,5" />
                     <Label x:Name="PlaceLabel" TextColor="#676767" FontSize="25"
-                           Margin="7,0,7,10" />
+                           Margin="7,10,7,10" />
                     <StackLayout BackgroundColor="#1E5327" HeightRequest="3" Margin="-14,0,-14,0" />
                     <Label x:Name="DescriptionLabel" TextColor="#676767" FontSize="16"
                            Margin="7,10,7,10" />

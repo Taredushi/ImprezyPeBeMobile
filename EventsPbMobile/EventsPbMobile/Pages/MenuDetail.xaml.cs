@@ -42,12 +42,6 @@ namespace EventsPbMobile.Pages
                 },
                 new Models.MenuItem()
                 {
-                    Title = "Przydatne Linki",
-                    IconSource = "ic_link_white_36dp.png",
-                    TargetType = typeof(UsefulLinks)
-                },
-                new Models.MenuItem()
-                {
                     Title = "Informator",
                     IconSource = "ic_picture_as_pdf_white_36dp.png",
                     TargetType = typeof(Informer)

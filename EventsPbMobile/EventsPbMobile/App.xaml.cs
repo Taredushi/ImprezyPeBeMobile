@@ -13,6 +13,10 @@ namespace EventsPbMobile
         public App()
         {
             InitializeComponent();
+			AdvancedSearchOptions.Date = true;
+			AdvancedSearchOptions.Place = true;
+			AdvancedSearchOptions.Title = true;
+			AdvancedSearchOptions.Text = true;
             _dataAccess = new EventsDataAccess();
             InitNotificationSettings();
             CheckIfFirstLauch();

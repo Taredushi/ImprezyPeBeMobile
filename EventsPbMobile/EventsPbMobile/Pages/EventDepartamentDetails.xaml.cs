@@ -18,6 +18,7 @@ namespace EventsPbMobile.Pages
             TitleLabel.Text = _activity.Title;
             PlaceLabel.Text = _activity.Place.Name;
             StartHourLabel.Text = _activity.StartHour.ToString("f");
+			EndHourLabel.Text = _activity.EndHour.ToString("f");
             DescriptionLabel.Text = _activity.Text;
 
             InitMap();

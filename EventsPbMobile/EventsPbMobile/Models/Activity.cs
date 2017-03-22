@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Realms;
 
 namespace EventsPbMobile.Models
@@ -50,7 +51,13 @@ namespace EventsPbMobile.Models
         public int EventID { get; set; }
         public Event Event { get; set; }
 
+		[Ignored]
+		public string TitleShort => Title.Length >= 20 ? Title.Substring(0, 20) + "..." : Title;
         [Ignored]
         public string PlaceAndDate => Place.Name + ", " + StartHour.ToString("f");
+		[Ignored]
+		public string DateShort => StartHour.Date.ToString("dd/M/yyyy", CultureInfo.InvariantCulture);
+		[Ignored]
+		public string TextShort => Text.Length >= 40 ? Text.Substring(0, 40)+ "..." : Text;
     }
 }
