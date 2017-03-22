@@ -19,7 +19,7 @@ namespace EventsPbMobile.Pages
     {
         public Informer()
         {
-            InitializeComponent();
+           // InitializeComponent();
             LoadTestFile();
             OpenFileInBrowser();
         }

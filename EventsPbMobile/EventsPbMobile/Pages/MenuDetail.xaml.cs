@@ -73,6 +73,7 @@ namespace EventsPbMobile.Pages
             };
 
             MenuListView.ItemsSource = masterPageItems;
+            
         }
     }
 }

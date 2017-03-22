@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using EventsPbMobile.Classes;
 using Xamarin.Forms;
 
@@ -91,6 +92,7 @@ namespace EventsPbMobile.Pages
             });
 
         }
+
         private class NotificationTime
         {
             public NotificationTime(string notifytime, bool selected)
@@ -98,6 +100,7 @@ namespace EventsPbMobile.Pages
                 NotifyTime = notifytime;
                 Selected = selected;
             }
+
             public string NotifyTime { get; set; }
             public bool Selected { get; set; }
         }

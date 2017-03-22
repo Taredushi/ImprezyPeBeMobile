@@ -66,7 +66,7 @@ namespace EventsPbMobile.Pages
             if (e == null || ((ListView) sender).SelectedItem == null) return;
 
             var activity = e.SelectedItem as Activity;
-            var place = _dataAccess.GetPlace(activity.PlaceID);
+
 
             await Navigation.PushAsync(new EventDepartamentDetails(Title, activity));
 

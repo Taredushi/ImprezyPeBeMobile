@@ -302,6 +302,7 @@
     <AndroidResource Include="Resources\drawable\powiadomienia.png" />
     <AndroidResource Include="Resources\drawable\program.png" />
     <AndroidResource Include="Resources\drawable\szukaj.png" />
+    <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
