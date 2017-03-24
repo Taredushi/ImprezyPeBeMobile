@@ -9,7 +9,7 @@ using Debug = System.Diagnostics.Debug;
 
 namespace EventsPbMobile.Droid
 {
-    [Activity(Label = "Imprezy na Politechnice", Icon = "@drawable/icon", Theme = "@style/MainTheme",
+    [Activity(Label = "Imprezy na Politechnice", Icon = "@drawable/logo", Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {

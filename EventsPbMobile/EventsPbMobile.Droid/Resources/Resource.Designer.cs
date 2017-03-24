@@ -2467,7 +2467,7 @@ namespace EventsPbMobile.Droid
 			public const int ic_tv_light = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int icon = 2130837707;
+			public const int logo = 2130837707;
 			
 			// aapt resource value: 0x7f0200cc
 			public const int mr_dialog_material_background_dark = 2130837708;

@@ -210,12 +210,6 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +297,10 @@
     <AndroidResource Include="Resources\drawable\program.png" />
     <AndroidResource Include="Resources\drawable\szukaj.png" />
     <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\logo.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

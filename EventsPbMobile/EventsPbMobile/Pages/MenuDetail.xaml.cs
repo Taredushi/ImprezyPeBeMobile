@@ -24,7 +24,7 @@ namespace EventsPbMobile.Pages
             {
                 new Models.MenuItem()
                 {
-                    Title = "Strona Główna",
+                    Title = "Imprezy",
                     IconSource = "ic_home_white_36dp.png",
                     TargetType = typeof(MainPage)
                 },
