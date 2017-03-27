@@ -1,73 +1,188 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventsPbMobile.Pages.Help"
-             Title="Pomoc">
-    <ContentPage>
-        <Grid BackgroundColor="#2d7a3a">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="30*"/>
-                <RowDefinition  Height="70*"/>
-            </Grid.RowDefinitions>
-            <!--<Grid.ColumnDefinitions>
-				<ColumnDefinition  Width="Auto"/>
-			</Grid.ColumnDefinitions>-->
-            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Przeszukuj program imprez!" FontSize="25" TextColor="White" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Grid.Row = "1" Source="szukaj.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-        </Grid>
-    </ContentPage>
-    <ContentPage>
-        <Grid BackgroundColor="#2d7a3a">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="30*"/>
-                <RowDefinition  Height="70*"/>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Ustawiaj filtry wyszukiwania!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Grid.Row = "1" Source="filtry.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-        </Grid>
-    </ContentPage>
-    <ContentPage>
-        <Grid BackgroundColor="#2d7a3a">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="30*"/>
-                <RowDefinition  Height="70*"/>
-            </Grid.RowDefinitions>
-            <!--<Grid.ColumnDefinitions>
-			<ColumnDefinition  Width="Auto"/>
-		</Grid.ColumnDefinitions>-->
-            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Ustawiaj powiadomienia przypominające o imprezie!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Grid.Row = "1" Source="powiadomienia.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-        </Grid>
-    </ContentPage>
-    <ContentPage>
-        <Grid BackgroundColor="#2d7a3a">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="30*"/>
-                <RowDefinition  Height="70*"/>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Używaj nawigacji z Google Maps aby dotrzeć na miejsce imprezy!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Grid.Row = "1" Source="nawigacja.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-        </Grid>
-    </ContentPage>
-    <ContentPage>
-        <Grid BackgroundColor="#2d7a3a">
-            <Grid.RowDefinitions>
-                <RowDefinition  Height="30*"/>
-                <RowDefinition  Height="70*"/>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Column="0" Grid.Row = "0" VerticalOptions="Center" Padding="14,8,14,8">
-                <Label  Text="Przeglądaj program imprezy!" FontSize="25"  TextColor="White" HorizontalTextAlignment="Center"/>
-            </StackLayout>
-            <Image Grid.Row = "1" Source="program.png" HorizontalOptions="Fill" VerticalOptions="Center" />
-        </Grid>
-    </ContentPage>
+<?xml version="1.0" encoding="utf-8"?>
 
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="EventsPbMobile.Pages.Help"
+              Title="Pomoc">
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_checked.png" Grid.Column="0" />
+                <Image Source="ind_unchecked.png" Grid.Column="1" />
+                <Image Source="ind_unchecked.png" Grid.Column="2" />
+                <Image Source="ind_unchecked.png" Grid.Column="3" />
+                <Image Source="ind_unchecked.png" Grid.Column="4" />
+                <Image Source="ind_unchecked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Przeszukuj program imprez!" FontSize="25" TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Image Grid.Row="2" Source="szukaj.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_unchecked.png" Grid.Column="0" />
+                <Image Source="ind_checked.png" Grid.Column="1" />
+                <Image Source="ind_unchecked.png" Grid.Column="2" />
+                <Image Source="ind_unchecked.png" Grid.Column="3" />
+                <Image Source="ind_unchecked.png" Grid.Column="4" />
+                <Image Source="ind_unchecked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Ustawiaj filtry wyszukiwania!" FontSize="25" TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Image Grid.Row="2" Source="filtry.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_unchecked.png" Grid.Column="0" />
+                <Image Source="ind_unchecked.png" Grid.Column="1" />
+                <Image Source="ind_checked.png" Grid.Column="2" />
+                <Image Source="ind_unchecked.png" Grid.Column="3" />
+                <Image Source="ind_unchecked.png" Grid.Column="4" />
+                <Image Source="ind_unchecked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Ustawiaj powiadomienia przypominające o imprezie!" FontSize="25" TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Image Grid.Row="2" Source="powiadomienia.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_unchecked.png" Grid.Column="0" />
+                <Image Source="ind_unchecked.png" Grid.Column="1" />
+                <Image Source="ind_unchecked.png" Grid.Column="2" />
+                <Image Source="ind_checked.png" Grid.Column="3" />
+                <Image Source="ind_unchecked.png" Grid.Column="4" />
+                <Image Source="ind_unchecked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Używaj nawigacji z Google Maps aby dotrzeć na miejsce imprezy!" FontSize="25"
+                       TextColor="White" HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Image Grid.Row="2" Source="nawigacja.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_unchecked.png" Grid.Column="0" />
+                <Image Source="ind_unchecked.png" Grid.Column="1" />
+                <Image Source="ind_unchecked.png" Grid.Column="2" />
+                <Image Source="ind_unchecked.png" Grid.Column="3" />
+                <Image Source="ind_checked.png" Grid.Column="4" />
+                <Image Source="ind_unchecked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Przeglądaj program imprezy!" FontSize="25" TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Image Grid.Row="2" Source="program.png" HorizontalOptions="Fill" VerticalOptions="Center" />
+        </Grid>
+    </ContentPage>
+    <ContentPage>
+        <Grid BackgroundColor="#2d7a3a">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="70*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Margin="20,5" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="ind_unchecked.png" Grid.Column="0" />
+                <Image Source="ind_unchecked.png" Grid.Column="1" />
+                <Image Source="ind_unchecked.png" Grid.Column="2" />
+                <Image Source="ind_unchecked.png" Grid.Column="3" />
+                <Image Source="ind_unchecked.png" Grid.Column="4" />
+                <Image Source="ind_checked.png" Grid.Column="5" />
+            </Grid>
+            <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Center" Padding="14,8,14,8">
+                <Label Text="Zacznij korzystać z aplikacji już teraz!" FontSize="25" TextColor="White"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+            <Button Grid.Row="2" Text="PRZEJDŹ DO APLIKACJI" VerticalOptions="Center" Clicked="Button_GoToApplicationClicked" />
+        </Grid>
+    </ContentPage>
 </CarouselPage>

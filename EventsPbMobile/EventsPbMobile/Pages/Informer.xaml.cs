@@ -34,7 +34,7 @@ namespace EventsPbMobile.Pages
 
         private void LoadTestFile()
         {
-            DependencyService.Get<IDownloadManager>().Download("http://pb.edu.pl/wp-content/uploads/2013/04/informator-2015-2016.pdf", "informatorpb.pdf");
+            DependencyService.Get<IDownloadManager>().Download("http://pb.edu.pl/wp-content/uploads/2013/04/pdf_compresor_2017_01_17_WWW_1_informator-2017-2018_MW-min.pdf", "informatorpb.pdf");
         }
 
         private void OpenFileInBrowser()

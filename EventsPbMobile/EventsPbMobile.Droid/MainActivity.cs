@@ -29,6 +29,7 @@ namespace EventsPbMobile.Droid
             App.ScreenWidth = (width - 0.5f) / density;
             App.ScreenHeight = (height - 0.5f) / density;
             App.Init(new AndroidNotification());
+            
             LoadApplication(new App());
         }
 
