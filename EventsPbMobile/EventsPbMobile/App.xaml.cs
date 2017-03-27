@@ -1,6 +1,9 @@
 ﻿using EventsPbMobile.Classes;
 using EventsPbMobile.Pages;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Application = Xamarin.Forms.Application;
 
 namespace EventsPbMobile
 {
@@ -13,7 +16,11 @@ namespace EventsPbMobile
         public App()
         {
             InitializeComponent();
-			AdvancedSearchOptions.Date = true;
+
+            var page = new Xamarin.Forms.TabbedPage();
+            page.On<Android>().SetIsSwipePagingEnabled(false);
+
+            AdvancedSearchOptions.Date = true;
 			AdvancedSearchOptions.Place = true;
 			AdvancedSearchOptions.Title = true;
 			AdvancedSearchOptions.Text = true;

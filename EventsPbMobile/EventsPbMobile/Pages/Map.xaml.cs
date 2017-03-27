@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.Xaml;
 
 namespace EventsPbMobile.Pages
@@ -11,6 +13,8 @@ namespace EventsPbMobile.Pages
         public Map()
         {
             InitializeComponent();
+            //this!
+            Xamarin.Forms.PlatformConfiguration.AndroidSpecific.TabbedPage.DisableSwipePaging(On<Android>());
             InitKampusMap();
             InitHajnowkaMap();
         }
@@ -69,6 +73,11 @@ namespace EventsPbMobile.Pages
             Navigation.PushAsync(new MainPage());
             Navigation.RemovePage(this);
             return true;
+        }
+
+        private void TestButonClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

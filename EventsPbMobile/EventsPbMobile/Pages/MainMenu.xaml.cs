@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 using MenuItem = EventsPbMobile.Models.MenuItem;
 
@@ -27,6 +28,7 @@ namespace EventsPbMobile.Pages
                 Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
                // MenuDetail.ListView.SelectedItem = null;
                 IsPresented = false;
+                Debug.WriteLine(Application.Current.MainPage.Title);
             }
         }
 
