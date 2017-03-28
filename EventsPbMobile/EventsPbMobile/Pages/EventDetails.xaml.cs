@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Controls;
@@ -26,6 +28,7 @@ namespace EventsPbMobile.Pages
             InitFavButton();
             InitEventMap();
             GenerateContent();
+            
         }
 
         private async void Counter()
@@ -132,6 +135,8 @@ namespace EventsPbMobile.Pages
                     MapSpan.FromCenterAndRadius(
                         new Position(53.118293, 23.149717), Distance.FromMeters(300)));
             }
+
+            
         }
 
         private void GenerateContent()
@@ -147,7 +152,7 @@ namespace EventsPbMobile.Pages
 
         private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY >= this.ScrollView.ContentSize.Height - MapStack.Height - 100)
+            if (e.ScrollY >= this.ScrollView.ContentSize.Height - this.ScrollView.Height)
             {
                 this.ScrollView.InputTransparent = true;
             }

@@ -41,7 +41,7 @@ namespace EventsPbMobile.Pages
 
         private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY >= this.ScrollView.ContentSize.Height - MapStack.Height - 100)
+            if (e.ScrollY >= this.ScrollView.ContentSize.Height - this.ScrollView.Height)
             {
                 this.ScrollView.InputTransparent = true;
             }
