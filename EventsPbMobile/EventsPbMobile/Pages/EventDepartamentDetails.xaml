@@ -5,7 +5,7 @@
              Title="Szczegóły" BackgroundColor="#eae5d7">
 
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView x:Name="ScrollView" Scrolled="ScrollView_OnScrolled">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -35,7 +35,7 @@
                            Margin="7,10,7,10" />
                 </StackLayout>
 
-                <StackLayout HeightRequest="350" Grid.Row="5">
+                <StackLayout x:Name="MapStack" HeightRequest="350" Grid.Row="5">
                     <maps:Map
                         x:Name="MyMap" IsShowingUser="true" MapType="Hybrid" />
                 </StackLayout>

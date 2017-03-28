@@ -4011,11 +4011,14 @@ namespace EventsPbMobile.Droid
 			// aapt resource value: 0x7f0b0173
 			public const int MainTheme_Base = 2131427699;
 			
-			// aapt resource value: 0x7f0b0175
-			public const int MyTheme_Base = 2131427701;
-			
 			// aapt resource value: 0x7f0b0176
-			public const int MyTheme_Splash = 2131427702;
+			public const int MyTheme_Base = 2131427702;
+			
+			// aapt resource value: 0x7f0b0177
+			public const int MyTheme_Splash = 2131427703;
+			
+			// aapt resource value: 0x7f0b0175
+			public const int NoShadowButton = 2131427701;
 			
 			// aapt resource value: 0x7f0b0032
 			public const int Platform_AppCompat = 2131427378;

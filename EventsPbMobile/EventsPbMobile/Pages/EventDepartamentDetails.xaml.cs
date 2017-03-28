@@ -38,5 +38,17 @@ namespace EventsPbMobile.Pages
                 MapSpan.FromCenterAndRadius(
                     new Position(place.Latitude, place.Longitude), Distance.FromMeters(300)));
         }
+
+        private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
+        {
+            if (e.ScrollY >= this.ScrollView.ContentSize.Height - this.ScrollView.Height)
+            {
+                this.ScrollView.InputTransparent = true;
+            }
+            else
+            {
+                this.ScrollView.InputTransparent = false;
+            }
+        }
     }
 }
