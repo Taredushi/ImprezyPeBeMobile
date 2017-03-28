@@ -304,6 +304,7 @@
     <AndroidResource Include="Resources\drawable\ind_checked.png" />
     <AndroidResource Include="Resources\drawable\splash_screen.png" />
     <AndroidResource Include="Resources\drawable\top_menu.png" />
+    <AndroidResource Include="Resources\drawable\kampus.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

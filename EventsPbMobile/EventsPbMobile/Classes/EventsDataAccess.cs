@@ -247,8 +247,8 @@ namespace EventsPbMobile.Classes
                     var stng = new Settings
                     {
                         SettingsId = 1,
-                        NotificationsEnabled = false,
-                        Notify1DBefore = false,
+                        NotificationsEnabled = true,
+                        Notify1DBefore = true,
                         Notify1HBefore = false,
                         Notify2DBefore = false,
                         LastRefreshDate = DateTimeOffset.Now.AddDays(-2),
