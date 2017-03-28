@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Models;
@@ -112,7 +113,7 @@ namespace EventsPbMobile.Classes
 
                 var placesSetToDelete = db.All<Place>();
 
-                foreach (var place in placesSetToDelete)
+                foreach (var place in placesSetToDelete) 
                     if (items.All(x => x.PlaceId != place.PlaceId))
                         db.Remove(place);
 

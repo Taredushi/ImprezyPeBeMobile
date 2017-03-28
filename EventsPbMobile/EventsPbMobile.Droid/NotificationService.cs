@@ -52,8 +52,6 @@ namespace EventsPbMobile.Droid
 
             var runtime = DateTime.UtcNow.Subtract(startTime);
             Log.Debug(TAG, $"Simple Service destroyed at {DateTime.UtcNow} after running for {runtime:c}.");
-            Device.BeginInvokeOnMainThread(
-                () => { Toast.MakeText(Forms.Context, "Service nie dziala", ToastLength.Long).Show(); });
             base.OnDestroy();
         }
 

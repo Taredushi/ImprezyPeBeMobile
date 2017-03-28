@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\AlarmNotification.cs" />
     <Compile Include="Classes\ApiConnection.cs" />
     <Compile Include="Classes\EventsDataAccess.cs" />
     <Compile Include="Classes\IDownloadManager.cs" />

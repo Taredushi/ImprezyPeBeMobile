@@ -9,7 +9,8 @@ namespace EventsPbMobile.Classes
 {
     public interface INotification
     {
-        void ShowNotification(string title, string text);
+        void SetAlarm(string title, string text, int eventId, DateTimeOffset eventStartDate);
+        void CancelAlarm(int eventId);
         void StartService();
     }
 }

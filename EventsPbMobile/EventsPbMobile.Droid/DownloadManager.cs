@@ -19,6 +19,8 @@ namespace EventsPbMobile.Droid
 {
     public class DownloadManager :IDownloadManager
     {
+        private long _fileId;
+        private Android.App.DownloadManager dm;
         public DownloadManager()
         {
             
@@ -32,14 +34,25 @@ namespace EventsPbMobile.Droid
             var file = new File(Path.Combine(downloadpath, filename));
             if (file.Exists())
             {
-                Toast.MakeText(Forms.Context, "Istnieje ju¿ plik", ToastLength.Short).Show();
                 return;
             }
             r.SetDestinationInExternalPublicDir(Android.OS.Environment.DirectoryDownloads, filename);
             r.AllowScanningByMediaScanner();
             r.SetNotificationVisibility(DownloadVisibility.VisibleNotifyCompleted);
-            var dm = (Android.App.DownloadManager)Forms.Context.GetSystemService(Context.DownloadService);
-            dm.Enqueue(r);
+            dm = (Android.App.DownloadManager)Forms.Context.GetSystemService(Context.DownloadService);
+            _fileId = dm.Enqueue(r);
+            ProgressDialog dialog = new ProgressDialog(Forms.Context);
+            dialog.Create();
+            dialog.SetProgressStyle(ProgressDialogStyle.Spinner);
+            dialog.SetMessage("Pobieranie pliku");
+            dialog.Show();
+            dialog.Cancel();
+
+        }
+
+        public void OpenDownloadedFile()
+        {
+            
         }
     }
 }

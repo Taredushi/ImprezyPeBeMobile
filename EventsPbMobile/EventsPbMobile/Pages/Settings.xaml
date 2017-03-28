@@ -30,7 +30,7 @@
                 </StackLayout>
 
             </Grid>
-            <ListView x:Name="NotificationTimesListView" IsVisible="False" ItemSelected="ListViewItemSwitchChanged"
+            <ListView x:Name="NotificationTimesListView" IsVisible="False"
                       HeightRequest="60" Grid.Row="1" Grid.Column="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>

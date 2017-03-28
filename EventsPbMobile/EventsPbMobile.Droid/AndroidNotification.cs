@@ -1,41 +1,43 @@
 using System;
-using System.Diagnostics;
+using System.Threading;
 using Android.App;
 using Android.Content;
-using Android.Runtime;
 using EventsPbMobile.Classes;
-using Java.Lang;
+using EventsPbMobile.Droid;
 using Xamarin.Forms;
-using Thread = System.Threading.Thread;
+
+[assembly: Dependency(typeof(AndroidNotification))]
 
 namespace EventsPbMobile.Droid
 {
-    public class AndroidNotification:INotification
+    public class AndroidNotification : INotification
     {
-        public void ShowNotification(string title, string text)
+        public void SetAlarm(string message, string title, int eventId, DateTimeOffset eventStartDate)
         {
-            var builder = new Notification.Builder(Forms.Context);
-            builder.SetContentTitle(title);
-            builder.SetContentText(text);
-            builder.SetSmallIcon(Resource.Drawable.abc_btn_default_mtrl_shape);
+            var alarmIntent = new Intent(Forms.Context, typeof(AlarmReceiver));
+            alarmIntent.PutExtra("message", message);
+            alarmIntent.PutExtra("title", title);
+            var pendingIntent = PendingIntent.GetBroadcast(Forms.Context, eventId, alarmIntent,
+                PendingIntentFlags.UpdateCurrent);
+            var alarmManager = (AlarmManager) Forms.Context.GetSystemService(Context.AlarmService);
 
-            var notification = builder.Build();
-
-            var notificationManager = Forms.Context.GetSystemService(Context.NotificationService) as NotificationManager;
-
-            const int notificationId = 0;
-
-            notificationManager.Notify(notificationId,notification);
-
+            alarmManager.Set(AlarmType.RtcWakeup, eventStartDate.ToUnixTimeMilliseconds(), pendingIntent);
+        }
+        public void CancelAlarm(int eventId)
+        {
+            var intent = new Intent(Forms.Context, typeof(AlarmReceiver));
+            var sender = PendingIntent.GetBroadcast(Forms.Context, eventId, intent, 0);
+            var alarmManager = (AlarmManager)Forms.Context.GetSystemService(Context.AlarmService);
+            alarmManager.Cancel(sender);
         }
 
         public void StartService()
-        {            
-            Intent intent = new Intent(Forms.Context,typeof(NotificationService));
-            Thread t = new Thread(() => {
-                Forms.Context.StartService(intent);
-            });
+        {
+            var intent = new Intent(Forms.Context, typeof(NotificationService));
+            var t = new Thread(() => { Forms.Context.StartService(intent); });
             t.Start();
         }
+
+       
     }
 }

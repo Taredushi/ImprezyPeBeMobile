@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using EventsPbMobile.Classes;
+using EventsPbMobile.Models;
 using Xamarin.Forms;
 
 namespace EventsPbMobile.Pages
@@ -15,13 +16,14 @@ namespace EventsPbMobile.Pages
         };
 
         private Models.Settings _settings;
-        private EventsDataAccess db;
+        private readonly EventsDataAccess _db;
+        private IEnumerable<Event> _events;
         public Settings()
         {
             InitializeComponent();
-            db = new EventsDataAccess();
+            _db = new EventsDataAccess();
             InitializeSettings();
-            NotificationLabelInit();
+            _events = _db.GetEventsWithSetReminder();
             NotificationTimesListView.ItemsSource = _times;
         }
 
@@ -34,7 +36,7 @@ namespace EventsPbMobile.Pages
 
         private void InitializeSettings()
         {
-            _settings = db.GetSettings();
+            _settings = _db.GetSettings();
 
             SettingsEnabled.IsToggled = _settings.NotificationsEnabled;
             NotificationTimesListView.IsVisible = _settings.NotificationsEnabled;
@@ -45,14 +47,6 @@ namespace EventsPbMobile.Pages
 
         }
 
-        private void NotificationLabelInit()
-        {
-            /*NotificationLabel.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() => { Navigation.PushAsync(new NotificationSettings()); })
-            });*/
-        }
-
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
@@ -61,16 +55,11 @@ namespace EventsPbMobile.Pages
             return true;
         }
 
-        private void ListViewItemSwitchChanged(object sender, SelectedItemChangedEventArgs e)
-        {
-           
-        }
-
         private void SelectionChange(object sender, ToggledEventArgs e)
         {
-            var settings = db.GetSettings();
+            var settings = _db.GetSettings();
 
-            var database = db.GetDbInstance();
+            var database = _db.GetDbInstance();
 
             database.Write(() =>
             {
@@ -79,18 +68,34 @@ namespace EventsPbMobile.Pages
                 settings.Notify2DBefore = _times[2].Selected;
 
             });
+
+            UpdateAlarms();
         }
 
         private void NotificationSwitch(object sender, ToggledEventArgs e)
         {
             NotificationTimesListView.IsVisible = e.Value;
-            var database = db.GetDbInstance();
+            var database = _db.GetDbInstance();
 
             database.Write(() =>
             {
                 _settings.NotificationsEnabled = e.Value;
             });
 
+            UpdateAlarms();
+
+        }
+
+        private void UpdateAlarms()
+        {
+            if (_settings.NotificationsEnabled)
+            {
+                AlarmNotification.SetAlarms();
+            }
+            else
+            {
+                AlarmNotification.DisaBleAlarms();
+            }
         }
 
         private class NotificationTime

@@ -19,7 +19,6 @@ namespace EventsPbMobile.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
             var width = Resources.DisplayMetrics.WidthPixels;
             var height = Resources.DisplayMetrics.HeightPixels;
             var density = Resources.DisplayMetrics.Density;

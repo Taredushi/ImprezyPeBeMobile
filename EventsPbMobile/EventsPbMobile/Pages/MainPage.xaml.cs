@@ -15,7 +15,7 @@ namespace EventsPbMobile.Pages
         public MainPage()
         {
             InitializeComponent();
-            App.Notification.StartService();
+           // App.Notification.StartService();
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
             // _dataAccess.DeleteDatabase();

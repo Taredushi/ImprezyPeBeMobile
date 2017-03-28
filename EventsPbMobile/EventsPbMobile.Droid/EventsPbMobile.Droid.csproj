@@ -227,8 +227,6 @@
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
     <AndroidResource Include="Resources\drawable\transblack.png" />
-    <AndroidResource Include="Resources\drawable\cnk.jpg" />
-    <AndroidResource Include="Resources\drawable\splash_screen.jpg" />
     <AndroidResource Include="Resources\drawable\splash.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_home_white_36dp.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\ic_home_white_36dp.png" />
@@ -304,6 +302,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
     <AndroidResource Include="Resources\drawable\ind_unchecked.png" />
     <AndroidResource Include="Resources\drawable\ind_checked.png" />
+    <AndroidResource Include="Resources\drawable\splash_screen.png" />
+    <AndroidResource Include="Resources\drawable\top_menu.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
