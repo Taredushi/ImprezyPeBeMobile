@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Controls;
@@ -28,7 +25,6 @@ namespace EventsPbMobile.Pages
             InitFavButton();
             InitEventMap();
             GenerateContent();
-            
         }
 
         private async void Counter()
@@ -75,6 +71,7 @@ namespace EventsPbMobile.Pages
 
                 _dataAccess.SaveEventWithSetReminder(_event.EventId);
                 InitFavButton();
+                AlarmNotification.SetAlarms();
             });
 
             _disableNotificationItem = new ToolbarItem("Remind", "ic_notifications_off_white_36dp.png", async () =>
@@ -86,6 +83,7 @@ namespace EventsPbMobile.Pages
 
                 _dataAccess.RemoveEventWithSetReminder(_event.EventId);
                 InitFavButton();
+                AlarmNotification.SetAlarms();
             });
         }
 
@@ -135,15 +133,13 @@ namespace EventsPbMobile.Pages
                     MapSpan.FromCenterAndRadius(
                         new Position(53.118293, 23.149717), Distance.FromMeters(300)));
             }
-
-            
         }
 
         private void GenerateContent()
         {
             foreach (var act in _event.Activities)
             {
-                var separator = new Label(){HeightRequest = 2, BackgroundColor = Xamarin.Forms.Color.FromHex("#2d7a3a") };
+                var separator = new Label {HeightRequest = 2, BackgroundColor = Color.FromHex("#2d7a3a")};
                 var btn = new ActivityBtn(act);
                 ContentStackLayout.Children.Add(btn);
                 ContentStackLayout.Children.Add(separator);
@@ -152,14 +148,10 @@ namespace EventsPbMobile.Pages
 
         private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY >= this.ScrollView.ContentSize.Height - this.ScrollView.Height)
-            {
-                this.ScrollView.InputTransparent = true;
-            }
+            if (e.ScrollY >= ScrollView.ContentSize.Height - ScrollView.Height)
+                ScrollView.InputTransparent = true;
             else
-            {
-                this.ScrollView.InputTransparent = false;
-            }
+                ScrollView.InputTransparent = false;
         }
     }
 }

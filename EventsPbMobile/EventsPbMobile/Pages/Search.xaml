@@ -1,59 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.Search" BackgroundColor="#eae5d7">
-    <ScrollView>
-        <StackLayout>
-            <StackLayout Padding="14,4,14,4" BackgroundColor="#2d7a3a">
-                <Entry
-                    Placeholder="Wyszukaj w programie"
-                    Text="{Binding Path=SearchText}"
-                    TextChanged="OnTextChanged" PlaceholderColor="#E0E0E0" TextColor="White"/>
+    <ListView x:Name="SearchedActivities" ItemSelected="OnTappedSearchedActivity" HasUnevenRows="True"
+              SeparatorColor="#1E5327">
+        <ListView.Header>
+            <StackLayout>
+                <StackLayout Padding="14,4,14,4" BackgroundColor="#2d7a3a">
+                    <Entry
+                        Placeholder="Wyszukaj w programie"
+                        Text="{Binding Path=SearchText}"
+                        TextChanged="OnTextChanged" PlaceholderColor="#E0E0E0" TextColor="White" />
+                </StackLayout>
+                <StackLayout BackgroundColor="#eae5d7" HeightRequest="1" Margin="-14,-3,-14,-3" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Clicked="AdvancedSearch_Clicked"
+                            Margin="-4,-12,-4,0"
+                            BackgroundColor="#2d7a3a" BorderColor="#2d7a3a" Text="Filtry wyszukiwania"
+                            TextColor="White" HorizontalOptions="FillAndExpand" />
+                </Grid>
             </StackLayout>
-            <StackLayout BackgroundColor="#eae5d7" HeightRequest="1" Margin="-14,-3,-14,-3" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Clicked = "AdvancedSearch_Clicked"
-						Margin="-4,-12,-4,0" 
-                        BackgroundColor="#2d7a3a" BorderColor="#2d7a3a" Text="Filtry wyszukiwania" 
-                        TextColor="White" HorizontalOptions="FillAndExpand" />
-            </Grid>
-            <ListView x:Name="SearchedActivities" ItemSelected="OnTappedSearchedActivity" HasUnevenRows="True" SeparatorColor="#1E5327">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid MinimumHeightRequest="120">
-								<Grid.ColumnDefinitions>
-	                            	<ColumnDefinition Width="Auto" />
-	                            	<ColumnDefinition Width="*" />
-	                        	</Grid.ColumnDefinitions>
-	                            <Grid.RowDefinitions>
-	                                <RowDefinition Height="Auto" />
-	                                <RowDefinition Height="Auto" />
-	                                <RowDefinition Height="Auto" />
-	                            </Grid.RowDefinitions>
-	                            <StackLayout Grid.Column="0" Grid.Row="0" Padding="14,8,14,0" VerticalOptions="Center">
-	                                <Label Text="{Binding TitleShort}" FontSize="20" 
-	                                       TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-	                            </StackLayout>
-								<StackLayout Grid.Column="1" Grid.Row="0" Padding="14,8,14,0" VerticalOptions="Center" HorizontalOptions="End"> 
-									<Label Text="{Binding DateShort}" FontSize="16" TextColor="#676767" VerticalTextAlignment="Center" HorizontalOptions="End" HorizontalTextAlignment="End"/>
-								</StackLayout>
-	                            <StackLayout Grid.ColumnSpan="2" Grid.Row="1" Padding="14,8,14,0" VerticalOptions="Center">
-	                                <Label Text="{Binding TextShort}" FontSize="16" 
-	                                       TextColor="#676767" VerticalTextAlignment="Center" />
-	                            </StackLayout>
-	                            <StackLayout Grid.ColumnSpan="2" Grid.Row="2" Padding="14,4,14,8" VerticalOptions="Center">
-	                                <Label Text="{Binding Place.Name}" FontSize="16" 
-	                                       TextColor="#676767" VerticalTextAlignment="Center" />
-	                            </StackLayout>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ScrollView>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid MinimumHeightRequest="120">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackLayout Grid.Column="0" Grid.Row="0" Padding="14,8,14,0" VerticalOptions="Center">
+                            <Label Text="{Binding TitleShort}" FontSize="20"
+                                   TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Grid.Row="0" Padding="14,8,14,0" VerticalOptions="Center"
+                                     HorizontalOptions="End">
+                            <Label Text="{Binding DateShort}" FontSize="16" TextColor="#676767"
+                                   VerticalTextAlignment="Center" HorizontalOptions="End" HorizontalTextAlignment="End" />
+                        </StackLayout>
+                        <StackLayout Grid.ColumnSpan="2" Grid.Row="1" Padding="14,8,14,0" VerticalOptions="Center">
+                            <Label Text="{Binding TextShort}" FontSize="16"
+                                   TextColor="#676767" VerticalTextAlignment="Center" />
+                        </StackLayout>
+                        <StackLayout Grid.ColumnSpan="2" Grid.Row="2" Padding="14,4,14,8" VerticalOptions="Center">
+                            <Label Text="{Binding Place.Name}" FontSize="16"
+                                   TextColor="#676767" VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

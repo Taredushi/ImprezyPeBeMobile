@@ -5,6 +5,7 @@
 			 BackgroundColor="#eae5d7">
   <ScrollView>
     <StackLayout BackgroundColor="#eae5d7">
+       <Label x:Name="NoEventsReminderLabel" Text="Brak zapisanych wydarzeń" Margin="8" HorizontalOptions="Center" IsVisible="False"/>
       <ListView x:Name="EventsWithSetReminder" HasUnevenRows="True" SeparatorColor="#1E5327" ItemSelected="OnTappedSearchedEvent">
         <ListView.ItemTemplate>
           <DataTemplate>

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.PlatformConfiguration;
@@ -15,11 +14,11 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             //this!
             Xamarin.Forms.PlatformConfiguration.AndroidSpecific.TabbedPage.DisableSwipePaging(On<Android>());
-            InitKampusMap();
+            InitBilaystokMap();
             InitHajnowkaMap();
         }
 
-        private void InitKampusMap()
+        private void InitBilaystokMap()
         {
             var bialystokPins = new List<Pin>
             {
@@ -73,11 +72,6 @@ namespace EventsPbMobile.Pages
             Navigation.PushAsync(new MainPage());
             Navigation.RemovePage(this);
             return true;
-        }
-
-        private void TestButonClick(object sender, EventArgs e)
-        {
-            
         }
     }
 }

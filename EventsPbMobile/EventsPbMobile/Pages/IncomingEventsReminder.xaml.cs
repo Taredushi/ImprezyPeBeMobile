@@ -1,4 +1,5 @@
-﻿using EventsPbMobile.Classes;
+﻿using System.Linq;
+using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
 using Xamarin.Forms;
 
@@ -13,7 +14,20 @@ namespace EventsPbMobile.Pages
             InitializeComponent();
             Title = "Zapisane wydarzenia";
             db = new EventsDataAccess();
-            EventsWithSetReminder.ItemsSource = db.GetEventsWithSetReminder();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (!db.GetEventsWithSetReminder().Any())
+            {
+                EventsWithSetReminder.IsVisible = false;
+                NoEventsReminderLabel.IsVisible = true;
+            }
+            else
+            {
+                EventsWithSetReminder.ItemsSource = db.GetEventsWithSetReminder();
+            }
         }
 
         protected override bool OnBackButtonPressed()
@@ -24,19 +38,19 @@ namespace EventsPbMobile.Pages
             return true;
         }
 
-		private async void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)
-		{
-			//checking if null because this event is triggered
-			//when item is selected, but also when item is diselected (then its null)
-			if (e.SelectedItem == null) return;
-			//cast object to event
-			var _event = e.SelectedItem as Event;
-			if (_event == null || _event.Active == false) return;
+        private async void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)
+        {
+            //checking if null because this event is triggered
+            //when item is selected, but also when item is diselected (then its null)
+            if (e.SelectedItem == null) return;
+            //cast object to event
+            var _event = e.SelectedItem as Event;
+            if (_event == null || _event.Active == false) return;
 
-			//deselect item just in case
-			((ListView)sender).SelectedItem = null;
-			var eventdetails = new EventDetails(_event) { BindingContext = _event };
-			await Navigation.PushAsync(eventdetails);
-		}
+            //deselect item just in case
+            ((ListView) sender).SelectedItem = null;
+            var eventdetails = new EventDetails(_event) {BindingContext = _event};
+            await Navigation.PushAsync(eventdetails);
+        }
     }
 }

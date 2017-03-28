@@ -1,70 +1,75 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventsPbMobile.Pages.ContactsPage"
              Title="Kontakt"
-			 BackgroundColor="#eae5d7">
-  
-  <ContentPage.Content>
-  	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
-		<StackLayout Grid.Row="0" Margin="14,28,14,8"  VerticalOptions="Center" HorizontalOptions="Center"> 
-			<Label Text="Centrum Rekrutacji Politechniki Białostockiej" FontSize="25" 
-	               TextColor="#676767" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="1" Margin="28,16,14,0"  VerticalOptions="Center">
-			<Label Text="ul. Wiejska 45 A, pok. 010 do 013" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="2" Margin="28,0,14,0"  VerticalOptions="Center">
-			<Label Text="15-351 Białystok" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="3" Margin="28,0,14,0"  VerticalOptions="Center">
-			<Label Text="tel. +48 85 746 71 47 oraz 746 71 48" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="4" Margin="28,0,14,0"  VerticalOptions="Center"> 
-			<Label Text="fax +48 85 746 71 46" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="5" Margin="28,0,14,0"  VerticalOptions="Center"> 
-			<Label Text="rekrutacja@pb.edu.pl" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
+             BackgroundColor="#eae5d7">
 
-		<StackLayout Grid.Row="6" Margin="14,28,14,8"  VerticalOptions="Center" HorizontalOptions="Center"> 
-			<Label Text="Dział Promocji" FontSize="25" 
-	               TextColor="#676767" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="7" Margin="28,16,14,0"  VerticalOptions="Center">
-			<Label Text="ul. Wiejska 45 A, pok. 037" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="8" Margin="28,0,14,0"  VerticalOptions="Center">
-			<Label Text="15-351 Białystok" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="9" Margin="28,0,14,0"  VerticalOptions="Center">
-			<Label Text="tel. +48 85 746 93 38" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-		<StackLayout Grid.Row="10" Margin="28,0,14,0"  VerticalOptions="Center"> 
-			<Label Text="promocja@pb.edu.pl" FontSize="16" 
-	               TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold"/>
-		</StackLayout>
-  	</Grid>
-  </ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" Margin="14,28,14,8" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="Centrum Rekrutacji Politechniki Białostockiej" FontSize="25"
+                           TextColor="#676767" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="1" Margin="28,16,14,0" VerticalOptions="Center">
+                    <Label Text="ul. Wiejska 45 A, pok. 010 do 013" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="2" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="15-351 Białystok" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="3" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="tel. +48 85 746 71 47 oraz 746 71 48" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="4" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="fax +48 85 746 71 46" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="5" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="rekrutacja@pb.edu.pl" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Grid.Row="6" Margin="14,28,14,8" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Label Text="Dział Promocji" FontSize="25"
+                           TextColor="#676767" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="7" Margin="28,16,14,0" VerticalOptions="Center">
+                    <Label Text="ul. Wiejska 45 A, pok. 037" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="8" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="15-351 Białystok" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="9" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="tel. +48 85 746 93 38" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Grid.Row="10" Margin="28,0,14,0" VerticalOptions="Center">
+                    <Label Text="promocja@pb.edu.pl" FontSize="16"
+                           TextColor="#676767" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

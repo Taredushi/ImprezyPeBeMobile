@@ -15,13 +15,14 @@ namespace EventsPbMobile.Pages
         public MainPage()
         {
             InitializeComponent();
-           // App.Notification.StartService();
+            // App.Notification.StartService();
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
             // _dataAccess.DeleteDatabase();
             EventsList.ItemsSource = _dataAccess.Events;
             InitializeSeachButton();
         }
+
 
         private async void OnEventSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -95,8 +96,8 @@ namespace EventsPbMobile.Pages
                 var settings = _dataAccess.GetSettings();
                 var stngs = new Models.Settings(settings) {LastRefreshDate = DateTimeOffset.Now};
                 _dataAccess.SaveSettings(stngs);
-
                 EventsList.IsRefreshing = false;
+
             }
             catch (Exception e)
             {
