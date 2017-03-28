@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
+using EventsPbMobile.Controls;
 using EventsPbMobile.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -24,8 +25,7 @@ namespace EventsPbMobile.Pages
             InitToolbarItems();
             InitFavButton();
             InitEventMap();
-
-            EventPlaces.ItemsSource = _event.Activities;
+            GenerateContent();
         }
 
         private async void Counter()
@@ -59,18 +59,6 @@ namespace EventsPbMobile.Pages
                 }
             else
                 TitleLabel.Text = "Event zakończony";
-        }
-
-        private async void EventInDepartamentSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (e == null || ((ListView) sender).SelectedItem == null) return;
-
-            var activity = e.SelectedItem as Activity;
-
-
-            await Navigation.PushAsync(new EventDepartamentDetails(Title, activity));
-
-            ((ListView) sender).SelectedItem = null;
         }
 
         private void InitToolbarItems()
@@ -143,6 +131,29 @@ namespace EventsPbMobile.Pages
                 EventMap.MoveToRegion(
                     MapSpan.FromCenterAndRadius(
                         new Position(53.118293, 23.149717), Distance.FromMeters(300)));
+            }
+        }
+
+        private void GenerateContent()
+        {
+            foreach (var act in _event.Activities)
+            {
+                var separator = new Label(){HeightRequest = 2, BackgroundColor = Xamarin.Forms.Color.FromHex("#2d7a3a") };
+                var btn = new ActivityBtn(act);
+                ContentStackLayout.Children.Add(btn);
+                ContentStackLayout.Children.Add(separator);
+            }
+        }
+
+        private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
+        {
+            if (e.ScrollY >= this.ScrollView.ContentSize.Height - MapStack.Height - 100)
+            {
+                this.ScrollView.InputTransparent = true;
+            }
+            else
+            {
+                this.ScrollView.InputTransparent = false;
             }
         }
     }
