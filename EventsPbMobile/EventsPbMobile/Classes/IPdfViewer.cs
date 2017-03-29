@@ -9,5 +9,6 @@ namespace EventsPbMobile.Classes
     public interface IPdfViewer
     {
         void View(string filePath);
+        bool FileExists(string filePath);
     }
 }

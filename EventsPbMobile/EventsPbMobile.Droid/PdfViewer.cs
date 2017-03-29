@@ -36,5 +36,14 @@ namespace EventsPbMobile.Droid
                 //
             }
         }
+
+        public bool FileExists(string filePath)
+        {
+            var downloadpath =
+                Environment.GetExternalStoragePublicDirectory(Environment.DirectoryDownloads).AbsolutePath;
+            downloadpath = Path.Combine(downloadpath, filePath);
+
+            return System.IO.File.Exists(downloadpath);
+        }
     }
 }

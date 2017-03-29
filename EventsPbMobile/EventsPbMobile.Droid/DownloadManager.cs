@@ -25,6 +25,7 @@ namespace EventsPbMobile.Droid
         {
             
         }
+
         public void Download(string uri, string filename)
         {
             var contentUri = Android.Net.Uri.Parse(uri);
@@ -41,18 +42,6 @@ namespace EventsPbMobile.Droid
             r.SetNotificationVisibility(DownloadVisibility.VisibleNotifyCompleted);
             dm = (Android.App.DownloadManager)Forms.Context.GetSystemService(Context.DownloadService);
             _fileId = dm.Enqueue(r);
-            ProgressDialog dialog = new ProgressDialog(Forms.Context);
-            dialog.Create();
-            dialog.SetProgressStyle(ProgressDialogStyle.Spinner);
-            dialog.SetMessage("Pobieranie pliku");
-            dialog.Show();
-            dialog.Cancel();
-
-        }
-
-        public void OpenDownloadedFile()
-        {
-            
         }
     }
 }
