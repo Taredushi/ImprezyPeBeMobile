@@ -11,14 +11,14 @@ namespace EventsPbMobile.Classes
 {
     internal class ApiConnection
     {
-        private readonly string ActivitiesUrl = "http://webapipb.azurewebsites.net/api/activities";
+        private readonly string ActivitiesUrl = "http://imprezy.pb.edu.pl/api/activities";
         private readonly HttpClient client = new HttpClient();
-        private readonly string EventsUrl = "http://webapipb.azurewebsites.net/api/events";
-        private readonly string PhotoEventsUrl = "http://webapipb.azurewebsites.net/api/photoevents";   
-        private readonly string PhotosUrl = "http://webapipb.azurewebsites.net/api/photos";
-        private readonly string PlacessUrl = "http://webapipb.azurewebsites.net/api/places";
+        private readonly string EventsUrl = "http://imprezy.pb.edu.pl/api/events";
+        private readonly string PhotoEventsUrl = "http://imprezy.pb.edu.pl/api/photoevents";   
+        private readonly string PhotosUrl = "http://imprezy.pb.edu.pl/api/photos";
+        private readonly string PlacessUrl = "http://imprezy.pb.edu.pl/api/places";
 
-        private readonly string Url = "http://webapipb.azurewebsites.net";
+        private readonly string Url = "http://imprezy.pb.edu.pl/api/";
 
         public void ConnectToAPI()
         {

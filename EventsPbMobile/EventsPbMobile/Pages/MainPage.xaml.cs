@@ -74,10 +74,8 @@ namespace EventsPbMobile.Pages
             var eventlist = sender as ListView;
 
             if (eventlist == null) return;
-
-            eventlist.IsRefreshing = true;
             await RefreshDatabase();
-            eventlist.IsRefreshing = false;
+
         }
 
         private async Task<bool> RefreshDatabase()
@@ -89,22 +87,24 @@ namespace EventsPbMobile.Pages
             }
             try
             {
-                EventsList.IsRefreshing = true;
-
                 await _dataAccess.SaveEventsToDb();
-
                 var settings = _dataAccess.GetSettings();
                 var stngs = new Models.Settings(settings) {LastRefreshDate = DateTimeOffset.Now};
                 _dataAccess.SaveSettings(stngs);
                 EventsList.IsRefreshing = false;
 
             }
+            catch (Newtonsoft.Json.JsonReaderException jsonex)
+            {
+                await DisplayAlert("Błąd", "Wystąpił błąd przy pobieraniu danych", "OK");
+                EventsList.IsRefreshing = false;
+
+            }
             catch (Exception e)
             {
                 await DisplayAlert("Błąd", "Utraciłeś połączenie z internetem", "OK");
-                Debug.WriteLine(e.StackTrace);
-                Debug.WriteLine(e.Message);
-                return false;
+                EventsList.IsRefreshing = false;
+
             }
             return true;
         }
