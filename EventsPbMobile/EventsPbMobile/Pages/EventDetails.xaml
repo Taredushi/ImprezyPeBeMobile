@@ -42,7 +42,7 @@
             </Grid>
       
             <StackLayout x:Name="ContentStackLayout"></StackLayout>
-            <StackLayout x:Name="MapStack" HeightRequest="350">
+            <StackLayout HeightRequest="350">
                 <maps:Map
                 x:Name="EventMap"
                 IsShowingUser="true"

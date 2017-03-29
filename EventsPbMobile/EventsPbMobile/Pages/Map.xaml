@@ -7,7 +7,12 @@
             x:Class="EventsPbMobile.Pages.Map"
             Title="Mapy PB">
     <ContentPage Title="Kampus">
-        <classes:ImageScale Source="kampus.png" />
+         
+            
+        
+        <classes:PinchToZoomContainer>
+                <Image Source="kampus.png" Aspect="AspectFit" />
+        </classes:PinchToZoomContainer>
     </ContentPage>
     <ContentPage Title="Białystok">
         <StackLayout>

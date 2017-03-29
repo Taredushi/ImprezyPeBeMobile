@@ -42,10 +42,10 @@
     <Compile Include="Classes\ApiConnection.cs" />
     <Compile Include="Classes\EventsDataAccess.cs" />
     <Compile Include="Classes\IDownloadManager.cs" />
-    <Compile Include="Classes\ImageScale.cs" />
     <Compile Include="Classes\INotification.cs" />
     <Compile Include="Classes\IPdfViewer.cs" />
     <Compile Include="Classes\NumericExtensions.cs" />
+    <Compile Include="Classes\PinchToZoomContainer.cs" />
     <Compile Include="Controls\ActivityBtn.xaml.cs">
       <DependentUpon>ActivityBtn.xaml</DependentUpon>
     </Compile>

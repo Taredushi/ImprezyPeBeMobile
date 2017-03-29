@@ -14,6 +14,7 @@ namespace EventsPbMobile.Pages
         public MainMenu()
         {
             InitializeComponent();
+            MenuDetail detail;
             MenuDetail.ListView.ItemSelected += OnItemSelected;
             items = MenuDetail.ListView.ItemsSource;
         }
@@ -21,20 +22,12 @@ namespace EventsPbMobile.Pages
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MenuItem;
-            
-            if (item != null)
-            {
-                
-                Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
-               // MenuDetail.ListView.SelectedItem = null;
-                IsPresented = false;
-                Debug.WriteLine(Application.Current.MainPage.Title);
-            }
-        }
 
-        private void InitSelection()
-        {
-           
+            if (item == null) return;
+
+            Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
+            // MenuDetail.ListView.SelectedItem = null;
+            IsPresented = false;
         }
         
     }

@@ -17,24 +17,14 @@ namespace EventsPbMobile.Pages
 
         private Models.Settings _settings;
         private readonly EventsDataAccess _db;
-        private IEnumerable<Event> _events;
         public Settings()
         {
             InitializeComponent();
             _db = new EventsDataAccess();
             InitializeSettings();
-            _events = _db.GetEventsWithSetReminder();
             NotificationTimesListView.ItemsSource = _times;
         }
-
-        public static bool IsToggled { get; private set; }
-
-        private void PushNotificationsProperty(object sender, ToggledEventArgs e)
-        {
-            IsToggled = e.Value;
-        }
-
-        private void InitializeSettings()
+      private void InitializeSettings()
         {
             _settings = _db.GetSettings();
 
@@ -50,7 +40,7 @@ namespace EventsPbMobile.Pages
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
-            Navigation.PushAsync(new MainPage());
+            Navigation.PushAsync(new MainPage(), true);
             Navigation.RemovePage(this);
             return true;
         }
@@ -108,6 +98,13 @@ namespace EventsPbMobile.Pages
 
             public string NotifyTime { get; set; }
             public bool Selected { get; set; }
+        }
+
+        private void DisableItemSelecttion(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null) return;
+            //deselect item just in case
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

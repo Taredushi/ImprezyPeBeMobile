@@ -2,8 +2,9 @@
 
 namespace EventsPbMobile.Models
 {
-    class MenuItem
+    public class MenuItem
     {
+        private bool _isSelected;
         public string Title { get; set; }
 
         public string IconSource { get; set; }
