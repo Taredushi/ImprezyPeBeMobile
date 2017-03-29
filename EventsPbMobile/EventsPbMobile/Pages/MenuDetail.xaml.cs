@@ -11,7 +11,7 @@ namespace EventsPbMobile.Pages
     public partial class MenuDetail : ContentPage
     {
         public ListView ListView => MenuListView;
-
+        public List<Models.MenuItem> MasterPageItems;
         public MenuDetail()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace EventsPbMobile.Pages
 
         private void SetMenuItems()
         {
-            var masterPageItems = new List<Models.MenuItem>()
+             MasterPageItems = new List<Models.MenuItem>()
             {
                 new Models.MenuItem()
                 {
@@ -72,7 +72,7 @@ namespace EventsPbMobile.Pages
                 }
             };
 
-            MenuListView.ItemsSource = masterPageItems;
+            MenuListView.ItemsSource = MasterPageItems;
             
         }
     }

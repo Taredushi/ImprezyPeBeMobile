@@ -53,11 +53,11 @@ namespace EventsPbMobile.Pages
             else if (start.TotalSeconds <= 0 && end.TotalSeconds > 0)
                 while (end.TotalSeconds > 0)
                 {
-                    TitleLabel.Text = "Event trwa!";
+                    TitleLabel.Text = "Impreza trwa!";
                     await Task.Delay(10000);
                 }
             else
-                TitleLabel.Text = "Event zakończony";
+                TitleLabel.Text = "Impreza zakończona";
         }
 
         private void InitToolbarItems()
