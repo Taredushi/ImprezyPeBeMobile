@@ -33,9 +33,18 @@ namespace EventsPbMobile.Pages
         protected override bool OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
-            Navigation.PushAsync(new MainPage(), true);
-            Navigation.RemovePage(this);
-            return true;
+            var parent = this.Parent;
+            while (!(parent is MainMenu))
+            {
+                if (parent.Parent == null) break;
+                parent = parent.Parent;
+            }
+            if (parent is MainMenu)
+            {
+                (parent as MainMenu).SetPage(typeof(MainPage));
+                return true;
+            }
+            return false;
         }
 
         private async void OnTappedSearchedEvent(object sender, SelectedItemChangedEventArgs e)

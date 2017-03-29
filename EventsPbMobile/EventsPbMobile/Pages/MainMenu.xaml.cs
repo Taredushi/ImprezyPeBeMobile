@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using MenuItem = EventsPbMobile.Models.MenuItem;
 
 namespace EventsPbMobile.Pages
@@ -14,7 +16,6 @@ namespace EventsPbMobile.Pages
         public MainMenu()
         {
             InitializeComponent();
-            MenuDetail detail;
             MenuDetail.ListView.ItemSelected += OnItemSelected;
             items = MenuDetail.ListView.ItemsSource;
         }
@@ -28,6 +29,16 @@ namespace EventsPbMobile.Pages
             Detail = new NavigationPage((Page) Activator.CreateInstance(item.TargetType));
             // MenuDetail.ListView.SelectedItem = null;
             IsPresented = false;
+        }
+
+        public void SetPage(Type name)
+        {
+            List<MenuItem> list = (from object obj in items select obj as MenuItem).ToList();
+
+            var item = list.First(x => x.TargetType == name);
+
+            if (item == null) return;
+            MenuDetail.ListView.SelectedItem = item;
         }
         
     }
