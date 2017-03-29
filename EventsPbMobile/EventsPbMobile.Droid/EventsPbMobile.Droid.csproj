@@ -197,6 +197,7 @@
     <Compile Include="DownloadManager.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="NotificationService.cs" />
+    <Compile Include="PanPinchRenderer.cs" />
     <Compile Include="PdfViewer.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,64 +5,102 @@ namespace EventsPbMobile.Classes
 {
     public class PinchToZoomContainer : ContentView
     {
-        private double currentScale = 1;
-        private double startScale = 1;
-        private double xOffset;
-        private double yOffset;
+        private double startScale, currentScale, xOffset, yOffset, startX, startY;
 
         public PinchToZoomContainer()
         {
-            var pinchGesture = new PinchGestureRecognizer();
-            pinchGesture.PinchUpdated += OnPinchUpdated;
-            GestureRecognizers.Add(pinchGesture);
+            if (Device.OS != TargetPlatform.Android)
+            {
+                var pinchGesture = new PinchGestureRecognizer();
+                pinchGesture.PinchUpdated += OnPinchUpdated;
+                GestureRecognizers.Add(pinchGesture);
+
+                var panGesture = new PanGestureRecognizer();
+                panGesture.PanUpdated += OnPanUpdated;
+                GestureRecognizers.Add(panGesture);
+            }
         }
 
-        private void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        public void OnPanUpdated(object sender, PanUpdatedEventArgs e)
         {
-            if (e.Status == GestureStatus.Started)
+            switch (e.StatusType)
             {
-                // Store the current scale factor applied to the wrapped user interface element,
-                // and zero the components for the center point of the translate transform.
-                startScale = Content.Scale;
-                Content.AnchorX = 0;
-                Content.AnchorY = 0;
+                case GestureStatus.Started:
+                    startX = e.TotalX;
+                    startY = e.TotalY;
+                    Content.AnchorX = 0;
+                    Content.AnchorY = 0;
+
+                    break;
+
+                case GestureStatus.Running:
+                    var maxTranslationX = Content.Scale * Content.Width - Content.Width;
+                    Content.TranslationX = Math.Min(0, Math.Max(-maxTranslationX, xOffset + e.TotalX - startX));
+
+                    var maxTranslationY = Content.Scale * Content.Height - Content.Height;
+                    Content.TranslationY = Math.Min(0, Math.Max(-maxTranslationY, yOffset + e.TotalY - startY));
+
+                    break;
+
+                case GestureStatus.Completed:
+                    xOffset = Content.TranslationX;
+                    yOffset = Content.TranslationY;
+
+                    break;
             }
-            if (e.Status == GestureStatus.Running)
+        }
+
+        public void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+        {
+            switch (e.Status)
             {
-                // Calculate the scale factor to be applied.
-                currentScale += (e.Scale - 1) * startScale;
-                currentScale = Math.Max(1, currentScale);
+                case GestureStatus.Started:
+                    // Store the current scale factor applied to the wrapped user interface element,
+                    // and zero the components for the center point of the translate transform.
+                    startScale = Content.Scale;
+                    Content.AnchorX = 0;
+                    Content.AnchorY = 0;
 
-                // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
-                // so get the X pixel coordinate.
-                var renderedX = Content.X + xOffset;
-                var deltaX = renderedX / Width;
-                var deltaWidth = Width / (Content.Width * startScale);
-                var originX = (e.ScaleOrigin.X - deltaX) * deltaWidth;
+                    break;
 
-                // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
-                // so get the Y pixel coordinate.
-                var renderedY = Content.Y + yOffset;
-                var deltaY = renderedY / Height;
-                var deltaHeight = Height / (Content.Height * startScale);
-                var originY = (e.ScaleOrigin.Y - deltaY) * deltaHeight;
+                case GestureStatus.Running:
+                    // Calculate the scale factor to be applied.
+                    currentScale += (e.Scale - 1) * startScale;
+                    currentScale = Math.Max(1, currentScale);
 
-                // Calculate the transformed element pixel coordinates.
-                var targetX = xOffset - originX * Content.Width * (currentScale - startScale);
-                var targetY = yOffset - originY * Content.Height * (currentScale - startScale);
+                    // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
+                    // so get the X pixel coordinate.
+                    double renderedX = Content.X + xOffset;
+                    double deltaX = renderedX / Width;
+                    double deltaWidth = Width / (Content.Width * startScale);
+                    double originX = (e.ScaleOrigin.X - deltaX) * deltaWidth;
 
-                // Apply translation based on the change in origin.
-               // Content.TranslationX = targetX.Clamp(-Content.Width * (currentScale - 1), 0);
-              //  Content.TranslationY = targetY.Clamp(-Content.Height * (currentScale - 1), 0);
+                    // The ScaleOrigin is in relative coordinates to the wrapped user interface element,
+                    // so get the Y pixel coordinate.
+                    double renderedY = Content.Y + yOffset;
+                    double deltaY = renderedY / Height;
+                    double deltaHeight = Height / (Content.Height * startScale);
+                    double originY = (e.ScaleOrigin.Y - deltaY) * deltaHeight;
 
-                // Apply scale factor
-                Content.Scale = currentScale;
-            }
-            if (e.Status == GestureStatus.Completed)
-            {
-                // Store the translation delta's of the wrapped user interface element.
-                xOffset = Content.TranslationX;
-                yOffset = Content.TranslationY;
+                    // Calculate the transformed element pixel coordinates.
+                    double targetX = xOffset - (originX * Content.Width) * (currentScale - startScale);
+                    double targetY = yOffset - (originY * Content.Height) * (currentScale - startScale);
+
+                    // Apply translation based on the change in origin.
+                    Content.TranslationX = Math.Min(0, Math.Max(targetX, -Content.Width * (currentScale - 1)));
+                    Content.TranslationY = Math.Min(0, Math.Max(targetY, -Content.Height * (currentScale - 1)));
+
+                    // Apply scale factor.
+                    Content.Scale = currentScale;
+
+                    break;
+
+                case GestureStatus.Completed:
+                    // Store the translation delta's of the wrapped user interface element.
+                    xOffset = Content.TranslationX;
+                    yOffset = Content.TranslationY;
+
+                    break;
             }
         }
     }
