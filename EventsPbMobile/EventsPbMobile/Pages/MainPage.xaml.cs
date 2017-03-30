@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Models;
@@ -19,7 +20,7 @@ namespace EventsPbMobile.Pages
             BindingContext = this;
             _dataAccess = new EventsDataAccess();
             // _dataAccess.DeleteDatabase();
-            EventsList.ItemsSource = _dataAccess.Events;
+            CheckIfDbIsNull();
             InitializeSeachButton();
         }
 
@@ -42,6 +43,17 @@ namespace EventsPbMobile.Pages
             var stack = Navigation.NavigationStack;
             if (stack[stack.Count - 1].GetType() != typeof(EventDetails))
                 await Navigation.PushAsync(eventdetails);
+        }
+
+        private async void CheckIfDbIsNull()
+        {
+            if (!_dataAccess.Events.Any())
+            {
+                EventsList.IsRefreshing = true;
+                 await RefreshDatabase();
+            }
+            EventsList.ItemsSource = _dataAccess.Events;
+
         }
 
         protected override async void OnAppearing()
@@ -97,6 +109,7 @@ namespace EventsPbMobile.Pages
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e.Message + " " + e.StackTrace +  " "+ e.Source);
                 await DisplayAlert("Błąd", "Wystąpił błąd przy pobieraniu danych lub zostało utracone połączenie z Internetem", "OK");
                 EventsList.IsRefreshing = false;
             }

@@ -73,9 +73,22 @@ namespace EventsPbMobile.Classes
                 if (items == null) return;
 
                 var eventsSetToDelete = db.All<Event>();
+                var eventsReminderDelete = db.All<EventReminder>();
                 foreach (var eventdelete in eventsSetToDelete)
+                {
                     if (items.All(x => x.EventId != eventdelete.EventId))
                         db.Remove(eventdelete);
+
+                }
+                foreach (var reminder in eventsReminderDelete)
+                {
+                    var id = reminder.EventId;
+                    if (items.All(x=>x.EventId != id))
+                    {
+                        db.Remove(reminder);
+                    }
+                }
+                    
 
                 foreach (var item in items)
                 {
@@ -88,25 +101,13 @@ namespace EventsPbMobile.Classes
             return true;
         }
 
-        public async Task<bool> SavePhotosToDb()
-        {
-            var items = await api.GetPhotosAllAsync();
-            db.Write(() =>
-            {
-                if (items == null) return;
-                foreach (var item in items)
-                {
-                    var photo = new Photo(item);
-                    db.Add(photo, true);
-                }
-            });
-            return true;
-        }
 
         private async Task<bool> SavePlacesToDb()
         {
             var items = await api.GetPlacesAllAsync();
             
+
+
             db.Write(() =>
             {
                 if (items == null) return;
@@ -117,8 +118,22 @@ namespace EventsPbMobile.Classes
                     if (items.All(x => x.PlaceId != place.PlaceId))
                         db.Remove(place);
 
+                string latitude, longitude;
                 foreach (var place in items)
                 {
+                    if (place.Latitude.ToString().Contains("+"))
+                    {
+                        latitude = place.Latitude.ToString();
+                        latitude = latitude.Replace("E+07", "");
+                        place.Latitude = float.Parse(latitude)*10;
+                    }
+                    if (place.Longitude.ToString().Contains("+"))
+                    {
+                        longitude = place.Longitude.ToString("");
+                        longitude = longitude.Replace("E+07", "");
+                        place.Longitude = float.Parse(longitude)*10;
+                    }
+                    
                     var pl = new Place(place);
                     db.Add(pl, true);
                 }
@@ -153,37 +168,6 @@ namespace EventsPbMobile.Classes
             return true;
         }
 
-        public async Task<bool> SavePhotoEventsToDb()
-        {
-            var items = await api.GetPhotoEventsAllAsync();
-
-            db.Write(() =>
-            {
-                if (items == null) return;
-                foreach (var photoEvent in items)
-                {
-                    var pe = new PhotoEvent(photoEvent);
-                    db.Add(pe, true);
-                }
-            });
-            return true;
-        }
-
-        public Place GetPlace(int id)
-        {
-            var place = db.All<Place>().FirstOrDefault(x => x.PlaceId == id);
-            return place;
-        }
-
-        public void SaveReminderSettings(EventReminder reminder)
-        {
-            db.Write(() =>
-            {
-                db.RemoveAll<EventReminder>();
-                db.Add(reminder);
-            });
-        }
-
         public void SaveEventWithSetReminder(int eventId)
         {
             db.Write(() =>
@@ -211,8 +195,9 @@ namespace EventsPbMobile.Classes
             var listofevents = new List<Event>();
             foreach (var eventReminder in listeventreminder)
             {
-                var ev = db.Find("Event", eventReminder.EventId) as Event;
-                listofevents.Add(ev);
+                var id = eventReminder.EventId;
+                var events = db.All<Event>().FirstOrDefault(x => x.EventId == id);
+                listofevents.Add(events);
             }
             return listofevents;
         }
@@ -269,11 +254,6 @@ namespace EventsPbMobile.Classes
         public IList<Activity> GetActivities()
         {
             return db.All<Activity>().ToList();
-        }
-
-        public void DeleteDatabase()
-        {
-            Realm.DeleteRealm(config);
         }
     }
 }

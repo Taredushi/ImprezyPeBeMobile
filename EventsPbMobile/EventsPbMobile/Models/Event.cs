@@ -1,38 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Realms;
-using Xamarin.Forms;
 
 namespace EventsPbMobile.Models
 {
     public class Event : RealmObject
     {
-
-        [PrimaryKey]
-        public int EventId { get; set; }
-        public DateTimeOffset StartDate { get; set; }
-        public DateTimeOffset EndDate { get; set; }
-
-        public string Title { get; set; }
-        public string Text { get; set; }
-        public string Baner { get; set; }
-        public bool Active { get; set; }
-        public bool Viewable { get; set; }
-        public IList<Activity> Activities { get; }
-        public IList<PhotoEvent> PhotoEvents { get; }
-        [Ignored]
-        public string StringDate {
-            get
-            {
-                var activity = Activities.OrderBy(x => x.StartHour).FirstOrDefault();
-                return activity.StartHour.LocalDateTime.ToString("f");
-            }
+        public Event()
+        {
         }
-
-
-        public Event() { }
 
         public Event(Event item)
         {
@@ -60,6 +37,33 @@ namespace EventsPbMobile.Models
             Activities = activities;
             PhotoEvents = item.PhotoEvents;
             Baner = item.Baner;
+        }
+
+        [PrimaryKey]
+        public int EventId { get; set; }
+
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
+
+        public string Title { get; set; }
+        public string Text { get; set; }
+        public string Baner { get; set; }
+        public bool Active { get; set; }
+        public bool Viewable { get; set; }
+        public IList<Activity> Activities { get; }
+        public IList<PhotoEvent> PhotoEvents { get; }
+
+        [Ignored]
+        public string StringDate
+        {
+            get
+            {
+                var activity = Activities.OrderBy(x => x.StartHour).FirstOrDefault();
+                if (activity == null)
+                    return StartDate.LocalDateTime.ToString("f");
+
+                return activity.StartHour.LocalDateTime.ToString("f");
+            }
         }
     }
 }

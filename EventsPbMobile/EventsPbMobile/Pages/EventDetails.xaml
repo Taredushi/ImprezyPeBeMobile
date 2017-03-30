@@ -4,7 +4,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="EventsPbMobile.Pages.EventDetails" BackgroundColor="#eae5d7">
     <ScrollView x:Name="ScrollView" Scrolled="ScrollView_OnScrolled" >
-        <StackLayout x:Name="MainStack">
+        <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -20,7 +20,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0"  HorizontalOptions="Center" />
+                <Image Source="{Binding Baner}" Grid.Row="0" Grid.Column="0"  Aspect="AspectFill" />
                 <StackLayout BackgroundColor="White" HeightRequest="3" Grid.Row="1" Margin="-8,-6,-8,0" />
                 <StackLayout BackgroundColor="#1E5327" Grid.Row="2" Margin="-8,-6,-8,-6">
                     <StackLayout HorizontalOptions="Center">

@@ -182,7 +182,7 @@
                 <Label Text="Zacznij korzystać z aplikacji już teraz!" FontSize="25" TextColor="White"
                        HorizontalTextAlignment="Center" />
             </StackLayout>
-            <Button Grid.Row="2" Text="PRZEJDŹ DO APLIKACJI" VerticalOptions="Center" Clicked="Button_GoToApplicationClicked" />
+            <Button Margin="14,0" BackgroundColor="#1E5327" TextColor="White" Grid.Row="2" Text="PRZEJDŹ DO APLIKACJI" VerticalOptions="Center" Clicked="Button_GoToApplicationClicked" />
         </Grid>
     </ContentPage>
 </CarouselPage>

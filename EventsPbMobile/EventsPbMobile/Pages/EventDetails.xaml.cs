@@ -154,7 +154,8 @@ namespace EventsPbMobile.Pages
 
         private void GenerateContent()
         {
-            foreach (var act in _event.Activities)
+            var activities = _event.Activities.OrderBy(x => x.StartHour);
+            foreach (var act in activities)
             {
                 var separator = new Label {HeightRequest = 2, BackgroundColor = Color.FromHex("#2d7a3a")};
                 var btn = new ActivityBtn(act);

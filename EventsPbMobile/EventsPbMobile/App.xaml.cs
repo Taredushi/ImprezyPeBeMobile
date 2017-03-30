@@ -1,9 +1,9 @@
 ﻿using EventsPbMobile.Classes;
 using EventsPbMobile.Pages;
-using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Application = Xamarin.Forms.Application;
+using TabbedPage = Xamarin.Forms.TabbedPage;
 
 namespace EventsPbMobile
 {
@@ -17,17 +17,17 @@ namespace EventsPbMobile
         {
             InitializeComponent();
 
-            var page = new Xamarin.Forms.TabbedPage();
+            var page = new TabbedPage();
             page.On<Android>().SetIsSwipePagingEnabled(false);
 
             AdvancedSearchOptions.Date = true;
-			AdvancedSearchOptions.Place = true;
-			AdvancedSearchOptions.Title = true;
-			AdvancedSearchOptions.Text = true;
+            AdvancedSearchOptions.Place = true;
+            AdvancedSearchOptions.Title = true;
+            AdvancedSearchOptions.Text = true;
+
             _dataAccess = new EventsDataAccess();
             InitNotificationSettings();
             CheckIfFirstLauch();
-            
         }
 
         public static INotification Notification { get; private set; }
@@ -47,10 +47,7 @@ namespace EventsPbMobile
             else
             {
                 var dbinstance = _dataAccess.GetDbInstance();
-                dbinstance.Write(() =>
-                {
-                    settings.AhotherLauchOfApp = true;
-                });
+                dbinstance.Write(() => { settings.AhotherLauchOfApp = true; });
                 MainPage = new Help();
             }
         }
