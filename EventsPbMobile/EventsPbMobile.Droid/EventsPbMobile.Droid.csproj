@@ -22,10 +22,11 @@
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
-    <JavaMaximumHeapSize />
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <JavaOptions />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -38,14 +39,8 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
-    <AotAssemblies>False</AotAssemblies>
-    <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -218,10 +213,22 @@
     <AndroidResource Include="Resources\layout\Tabbar.axml" />
     <AndroidResource Include="Resources\layout\Toolbar.axml" />
     <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\drawable\cztery.png" />
+    <AndroidResource Include="Resources\drawable\dwa.png" />
+    <AndroidResource Include="Resources\drawable\dziewiec.png" />
+    <AndroidResource Include="Resources\drawable\informator.png" />
+    <AndroidResource Include="Resources\drawable\jeden.png" />
+    <AndroidResource Include="Resources\drawable\osiem.png" />
+    <AndroidResource Include="Resources\drawable\piec.png" />
+    <AndroidResource Include="Resources\drawable\siedem.png" />
+    <AndroidResource Include="Resources\drawable\szczegoly.png" />
+    <AndroidResource Include="Resources\drawable\szesc.png" />
+    <AndroidResource Include="Resources\drawable\trzy.png" />
+    <AndroidResource Include="Resources\drawable\zapisane.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventsPbMobile\EventsPbMobile.csproj">
-      <Project>{7d852f22-b007-43a9-b3b2-2c3036f659b4}</Project>
+      <Project>{E57F011E-861A-4D72-AFB0-A458187ACDA0}</Project>
       <Name>EventsPbMobile</Name>
     </ProjectReference>
   </ItemGroup>
