@@ -23,7 +23,13 @@ namespace EventsPbMobile.Models
         public IList<Activity> Activities { get; }
         public IList<PhotoEvent> PhotoEvents { get; }
         [Ignored]
-        public string StringDate => StartDate.ToString("f");
+        public string StringDate {
+            get
+            {
+                var activity = Activities.OrderBy(x => x.StartHour).FirstOrDefault();
+                return activity.StartHour.LocalDateTime.ToString("f");
+            }
+        }
 
 
         public Event() { }

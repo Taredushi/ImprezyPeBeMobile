@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using EventsPbMobile.Classes;
 using EventsPbMobile.Controls;
@@ -29,14 +30,30 @@ namespace EventsPbMobile.Pages
 
         private async void Counter()
         {
-            var start = _event.StartDate.Subtract(DateTimeOffset.Now);
-            var end = _event.EndDate.Subtract(DateTimeOffset.Now);
+            TimeSpan start, end;
+            bool ifEventHasActivities = false;
+            var firstActivity = _event.Activities.OrderBy(x => x.StartHour).FirstOrDefault();
+            var lastActivity = _event.Activities.OrderBy(x => x.StartHour).LastOrDefault();
+            if (_event.Activities.Count > 0)
+            {
+                start = firstActivity.StartHour.LocalDateTime.Subtract(DateTime.Now);
+                end = lastActivity.EndHour.Subtract(DateTime.Now);
+                ifEventHasActivities = true;
+            }
+            else
+            {
+                start = _event.StartDate.Subtract(DateTimeOffset.Now);
+                end = _event.EndDate.Subtract(DateTimeOffset.Now);
+            }
 
             string hours, minutes, seconds;
             if (start.TotalSeconds > 0)
                 while (start.TotalSeconds > 0)
                 {
-                    start = _event.StartDate.Subtract(DateTime.Now);
+                    if (ifEventHasActivities)
+                        start = firstActivity.StartHour.LocalDateTime.Subtract(DateTime.Now);
+                    else
+                        start = _event.StartDate.Subtract(DateTime.Now);
                     hours = start.Hours.ToString();
                     minutes = start.Minutes.ToString();
                     seconds = start.Seconds.ToString();

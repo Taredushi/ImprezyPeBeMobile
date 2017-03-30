@@ -83,6 +83,7 @@ namespace EventsPbMobile.Pages
             if (!CrossConnectivity.Current.IsConnected)
             {
                 await DisplayAlert("Błąd", "Nie masz połączenia z internetem", "OK");
+                EventsList.IsRefreshing = false;
                 return false;
             }
             try
@@ -94,17 +95,10 @@ namespace EventsPbMobile.Pages
                 EventsList.IsRefreshing = false;
 
             }
-            catch (Newtonsoft.Json.JsonReaderException jsonex)
-            {
-                await DisplayAlert("Błąd", "Wystąpił błąd przy pobieraniu danych", "OK");
-                EventsList.IsRefreshing = false;
-
-            }
             catch (Exception e)
             {
-                await DisplayAlert("Błąd", "Utraciłeś połączenie z internetem", "OK");
+                await DisplayAlert("Błąd", "Wystąpił błąd przy pobieraniu danych lub zostało utracone połączenie z Internetem", "OK");
                 EventsList.IsRefreshing = false;
-
             }
             return true;
         }

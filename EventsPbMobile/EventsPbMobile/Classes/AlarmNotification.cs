@@ -12,41 +12,32 @@ namespace EventsPbMobile.Classes
             var eventsReminder = db.GetEventsWithSetReminder();
             foreach (var ev in eventsReminder)
             {
+                if (ev == null)
+                    continue;
+
                 if (timesettings.Notify1HBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddHours(-1))
-                {
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już za godzinę na Politechnice!", ev.Title, ev.EventId * 10000,
                             ev.StartDate.UtcDateTime.AddHours(-1));
-                }
 
                 else
-                {
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000);
-                    }
 
                 if (timesettings.Notify1DBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddDays(-1))
-                {
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już jutro na Politechnice!", ev.Title, ev.EventId * 10000 + 1,
                             ev.StartDate.UtcDateTime.AddDays(-1));
-                }
-                
+
                 else
-                {
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000 + 1);
-                }
 
                 if (timesettings.Notify2DBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddDays(-2))
-                {
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już za 2 dni na Politechnice!", ev.Title, ev.EventId * 10000 + 2,
                             ev.StartDate.UtcDateTime.AddDays(-2));
-                }
 
                 else
-                {
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000 + 2);
-                }
             }
         }
 

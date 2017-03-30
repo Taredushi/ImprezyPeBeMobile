@@ -72,11 +72,10 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ListView x:Name="EventsList" ItemSelected="OnEventSelected" HasUnevenRows="True" Margin="0,-1,0,-1"
-                  BackgroundColor="Black" SeparatorVisibility="None"
-                  ItemTemplate="{StaticResource EventTemplateSelector}" IsPullToRefreshEnabled="True"
-                  Refreshing="Events_PullToRefreshAction" />
+                  SeparatorVisibility="None" ItemTemplate="{StaticResource EventTemplateSelector}"
+                  IsPullToRefreshEnabled="True" Refreshing="Events_PullToRefreshAction" />
 
-<!--        <ContentView x:Name="NoEventsContentView" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
+        <!--        <ContentView x:Name="NoEventsContentView" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1"
                      IsVisible="False">
         </ContentView>-->
     </ContentPage.Content>
