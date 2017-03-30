@@ -8,13 +8,13 @@ namespace EventsPbMobile.Pages
     public partial class EventDepartamentDetails : ContentPage
     {
         private readonly Activity _activity;
-        public EventDepartamentDetails(string title, Activity act)
+        public EventDepartamentDetails(Activity act)
         {
             InitializeComponent();
 
             _activity = act;
-           
-            Title = title;
+            var db = new EventsDataAccess();
+            Title = db.GetEventTitle(act.EventID);
             TitleLabel.Text = _activity.Title;
             PlaceLabel.Text = _activity.Place.Name;
             StartHourLabel.Text = _activity.StartHour.LocalDateTime.ToString("f");
@@ -41,7 +41,7 @@ namespace EventsPbMobile.Pages
 
         private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY >= this.ScrollView.ContentSize.Height - this.ScrollView.Height)
+            if (e.ScrollY >= (int)(this.ScrollView.ContentSize.Height - this.ScrollView.Height))
             {
                 this.ScrollView.InputTransparent = true;
             }

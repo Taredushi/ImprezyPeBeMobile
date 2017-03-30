@@ -22,6 +22,7 @@ namespace EventsPbMobile.Pages
             // _dataAccess.DeleteDatabase();
             CheckIfDbIsNull();
             InitializeSeachButton();
+            AlarmNotification.SetAlarms();
         }
 
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace EventsPbMobile.Classes
@@ -14,27 +16,39 @@ namespace EventsPbMobile.Classes
             {
                 if (ev == null)
                     continue;
-
-                if (timesettings.Notify1HBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddHours(-1))
+                DateTime time;
+                var activity = ev.Activities.OrderBy(x => x.StartHour).FirstOrDefault();
+                if (activity == null)
+                {
+                    time = ev.StartDate.LocalDateTime;
+                }
+                else
+                {
+                    time = activity.StartHour.LocalDateTime;
+                }
+                if (timesettings.Notify1HBefore &&
+                    DateTimeOffset.Now < time.AddHours(-1))
+                {
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już za godzinę na Politechnice!", ev.Title, ev.EventId * 10000,
-                            ev.StartDate.UtcDateTime.AddHours(-1));
+                            time.AddHours(-1));
+                }
 
                 else
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000);
 
-                if (timesettings.Notify1DBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddDays(-1))
+                if (timesettings.Notify1DBefore && DateTimeOffset.UtcNow < time.AddDays(-1))
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już jutro na Politechnice!", ev.Title, ev.EventId * 10000 + 1,
-                            ev.StartDate.UtcDateTime.AddDays(-1));
+                            time.AddDays(-1));
 
                 else
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000 + 1);
 
-                if (timesettings.Notify2DBefore && DateTimeOffset.UtcNow < ev.StartDate.UtcDateTime.AddDays(-2))
+                if (timesettings.Notify2DBefore && DateTimeOffset.UtcNow < time.AddDays(-2))
                     DependencyService.Get<INotification>()
                         .SetAlarm("Już za 2 dni na Politechnice!", ev.Title, ev.EventId * 10000 + 2,
-                            ev.StartDate.UtcDateTime.AddDays(-2));
+                            time.AddDays(-2));
 
                 else
                     DependencyService.Get<INotification>().CancelAlarm(ev.EventId * 10000 + 2);

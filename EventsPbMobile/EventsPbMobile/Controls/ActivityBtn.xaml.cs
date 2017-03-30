@@ -26,7 +26,8 @@ namespace EventsPbMobile.Controls
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EventDepartamentDetails(Title, Activity));
+            
+            await Navigation.PushAsync(new EventDepartamentDetails(Activity));
         }
     }
 }

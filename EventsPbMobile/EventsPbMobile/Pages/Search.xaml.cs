@@ -69,7 +69,7 @@ namespace EventsPbMobile.Pages
             ((ListView) sender).SelectedItem = null;
 
             var eventtitle = _dataAccess.GetEventTitle(activity.EventID);
-            var eventdetails = new EventDepartamentDetails(eventtitle, activity) {BindingContext = activity.Event};
+            var eventdetails = new EventDepartamentDetails(activity) {BindingContext = activity.Event};
             await Navigation.PushAsync(eventdetails);
         }
 

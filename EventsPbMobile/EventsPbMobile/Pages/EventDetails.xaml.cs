@@ -166,7 +166,7 @@ namespace EventsPbMobile.Pages
 
         private void ScrollView_OnScrolled(object sender, ScrolledEventArgs e)
         {
-            if (e.ScrollY >= ScrollView.ContentSize.Height - ScrollView.Height)
+            if (e.ScrollY >= (int)(ScrollView.ContentSize.Height - ScrollView.Height))
                 ScrollView.InputTransparent = true;
             else
                 ScrollView.InputTransparent = false;
